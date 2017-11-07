@@ -44,17 +44,17 @@
 <body>
 <div class="container">
 
-      <form class="form-signin" name="signin" action="start" method="post">
+      <form class="form-signin" id="myForm" name="myForm" action="" method="post">
       
         <h2 class="form-signin-heading">  Elemento</h2>
 			 ID <label for="inputnombre_el" class="sr-only"><input><br><br> Elemento</label>
         <input name="nombre_el" id="inputnombre_el" class="form-control" placeholder="" required=""  type="">
 
-        <br><br><label for="inputTipoDeElemento" class="sr-only">Tipo de elemento</label> 
+        <br><br><label for="inputTipoElemento" class="sr-only">Tipo de elemento</label> 
         <%CtrlABMCElemento ctrl=new CtrlABMCElemento();
 			ArrayList<TipoElemento> te= new ArrayList<TipoElemento>();
 			te=ctrl.getTipoElemento();
-		%><select style="width: 101px; ">
+		%><select name="tipoElemento" id="inputtipoelemento">
 		<%	for(TipoElemento t : te){%>
 			<option value="<%=t.getId_TE() %>"><%=t.getNombre_TE() %></option>
 		<%

@@ -52,7 +52,7 @@ public class Start extends HttpServlet {
 			
 			request.getSession().setAttribute("user", pers);
 			
-			request.getRequestDispatcher("WEB-INF/tipoElemento.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/elemento.jsp").forward(request, response);
 			//response.getWriter().append(user).append(" ").append(pass);
 			
 		

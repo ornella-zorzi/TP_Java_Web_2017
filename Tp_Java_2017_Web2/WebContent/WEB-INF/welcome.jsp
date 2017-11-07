@@ -12,11 +12,11 @@
 
 </head>
 <body>
-	<ul id=”menu”>
+	<ul id=”#”>
 <li><a href=”#”>PERSONA</a>
 <ul>
-<li><a href=”persona.jsp”>AMBCPersona</a></li>
-<li><a href=”listadoPersona.jsp”>Listado Persona</a></li>
+<li><a href=”#”>AMBCPersona</a></li>
+<li><a href=”#”>Listado Persona</a></li>
 
 </ul>
 </li>
