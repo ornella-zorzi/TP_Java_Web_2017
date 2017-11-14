@@ -160,7 +160,7 @@ public class DataTipoElemento implements Serializable  {
 		    PreparedStatement stmt= null;
 		    ResultSet rs=null;
 		    try {
-		    		 stmt= FactoryConexion.getInstancia().getConn().prepareStatement( "select id_te,nombre_te,cant_reserva_max, tiempo_limite,dias_anticipacion from TipoElemento where id_te=? ");
+		    		 stmt= FactoryConexion.getInstancia().getConn().prepareStatement( "select id_te,nombre_te,cant_reserva_max, tiempo_limite,dias_anticipacion from tipo_elemento where id_te=? ");
 		    		 stmt.setInt(1,id_te);
 		    		 rs=stmt.executeQuery();
 		    		 if(rs!=null && rs.next()){
@@ -168,7 +168,7 @@ public class DataTipoElemento implements Serializable  {
 		    			 te.setId_TE(rs.getInt("id_te"));
 		    			 te.setNombre_TE(rs.getString("nombre_te"));
 		    			 te.setCant_reserva_max(rs.getInt("cant_reserva_max"));
-		    			te.setTiempo_limite(rs.getInt("tiempo_limite"));
+		    			 te.setTiempo_limite(rs.getInt("tiempo_limite"));
 		    		     te.setDias_anticipacion(rs.getInt("dias_anticipacion"));
 		    			 }
 		    		 

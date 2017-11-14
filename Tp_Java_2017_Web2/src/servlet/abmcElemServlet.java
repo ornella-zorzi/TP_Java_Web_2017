@@ -92,11 +92,12 @@ public class abmcElemServlet extends HttpServlet {
 			  
 			    CtrlABMCElemento ctrl= new CtrlABMCElemento();
 			    Elemento el = new Elemento();
-			    el.setNombre_El(request.getParameter("elemento"));
-				int id_te=Integer.parseInt(request.getParameter("tipo elemento"));
+			    el.setNombre_El(request.getParameter("nombre_el"));
+				int id_te=Integer.parseInt(request.getParameter("tipoElemento"));
 				el.setTipoElemento(ctrl.getById(id_te));
 				ctrl.add(el);
-				response.getWriter().append("Alta, requested action: ").append(request.getPathInfo()).append(" through post");
+				response.getWriter().append("Elemento creado con exito");
+				//response.getWriter().append("Alta, requested action: ").append(request.getPathInfo()).append(" through post");
 		  }
 	      catch (Exception e) {
 			e.printStackTrace();
@@ -104,5 +105,4 @@ public class abmcElemServlet extends HttpServlet {
 		
 		//crear el controlador y ejecutar el new/add
 	}
-
 }
