@@ -1,5 +1,6 @@
 <%@page import="controlers.CtrlABMCPersona"%>
 <%@page import="entity.Categoria"%>
+<%@page import="entity.Persona"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -40,21 +41,46 @@
     
   </head>
 <body>
+<%
+   Persona encontrada=null;
+   String id="";
+   String dni="";
+   String nombre="";
+   String apellido="";
+   String email="";
+  // Categoria cate = new Categoria();
+  // String idCat="";
+  // String nombre_cat="";
+  String categoria;
+   boolean habilitado=false;
+   
+   
+   if(request.getAttribute("encontrada")!=null){
+	   encontrada =(Persona)request.getAttribute("encontrada");
+	   id=String.valueOf(encontrada.getId_per());
+	   dni=encontrada.getDni();
+	   nombre=encontrada.getNombre();
+	   apellido=encontrada.getApellido();
+	   email=encontrada.getEmail();
+	   categoria = encontrada.getCategoria().getNombre_cat();
+   }
+   
+%>
  <div class="container">
       	 <form class="form-signin" id="myForm" name="myForm" action="" method="post">
      
         <h2 class="form-signin-heading"> Persona</h2>
         ID   <input><br><label for="inputdni" class="sr-only">DNI</label>
-        <input name="dni" id="inputdni" class="form-control" placeholder="" required="" autofocus="" type=""> 
+        <input name="dni" id="inputdni" value=<%=dni %> class="form-control" placeholder="" required="" autofocus="" type=""> 
         <button class="btn btn-lg " onclick="javascript: submitForm('persona/consulta')">Buscar</button>
         <br><br><label for="inputNombre" class="sr-only">Nombre:</label>
-        <input name="nombre" id="inputnombre" class="form-control" placeholder="" required="" type="">
+        <input name="nombre" id="inputnombre" value=<%=nombre %> class="form-control" placeholder="" required="" type="">
       
         <br><br><label for="inputApellido" class="sr-only">Apellido:</label>
-        <input name="apellido" id="inputapellido" class="form-control" placeholder="" required="" type=""><br><br>
+        <input name="apellido" id="inputapellido" value=<%=apellido %> class="form-control" placeholder="" required="" type=""><br><br>
      
         <label for="inputEmail" class="sr-only">Email:</label>
-        <input name="email" id="inputemail" class="form-control" placeholder="" required="" type="">
+        <input name="email" id="inputemail" value=<%=email %> class="form-control" placeholder="" required="" type="">
       
         <label for="inputCategoria" class="sr-only"><br><br>Categoria:</label> 
         
@@ -62,7 +88,7 @@
 			ArrayList<Categoria> cats= new ArrayList<Categoria>();
 			cats=ctrl.getCategoria();
 		%>
-			<select name="categoria" id="inputcategoria">
+			<select name="categoria" id="inputcategoria"> 
 		<%	for(Categoria c : cats){%>
 			<option value="<%=c.getId_cat() %>"><%=c.getNombre_cat() %></option>
 		<%

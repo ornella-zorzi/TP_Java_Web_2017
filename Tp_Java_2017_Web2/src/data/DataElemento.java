@@ -193,4 +193,30 @@ public void delete(Elemento el){
 	} 
 	
 }
+public Elemento getById(int id_el) throws Exception{
+	Elemento el = null ;
+    PreparedStatement stmt= null;
+    ResultSet rs=null;
+    try {
+    		 stmt= FactoryConexion.getInstancia().getConn().prepareStatement( "select id_el, nombre_el from elemento where id_el=? ");
+    		 stmt.setInt(1,id_el);
+    		 rs=stmt.executeQuery();
+    		 if(rs!=null && rs.next()){
+    			 el=new Elemento();
+    			 el.setId_El(rs.getInt("id_El"));
+    			 el.setNombre_El(rs.getString("nombre_El"));}
+    		 
+    	} catch (Exception e ){
+    		throw e;
+    	} finally {
+    		try{
+    			if(rs!=null)rs.close();
+    			if (stmt!=null)stmt.close();
+    			FactoryConexion.getInstancia().releaseConn();
+    		}catch (SQLException e ){
+    			throw e;
+    		}
+    	} return el;
+    	
+    }
 }

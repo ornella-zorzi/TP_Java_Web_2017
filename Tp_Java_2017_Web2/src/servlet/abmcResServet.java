@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.Time;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,20 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
 
-import controlers.CtrlABMCPersona;
-import entity.Persona;
+import controlers.*;
+import entity.*;
 
-/**
- * Servlet implementation class abmcPerServlet
- */
-@WebServlet({ "/persona/*", "/Persona/*", "/PERSONA/*" })
-public class abmcPerServlet extends HttpServlet {
+@WebServlet({ "/reserva/*", "/Reserva/*",  "/RESERVA/*" , "/RESERVAS/*"  })
+public class abmcResServet  extends HttpServlet  {
 	private static final long serialVersionUID = 1L;
-       
+    
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public abmcPerServlet() {
+    public abmcResServet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -70,16 +68,6 @@ public class abmcPerServlet extends HttpServlet {
 
 	private void consulta(HttpServletRequest request, HttpServletResponse response) throws IOException {
      try{
-			CtrlABMCPersona ctrl= new CtrlABMCPersona();
-			String dni=request.getParameter("dni");
-			Persona per=new Persona();
-			per.setDni(dni);
-            request.setAttribute("encontrada", per);
-    
-		request.getRequestDispatcher("/WEB-INF/persona.jsp").forward(request, response);
-	//	response.getWriter().append("Consulta, requested action: ").append(request.getPathInfo()).append(" through post");
-		//en lugar del response.getWriter usar el forward del ejemplo de start / welcome
-		//crear el controlador y ejecutar el getOne o getById
 	  }
      catch (Exception e) {
 		e.printStackTrace();
@@ -100,17 +88,16 @@ public class abmcPerServlet extends HttpServlet {
 	private void alta(HttpServletRequest request, HttpServletResponse response) throws IOException {
 	
 		  try {
-			    CtrlABMCPersona ctrl= new CtrlABMCPersona();
-			    Persona per=new Persona();
-				per.setDni(request.getParameter("dni"));
-				per.setNombre(request.getParameter("nombre"));
-				per.setApellido(request.getParameter("apellido"));
-				per.setEmail(request.getParameter("email"));
-				int id_cat=Integer.parseInt(request.getParameter("categoria"));
-				per.setCategoria(ctrl.getById(id_cat));
-				per.setHabilitado(request.getParameter("habilitado").equals("on"));
-				per.setUsuario(request.getParameter("usuario"));
-				per.setContraseña(request.getParameter("contraseña"));
+			    CtrlABMCReserva ctrl = new CtrlABMCReserva();
+                Reserva re = new Reserva();
+                int id_el=Integer.parseInt(request.getParameter("elemento"));
+                re.setElemento(ctrl.getById(id_el));
+                int id_te=Integer.parseInt(request.getParameter("TipoElemento"));
+                re.setTipoelemento(ctrl.getByIdTE(id_te));
+              // re.setFecha(request.getParameter("fecha"));
+              // re.setHora(request.getParameter("hora")); 
+                re.setDetalle(request.getParameter("detalle"));
+                ctrl.add(re);
 				/*
 				 * 1- guardar la categoria id en una variabe
 				 * 2- buscar la categoria de ese id mediante un controlador getById
@@ -120,7 +107,7 @@ public class abmcPerServlet extends HttpServlet {
 				//checkbox
 				//user,pass
 				//categoria
-				ctrl.add(per);
+				
 				//tratar de poner cartel
 				response.getWriter().append("Alta, requested action: ").append(request.getPathInfo()).append(" through post");
 		  }

@@ -185,4 +185,32 @@ public class DataTipoElemento implements Serializable  {
 		    	} return te;
 		    	
 		    }
+	 
+	 public TipoElemento getByIdTE(int id_te) throws Exception{
+			TipoElemento te = null ;
+		    PreparedStatement stmt= null;
+		    ResultSet rs=null;
+		    try {
+		    		 stmt= FactoryConexion.getInstancia().getConn().prepareStatement( "select id_te, nombre_te from tipo_elemento where id_te=? ");
+		    		 stmt.setInt(1,id_te);
+		    		 rs=stmt.executeQuery();
+		    		 if(rs!=null && rs.next()){
+		    			 te=new TipoElemento();
+		    			 te.setId_TE(rs.getInt("id_TE"));
+		    			 te.setNombre_TE(rs.getString("nombre_TE"));
+}
+		    		 
+		    	} catch (Exception e ){
+		    		throw e;
+		    	} finally {
+		    		try{
+		    			if(rs!=null)rs.close();
+		    			if (stmt!=null)stmt.close();
+		    			FactoryConexion.getInstancia().releaseConn();
+		    		}catch (SQLException e ){
+		    			throw e;
+		    		}
+		    	} return te;
+		    	
+		    }
 }

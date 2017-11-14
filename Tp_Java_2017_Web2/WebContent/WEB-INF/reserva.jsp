@@ -40,11 +40,10 @@
         <input name="detalle" id="inputDetalle" class="form-control" placeholder="" required="" type=""><br><br>
         <label for="inputEstado" class="sr-only">Estado</label>
         <input name="estado" id="inputEstado" class="form-control" placeholder="" required="" type=""><br><br>
-       
-        <button class="btn btn-agregar btn-primary btn-block" type="submit">Agregar</button>
-        <button class="btn btn-modificar btn-primary btn-block" type="submit">Modificar</button>
-        <button class="btn btn-borrar btn-primary btn-block" type="submit">Borrar</button>
-       
+           
+       <button class="btn btn-lg " onclick="javascript: submitForm('persona/alta')">Agregar</button>
+        <button class="btn btn-lg " onclick="javascript: submitForm('persona/modificacion')">Modificar</button>
+        <button class="btn btn-lg " onclick="javascript: submitForm('persona/baja')">Borrar</button>	
       </form>
 
     </div> <!-- /container -->

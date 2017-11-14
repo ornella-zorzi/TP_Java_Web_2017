@@ -220,6 +220,7 @@ public void guardarSeparado(java.sql.Date fecha, java.sql.Time hora){
 		e.printStackTrace();
 	}
 }*/
+
 }
 
 
