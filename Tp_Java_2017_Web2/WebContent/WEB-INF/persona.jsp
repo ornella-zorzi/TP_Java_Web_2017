@@ -32,6 +32,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
     <script type="text/javascript">
     	function submitForm(met) {
     		document.myForm.action=met;
@@ -48,10 +49,10 @@
    String nombre="";
    String apellido="";
    String email="";
-  // Categoria cate = new Categoria();
-  // String idCat="";
-  // String nombre_cat="";
-  String categoria;
+   Categoria cate = new Categoria();
+   String idCat="";
+   String nombre_cat="";
+  //String categoria;
    boolean habilitado=false;
    
    
@@ -62,10 +63,12 @@
 	   nombre=encontrada.getNombre();
 	   apellido=encontrada.getApellido();
 	   email=encontrada.getEmail();
-	   categoria = encontrada.getCategoria().getNombre_cat();
+	   cate = encontrada.getCategoria();     
+	
    }
-   
-%>
+   else {
+	   
+   } %>
  <div class="container">
       	 <form class="form-signin" id="myForm" name="myForm" action="" method="post">
      
@@ -88,12 +91,11 @@
 			ArrayList<Categoria> cats= new ArrayList<Categoria>();
 			cats=ctrl.getCategoria();
 		%>
-			<select name="categoria" id="inputcategoria"> 
+			<select name="categoria" required ="id" id="categoria" > 
 		<%	for(Categoria c : cats){%>
-			<option value="<%=c.getId_cat() %>"><%=c.getNombre_cat() %></option>
-		<%
-			}
-		%> 
+			<option value="<%=c.getId_cat() %>"><%=c.getNombre_cat() %></option> <%  } %> 
+	
+
 		</select>
 			<br><br><input type="checkbox" name="habilitado" id="inputhabilitado">
 			<label for="inputHabilitado" class="sr-only">Habilitado</label>

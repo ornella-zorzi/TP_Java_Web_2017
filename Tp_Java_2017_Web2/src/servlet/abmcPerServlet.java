@@ -74,13 +74,14 @@ public class abmcPerServlet extends HttpServlet {
 			String dni=request.getParameter("dni");
 			Persona per=new Persona();
 			per.setDni(dni);
-            request.setAttribute("encontrada", per);
+			per = ctrl.getByDni(per);
+			request.setAttribute("encontrada", per);
     
 		request.getRequestDispatcher("/WEB-INF/persona.jsp").forward(request, response);
 	//	response.getWriter().append("Consulta, requested action: ").append(request.getPathInfo()).append(" through post");
 		//en lugar del response.getWriter usar el forward del ejemplo de start / welcome
 		//crear el controlador y ejecutar el getOne o getById
-	  }
+     }
      catch (Exception e) {
 		e.printStackTrace();
 	   }
