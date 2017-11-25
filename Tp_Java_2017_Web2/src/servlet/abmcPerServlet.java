@@ -81,6 +81,7 @@ public class abmcPerServlet extends HttpServlet {
 	//	response.getWriter().append("Consulta, requested action: ").append(request.getPathInfo()).append(" through post");
 		//en lugar del response.getWriter usar el forward del ejemplo de start / welcome
 		//crear el controlador y ejecutar el getOne o getById
+		
      }
      catch (Exception e) {
 		e.printStackTrace();
