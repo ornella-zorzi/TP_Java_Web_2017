@@ -52,8 +52,10 @@
    Categoria cate = new Categoria();
    String idCat="";
    String nombre_cat="";
+   String usuario="";
+   String contraseña="";
   //String categoria;
-   boolean habilitado=false;
+   boolean habilitado= true;
    
    
    if(request.getAttribute("encontrada")!=null){
@@ -64,26 +66,25 @@
 	   apellido=encontrada.getApellido();
 	   email=encontrada.getEmail();
 	   cate = encontrada.getCategoria();     
-	
-   }
-   else {
-	   
+	   usuario=encontrada.getUsuario();
+	   contraseña=encontrada.getContraseña();
+	  habilitado=encontrada.isHabilitado();   
    } %>
  <div class="container">
       	 <form class="form-signin" id="myForm" name="myForm" action="" method="post">
      
         <h2 class="form-signin-heading"> Persona</h2>
-        ID   <input><br><label for="inputdni" class="sr-only">DNI</label>
-        <input name="dni" id="inputdni" value=<%=dni %> class="form-control" placeholder="" required="" autofocus="" type=""> 
+        ID   <input name="id" value=<%=id %> ><br><label for="inputdni" class="sr-only">DNI</label>
+        <input name="dni" id="inputdni"  class="form-control" placeholder=""  autofocus="" type="" value=<%=dni %>> 
         <button class="btn btn-lg " onclick="javascript: submitForm('persona/consulta')">Buscar</button>
         <br><br><label for="inputNombre" class="sr-only">Nombre:</label>
-        <input name="nombre" id="inputnombre" value=<%=nombre %> class="form-control" placeholder="" required="" type="">
+        <input name="nombre" id="inputnombre"  class="form-control" placeholder=""  type="" value=<%=nombre %>>
       
         <br><br><label for="inputApellido" class="sr-only">Apellido:</label>
-        <input name="apellido" id="inputapellido" value=<%=apellido %> class="form-control" placeholder="" required="" type=""><br><br>
+        <input name="apellido" id="inputapellido" class="form-control" placeholder=""  type="" value=<%=apellido %>  ><br><br>
      
         <label for="inputEmail" class="sr-only">Email:</label>
-        <input name="email" id="inputemail" value=<%=email %> class="form-control" placeholder="" required="" type="">
+        <input name="email" id="inputemail"  class="" placeholder=""  type="" value=<%=email %>>
       
         <label for="inputCategoria" class="sr-only"><br><br>Categoria:</label> 
         
@@ -94,10 +95,17 @@
 			<select name="categoria" required ="id" id="categoria" > 
 		<%	for(Categoria c : cats){%>
 			<option value="<%=c.getId_cat() %>"><%=c.getNombre_cat() %></option> <%  } %> 
-	
 
 		</select>
-			<br><br><input type="checkbox" name="habilitado" id="inputhabilitado">
+		
+		  <br><label for="inputUsuario" class="sr-only">Usuario:</label>
+        <input name="usuario" id="inputusuario"  class="" placeholder=""  type="" value=<%=usuario %>>
+        
+             <label for="inputContraseña" class="sr-only">Contraseña:</label>
+        <input name="contraseña" id="inputcontraseña"  class="" placeholder=""  type="" value=<%=contraseña %>>
+        
+			<br><br><input type="checkbox" name="habilitado" id="inputhabilitado" value="habilitado" 
+			<%if(habilitado){ %>checked<%} %>>
 			<label for="inputHabilitado" class="sr-only">Habilitado</label>
 		  
         <button class="btn btn-lg " onclick="javascript: submitForm('persona/alta')">Agregar</button>

@@ -45,12 +45,12 @@ public class abmcPerServlet extends HttpServlet {
 			this.alta(request,response);
 			break;
 			
-		case "/baja":
+		case "/persona/baja":
 			this.baja(request,response);
 			break;
 			
-		case "/modificacion":
-			this.modificacion(request,response);
+		case "/persona/modificacion":
+				this.modificacion(request,response);
 			break;
 			
 		case "/consulta":
@@ -76,12 +76,13 @@ public class abmcPerServlet extends HttpServlet {
 			per.setDni(dni);
 			per = ctrl.getByDni(per);
 			request.setAttribute("encontrada", per);
-    
+			
 		request.getRequestDispatcher("/WEB-INF/persona.jsp").forward(request, response);
 //	response.getWriter().append("Consulta, requested action: ").append(request.getPathInfo()).append(" through post");
 		//en lugar del response.getWriter usar el forward del ejemplo de start / welcome
 		//crear el controlador y ejecutar el getOne o getById
-		
+	
+	
      }
      catch (Exception e) {
 		e.printStackTrace();
@@ -90,13 +91,49 @@ public class abmcPerServlet extends HttpServlet {
 	}
 
 	private void modificacion(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		try {
+			//this.consulta(request, response);
+		
+		Persona per=new Persona();
+		CtrlABMCPersona ctrl= new CtrlABMCPersona();
+		per.setDni(request.getParameter("dni"));
+		per.setNombre(request.getParameter("nombre"));
+		per.setApellido(request.getParameter("apellido"));
+		per.setEmail(request.getParameter("email"));
+		int id_cat=Integer.parseInt(request.getParameter("categoria"));
+		per.setCategoria(ctrl.getById(id_cat));
+		//per.setHabilitado(request.getParameter("habilitado").equals("on"));
+		per.setUsuario(request.getParameter("usuario"));
+		per.setContraseña(request.getParameter("contraseña"));
+		per.setId_per(Integer.parseInt(request.getParameter("id")));
+		ctrl.update(per);
+		///request.setAttribute("encontrada", per);
+		
+		
+		///request.getRequestDispatcher("/WEB-INF/persona.jsp").forward(request, response);
+		///response.getWriter().append("Modificar, requested action: ").append(request.getPathInfo()).append(" through post");
 		response.getWriter().append("Modificación, requested action: ").append(request.getPathInfo()).append(" through post");
 		//crear el controlador y ejecutar el modificar/update
+
+		  }
+	      catch (Exception e) {
+			e.printStackTrace();
+		   }
 	}
 
 	private void baja(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	try{
+		Persona per= new Persona();
+		per.setId_per(Integer.parseInt(request.getParameter("id")));
+		CtrlABMCPersona ctrl= new CtrlABMCPersona();
+		ctrl.delete(per);
+		
 		response.getWriter().append("baja, requested action: ").append(request.getPathInfo()).append(" through post");
 		//crear el controlador y ejecutar el delete/remove
+	}
+    catch (Exception e) {
+		e.printStackTrace();
+	   }
 	}
 
 	private void alta(HttpServletRequest request, HttpServletResponse response) throws IOException {
