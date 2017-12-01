@@ -52,7 +52,7 @@
   // String idCat="";
   // String nombre_cat="";
   String categoria;
-   boolean habilitado=false;
+   String habilitado="";
    
    
    if(request.getAttribute("encontrada")!=null){
@@ -62,6 +62,9 @@
 	   nombre=encontrada.getNombre();
 	   apellido=encontrada.getApellido();
 	   email=encontrada.getEmail();
+	   if(encontrada.isHabilitado()){
+		   habilitado="on";
+	   }
 	   categoria = encontrada.getCategoria().getNombre_cat();
    }
    
@@ -70,7 +73,7 @@
       	 <form class="form-signin" id="myForm" name="myForm" action="" method="post">
      
         <h2 class="form-signin-heading"> Persona</h2>
-        ID   <input><br><label for="inputdni" class="sr-only">DNI</label>
+        ID   <input value=<%=id %>><br><label for="inputdni" class="sr-only">DNI</label>
         <input name="dni" id="inputdni" value=<%=dni %> class="form-control" placeholder="" required="" autofocus="" type=""> 
         <button class="btn btn-lg " onclick="javascript: submitForm('persona/consulta')">Buscar</button>
         <br><br><label for="inputNombre" class="sr-only">Nombre:</label>
@@ -95,7 +98,7 @@
 			}
 		%> 
 		</select>
-			<br><br><input type="checkbox" name="habilitado" id="inputhabilitado">
+			<br><br><input type="checkbox" name="habilitado" id="inputhabilitado" value=<%=habilitado %>>
 			<label for="inputHabilitado" class="sr-only">Habilitado</label>
 		  
         <button class="btn btn-lg " onclick="javascript: submitForm('persona/alta')">Agregar</button>
