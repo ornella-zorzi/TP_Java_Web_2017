@@ -49,7 +49,6 @@
    String nombre="";
    String apellido="";
    String email="";
-<<<<<<< HEAD
    Categoria cate = new Categoria();
    String idCat="";
    String nombre_cat="";
@@ -57,13 +56,10 @@
    String contraseña="";
   //String categoria;
    boolean habilitado= true;
-=======
   // Categoria cate = new Categoria();
   // String idCat="";
   // String nombre_cat="";
   String categoria;
-   String habilitado="";
->>>>>>> branch 'master' of https://github.com/ornella-zorzi/TP_Java_Web_2017.git
    
    
    if(request.getAttribute("encontrada")!=null){
@@ -73,39 +69,24 @@
 	   nombre=encontrada.getNombre();
 	   apellido=encontrada.getApellido();
 	   email=encontrada.getEmail();
-<<<<<<< HEAD
 	   cate = encontrada.getCategoria();     
 	   usuario=encontrada.getUsuario();
 	   contraseña=encontrada.getContraseña();
 	  habilitado=encontrada.isHabilitado();   
    } %>
-=======
-	   if(encontrada.isHabilitado()){
-		   habilitado="on";
-	   }
-	   categoria = encontrada.getCategoria().getNombre_cat();
-   }
-   
-%>
->>>>>>> branch 'master' of https://github.com/ornella-zorzi/TP_Java_Web_2017.git
  <div class="container">
       	 <form class="form-signin" id="myForm" name="myForm" action="" method="post">
      
         <h2 class="form-signin-heading"> Persona</h2>
-<<<<<<< HEAD
         ID   <input name="id" value=<%=id %> ><br><label for="inputdni" class="sr-only">DNI</label>
         <input name="dni" id="inputdni"  class="form-control" placeholder=""  autofocus="" type="" value=<%=dni %>> 
-=======
         ID   <input value=<%=id %>><br><label for="inputdni" class="sr-only">DNI</label>
-        <input name="dni" id="inputdni" value=<%=dni %> class="form-control" placeholder="" required="" autofocus="" type=""> 
->>>>>>> branch 'master' of https://github.com/ornella-zorzi/TP_Java_Web_2017.git
+        <input name="dni" id="inputdni" value=<%=dni %> class="form-control" placeholder="" required="" autofocus="" type="">
         <button class="btn btn-lg " onclick="javascript: submitForm('persona/consulta')">Buscar</button>
         <br><br><label for="inputNombre" class="sr-only">Nombre:</label>
         <input name="nombre" id="inputnombre"  class="form-control" placeholder=""  type="" value=<%=nombre %>>
-      
         <br><br><label for="inputApellido" class="sr-only">Apellido:</label>
         <input name="apellido" id="inputapellido" class="form-control" placeholder=""  type="" value=<%=apellido %>  ><br><br>
-     
         <label for="inputEmail" class="sr-only">Email:</label>
         <input name="email" id="inputemail"  class="" placeholder=""  type="" value=<%=email %>>
       
@@ -120,19 +101,14 @@
 			<option value="<%=c.getId_cat() %>"><%=c.getNombre_cat() %></option> <%  } %> 
 
 		</select>
-<<<<<<< HEAD
-		
 		  <br><label for="inputUsuario" class="sr-only">Usuario:</label>
         <input name="usuario" id="inputusuario"  class="" placeholder=""  type="" value=<%=usuario %>>
-        
              <label for="inputContraseña" class="sr-only">Contraseña:</label>
         <input name="contraseña" id="inputcontraseña"  class="" placeholder=""  type="" value=<%=contraseña %>>
         
 			<br><br><input type="checkbox" name="habilitado" id="inputhabilitado" value="habilitado" 
 			<%if(habilitado){ %>checked<%} %>>
-=======
 			<br><br><input type="checkbox" name="habilitado" id="inputhabilitado" value=<%=habilitado %>>
->>>>>>> branch 'master' of https://github.com/ornella-zorzi/TP_Java_Web_2017.git
 			<label for="inputHabilitado" class="sr-only">Habilitado</label>
 		  
         <button class="btn btn-lg " onclick="javascript: submitForm('persona/alta')">Agregar</button>
