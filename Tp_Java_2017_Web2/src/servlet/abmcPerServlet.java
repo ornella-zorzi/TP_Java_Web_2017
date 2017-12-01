@@ -73,8 +73,9 @@ public class abmcPerServlet extends HttpServlet {
 			CtrlABMCPersona ctrl= new CtrlABMCPersona();
 			String dni=request.getParameter("dni");
 			Persona per=new Persona();
-			Persona p=new Persona();
 			per.setDni(dni);
+			per=ctrl.getByDni(per);
+			request.setAttribute("encontrada", per);
 
 		request.getRequestDispatcher("/WEB-INF/persona.jsp").forward(request, response);
 //	response.getWriter().append("Consulta, requested action: ").append(request.getPathInfo()).append(" through post");
