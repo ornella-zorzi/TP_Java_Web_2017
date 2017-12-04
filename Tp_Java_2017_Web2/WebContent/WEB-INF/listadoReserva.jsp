@@ -13,6 +13,9 @@
 <table>
 
 <tr>
+			<td style="width: 110px; ">APELLIDO Y NOMBRE</td>
+			<td style="width: 110px; ">TIPO DE ELEMENTO</td>
+			<td style="width: 110px; ">ELEMENTO</td>
 			<td style="width: 110px; ">FECHA</td>
 			<td style="width: 110px; ">HORA</td>
 			<td style="width: 110px; ">DETALLE</td>
@@ -26,8 +29,11 @@
 		%>
 		
 		<tr>
-			<td><%=r.getFecha() %></td>
-			<td><%=r.getHora()%></td>
+		    <td><%=r.getPersona().getApellido() %>, <%=r.getPersona().getNombre() %></td>
+			<td><%=r.getTipoelemento().getNombre_TE() %></td>
+			<td><%=r.getElemento().getNombre_El() %></td>
+		    <td><%=r.getFecha() %></td>
+			<td><%=r.getHora() %></td>
 			<td><%=r.getDetalle() %></td>
 			<td><%=r.getEstado()%></td>
 			
