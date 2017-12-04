@@ -1,5 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="servlet.abmcPerServlet" %>
+<%@page import="servlet.abmcResServet" %>
 <%@page import="entity.Persona"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -69,31 +70,30 @@
 <body>
 	<div id="header">
 			<ul class="nav">
-				<li><a href="abmcPerServlet">Personas</a></li>
-				<li><a href="">Servicios</a>
-					<ul>
-						<li><a href="">Submenu1</a></li>
-						<li><a href="">Submenu2</a></li>
-						<li><a href="">Submenu3</a></li>
-						<li><a href="">Submenu4</a>
-							<ul>
-								<li><a href="">Submenu1</a></li>
-								<li><a href="">Submenu2</a></li>
-								<li><a href="">Submenu3</a></li>
-								<li><a href="">Submenu4</a></li>
-							</ul>
-						</li>
+				<li><a href="">Personas </a>
+				   <ul>
+						<li><a href="persona">ABMC Persona</a></li>
+						<li><a href="listadoPer">Listado de Personas</a></li>
 					</ul>
 				</li>
-				<li><a href="">Acerca de</a>
+				<li><a href="">Elementos</a>
 					<ul>
-						<li><a href="">Submenu1</a></li>
-						<li><a href="">Submenu2</a></li>
-						<li><a href="">Submenu3</a></li>
-						<li><a href="">Submenu4</a></li>
+						<li><a href="elemento">ABMC Elemento</a></li>
+						<li><a href="listadoEl">Listado de Elementos</a></li>
 					</ul>
 				</li>
-				<li><a href="">Contacto</a></li>
+				<li><a href="">Tipo de Elementos</a>
+					<ul>
+						<li><a href="tipoElemento">ABMC Tipo de Elemento</a></li>
+						<li><a href="listadoTe">Listado de Tipo de Elementos</a></li>
+					</ul>
+				</li>
+				<li><a href="">Reservas</a>
+				     <ul>
+						<li><a href="reserva">ABMC Reserva</a></li>
+						<li><a href="listadoRe">Listado de Reservas</a></li>
+					</ul>
+				</li>
 			</ul>
 		</div>
 </body>

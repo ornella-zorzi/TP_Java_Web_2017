@@ -13,18 +13,10 @@ public class DataReserva implements Serializable  {
 		ArrayList<Reserva> res = new ArrayList<Reserva>();
 		try{ 
 			stmt = FactoryConexion.getInstancia().getConn().createStatement();
-			rs = stmt.executeQuery("Select  *  from reserva  inner join elemento  on reserva.id_el=elemento.id_el");
+			rs = stmt.executeQuery("Select * from reserva ");
 			if (rs!= null ){
 				while(rs.next()){
 					Reserva r = new Reserva();
-					r.setElemento(new Elemento());
-					r.setPersona(new Persona());
-					r.setId_res(rs.getInt("id_res"));
-					r.getElemento().setId_El(rs.getInt("id_el"));
-					r.getElemento().setNombre_El(rs.getString("nombre_el"));
-					r.getElemento().getTipoElemento().setId_TE(rs.getInt("id_te"));
-					r.getElemento().getTipoElemento().setNombre_TE(rs.getString("nombre_te"));
-					r.getPersona().setId_per(rs.getInt("id_per"));
 					r.setFecha(rs.getDate("fecha"));
 					r.setHora(rs.getTime("hora"));
 					r.setDetalle(rs.getString("detalle"));

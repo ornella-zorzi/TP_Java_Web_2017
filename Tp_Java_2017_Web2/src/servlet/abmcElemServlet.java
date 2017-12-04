@@ -32,7 +32,7 @@ public class abmcElemServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("get");
+		request.getRequestDispatcher("/WEB-INF/elemento.jsp").forward(request, response);
 	}
 
 	/**

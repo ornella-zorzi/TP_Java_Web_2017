@@ -1,27 +1,25 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import controlers.CtrlABMCElemento;
 
 /**
- * Servlet implementation class Menu
+ * Servlet implementation class ListadoElServlet
  */
-@WebServlet({"/Menu", "/menu"})
-public class Menu extends HttpServlet {
+@WebServlet ({"/listadoEl/*", "/ListadoEl/*", "/LISTADOEL/*","/listadoel/*"})
+public class ListadoElServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Menu() {
+    public ListadoElServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,35 +28,22 @@ public class Menu extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	//	response.getWriter().append("Served at: ").append(request.getContextPath());
-		doPost(request, response);
+		CtrlABMCElemento ctrl= new CtrlABMCElemento();
+		try {
+			request.setAttribute("listaElementos", ctrl.getAll());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		request.getRequestDispatcher("/WEB-INF/listadoElemento.jsp").forward(request, response);
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("entro");
-		
-		String action = request.getServletPath();
-		 
-        try {
-            switch (action) {
-              
- 	        case "/Persona":
- 	        	request.getRequestDispatcher("WEB-INF/persona.jsp").forward(request, response);
-                break;
- 	        
-            }
-        }
-         catch (Exception e) {
-			// TODO Bloque catch generado automáticamente
-			e.printStackTrace();
-			doGet(request, response);
-		}
+		doGet(request, response);
 	}
-		
-		
+
 }

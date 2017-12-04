@@ -78,7 +78,7 @@
       	 <form class="form-signin" id="myForm" name="myForm" action="" method="post">
      
         <h2 class="form-signin-heading"> Persona</h2>
-        ID   <input name="id" value=<%=id %> ><br><br><label for="inputdni" class="sr-only">DNI</label>
+        ID   <input  name="id" value=<%=id %> ><br><br><label for="inputdni" class="sr-only">DNI</label>
         <input name="dni" id="inputdni"  class="form-control" placeholder="" required="" autofocus="" type="" value=<%=dni %>>
         <button class="btn btn-lg " onclick="javascript: submitForm('persona/consulta')">Buscar</button>
         <br><br><label for="inputNombre" class="sr-only">Nombre:</label>
@@ -99,7 +99,7 @@
 			<option value="<%=c.getId_cat() %>"><%=c.getNombre_cat() %></option> <%  } %> 
 
 		</select>
-		  <br><label for="inputUsuario" class="sr-only">Usuario:</label>
+		  <br><br><label for="inputUsuario" class="sr-only">Usuario:</label>
         <input name="usuario" id="inputusuario"  class="" placeholder=""  type="" value=<%=usuario %>>
              <label for="inputContraseña" class="sr-only">Contraseña:</label>
         <input name="contraseña" id="inputcontraseña"  class="" placeholder=""  type="" value=<%=contraseña %>>

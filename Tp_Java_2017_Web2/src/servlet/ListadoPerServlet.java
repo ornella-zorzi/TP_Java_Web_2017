@@ -7,17 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import controlers.CtrlABMCPersona;
+import entity.Persona;
+
 /**
- * Servlet implementation class Reservas
+ * Servlet implementation class ListadoPerServlet
  */
-@WebServlet({ "/Reservas", "/reservas", "/reserva", "/Reserva" })
-public class Reservas extends HttpServlet {
+@WebServlet({ "/listadoPer/*", "/ListadoPer/*", "/LISTADOPER/*","/listadoper/*" })
+public class ListadoPerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Reservas() {
+    public ListadoPerServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,30 +29,22 @@ public class Reservas extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		CtrlABMCPersona ctrl1= new CtrlABMCPersona();
+		try {
+			request.setAttribute("listaPersonas", ctrl1.getAll());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		request.getRequestDispatcher("/WEB-INF/listadoPersona.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
-	 */
-	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
-	 */
-	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		
 	}
 
 }

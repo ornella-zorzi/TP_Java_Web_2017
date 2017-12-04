@@ -31,8 +31,7 @@ public class abmcPerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("get");
+		request.getRequestDispatcher("/WEB-INF/persona.jsp").forward(request, response);
 	}
 
 	/**
@@ -56,7 +55,7 @@ public class abmcPerServlet extends HttpServlet {
 		case "/consulta":
 			this.consulta(request,response);
 			break;
-
+			
 		default:
 			this.error(request,response);
 			break;
@@ -170,5 +169,5 @@ public class abmcPerServlet extends HttpServlet {
 		//crear el controlador y ejecutar el new/add
 	}
 
-
+	
 }

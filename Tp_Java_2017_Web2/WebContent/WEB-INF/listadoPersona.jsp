@@ -9,11 +9,23 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h2>Listado de Personas </h2> 
 <table>
+
+<tr>
+			<td style="width: 110px; ">DNI</td>
+			<td style="width: 110px; ">APELLIDO</td>
+			<td style="width: 110px; ">NOMBRE</td>
+			<td style="width: 110px; ">EMAIL</td>
+			<td style="width: 110px; ">CATEGORIA</td>
+			
+			
+		</tr>
 		<%
 			ArrayList<Persona>listaPers= (ArrayList<Persona>)request.getAttribute("listaPersonas");
 			for(Persona p : listaPers){
 		%>
+		
 		<tr>
 			<td><%=p.getDni() %></td>
 			<td><%=p.getApellido() %></td>

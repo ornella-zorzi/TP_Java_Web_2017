@@ -47,16 +47,14 @@ public class Start extends HttpServlet {
 			CtrlABMCPersona ctrl1= new CtrlABMCPersona();
 			
 			Persona pers=ctrl1.getValidacionUsario(per);
-			//CtrlABMCTipoElemento ctrl= new CtrlABMCTipoElemento();
-			request.setAttribute("listaPersonas", ctrl1.getAll());
 			
 			request.getSession().setAttribute("user", pers);
+ 	       
 			
 
-			request.getRequestDispatcher("WEB-INF/persona.jsp").forward(request, response);
+		//	request.getRequestDispatcher("WEB-INF/persona.jsp").forward(request, response);
 
-		//	request.getRequestDispatcher("WEB-INF/elemento.jsp").forward(request, response);
-;
+			request.getRequestDispatcher("WEB-INF/menu.jsp").forward(request, response);
 			
 		
 			
