@@ -196,8 +196,8 @@ public class DataTipoElemento implements Serializable  {
 		    		 rs=stmt.executeQuery();
 		    		 if(rs!=null && rs.next()){
 		    			 te=new TipoElemento();
-		    			 te.setId_TE(rs.getInt("id_TE"));
-		    			 te.setNombre_TE(rs.getString("nombre_TE"));
+		    			 te.setId_TE(rs.getInt("id_te"));
+		    			 te.setNombre_TE(rs.getString("nombre_te"));
 }
 		    		 
 		    	} catch (Exception e ){

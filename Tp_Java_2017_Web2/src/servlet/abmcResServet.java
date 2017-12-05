@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.Time;
 
 import javax.servlet.ServletException;
@@ -67,6 +68,7 @@ public class abmcResServet  extends HttpServlet  {
 
 	private void consulta(HttpServletRequest request, HttpServletResponse response) throws IOException {
      try{
+    	 
 	  }
      catch (Exception e) {
 		e.printStackTrace();
@@ -88,15 +90,30 @@ public class abmcResServet  extends HttpServlet  {
 	
 		  try {
 			    CtrlABMCReserva ctrl = new CtrlABMCReserva();
+			    int id_te=Integer.parseInt(request.getParameter("tipo_elemento"));
+			    int id_el=Integer.parseInt(request.getParameter("elemento"));
+			    System.out.println(id_el);
+			    System.out.println(id_te);
                 Reserva re = new Reserva();
-                int id_el=Integer.parseInt(request.getParameter("elemento"));
-                re.setElemento(ctrl.getById(id_el));
-                int id_te=Integer.parseInt(request.getParameter("TipoElemento"));
-                re.setTipoelemento(ctrl.getByIdTE(id_te));
-              // re.setFecha(request.getParameter("fecha"));
-              // re.setHora(request.getParameter("hora")); 
+                re.setElemento(new Elemento());
+                re.setPersona(new Persona());
+                re.setTipoelemento(new TipoElemento());
+                re.getPersona().setId_per(34);
+                re.getElemento().setId_El(Integer.parseInt(request.getParameter("elemento")));
+                re.getTipoelemento().setId_TE(Integer.parseInt(request.getParameter("tipo_elemento")));
+                re.setFecha(Date.valueOf(request.getParameter("fecha")));
+                re.setHora(Time.valueOf(request.getParameter("hora"))); 
                 re.setDetalle(request.getParameter("detalle"));
+                re.setEstado(request.getParameter("estado"));
+                int valida=ctrl.validaDisponibilidad(re);
+    			System.out.println(valida);
+    			if (valida==0){
                 ctrl.add(re);
+                response.getWriter().append("Reserva creada con exito");
+    			}
+    			if (valida==1){
+    				response.getWriter().append("elemento ocupado para esa fecha/hora");
+    			}
 				/*
 				 * 1- guardar la categoria id en una variabe
 				 * 2- buscar la categoria de ese id mediante un controlador getById
@@ -108,7 +125,7 @@ public class abmcResServet  extends HttpServlet  {
 				//categoria
 				
 				//tratar de poner cartel
-				response.getWriter().append("Alta, requested action: ").append(request.getPathInfo()).append(" through post");
+				
 		  }
 	      catch (Exception e) {
 			e.printStackTrace();
