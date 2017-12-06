@@ -90,15 +90,12 @@ public class abmcResServet  extends HttpServlet  {
 	
 		  try {
 			    CtrlABMCReserva ctrl = new CtrlABMCReserva();
-			    int id_te=Integer.parseInt(request.getParameter("tipo_elemento"));
-			    int id_el=Integer.parseInt(request.getParameter("elemento"));
-			    System.out.println(id_el);
-			    System.out.println(id_te);
+			    Persona p=(Persona) request.getSession().getAttribute("user");
                 Reserva re = new Reserva();
                 re.setElemento(new Elemento());
                 re.setPersona(new Persona());
                 re.setTipoelemento(new TipoElemento());
-                re.getPersona().setId_per(34);
+                re.getPersona().setId_per(p.getId_per());
                 re.getElemento().setId_El(Integer.parseInt(request.getParameter("elemento")));
                 re.getTipoelemento().setId_TE(Integer.parseInt(request.getParameter("tipo_elemento")));
                 re.setFecha(Date.valueOf(request.getParameter("fecha")));
