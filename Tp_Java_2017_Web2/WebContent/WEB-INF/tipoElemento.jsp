@@ -1,6 +1,7 @@
 <%@page import="controlers.CtrlABMCTipoElemento"%>
 <%@page import="entity.TipoElemento"%>
 <%@page import="java.util.ArrayList"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -40,25 +41,43 @@
     
   </head>
 <body>
+<% TipoElemento encontrado=null;
+String id_te="";
+String nombre_te="";
+String cant_reserva_max="";
+String tiempo_limite="";
+String dias_anticipacion ="" ;
 
+if(request.getAttribute("encontrada")!=null){
+	   encontrado =(TipoElemento)request.getAttribute("encontrado");
+	   id_te=String.valueOf(encontrado.getId_TE()); 
+       nombre_te=encontrado.getNombre_TE();
+       cant_reserva_max=String.valueOf(encontrado.getCant_reserva_max());
+       tiempo_limite=String.valueOf(encontrado.getTiempo_limite());
+       dias_anticipacion=String.valueOf(encontrado.getDias_anticipacion()); 
+}
+%>
  <div class="container">
   <form class="form-signin" id="myForm" name="myForm" action="" method="post">
      
 
      
         <h2 class="form-signin-heading"> Tipo de Elemento</h2>
-        ID <input><br> <label for="inputnombre_te" class="sr-only">Tipo de elemento</label>
-        <input name="nombre_te" id="inputnombre_te" class="form-control" placeholder="" required=""  type="">
-       
+        ID <input  name="id" value=<%=id_te%> ><br><br>
+        
+ <label for="inputnombre_te" class="sr-only">Tipo de elemento</label>
+        <input name="nombre_te" id="inputnombre_te" class="form-control" placeholder=""  type="" value=<%=nombre_te %> >
+        <button class="btn btn-lg " onclick="javascript: submitForm('tipoElemento/consulta')">Buscar</button>
         <br><br><label for="inputcant_reserva_max" class="sr-only">Cant. de reserva maxima</label>
-        <input name="cant_reserva_max" id="inputcant_reserva_max" class="form-control" placeholder="" required="" type="">
+        <input name="cant_reserva_max" id="inputcant_reserva_max" class="" placeholder=""  type="" value=<%=cant_reserva_max %>>
        
         <br><br><label for="inputtiempo_limite" class="sr-only">Tiempo Limite</label>
-        <input name="tiempo_limite" id="inputtiempo_limite" class="form-control" placeholder="" required="" type="">
+        <input name="tiempo_limite" id="inputtiempo_limite" class="" placeholder="" type="" value=<%=tiempo_limite%>>
        
         <br><br><label for="inputdias_anticipacion" class="sr-only">Dias Anticipacion</label>
-        <input name="dias_anticipacion" id="inputdias_anticipacion" class="form-control" placeholder="" required="" type=""><br><br>
-       
+        <input name="dias_anticipacion" id="inputdias_anticipacion" class="" placeholder=""  type="" value=<%=dias_anticipacion %>><br><br>
+
+
         <button class="btn btn-lg " onclick="javascript: submitForm('tipoElemento/alta')">Agregar</button>
         <button class="btn btn-lg " onclick="javascript: submitForm('tipoElemento/modificacion')">Modificar</button>
         <button class="btn btn-lg " onclick="javascript: submitForm('tipoElemento/baja')">Borrar</button>	

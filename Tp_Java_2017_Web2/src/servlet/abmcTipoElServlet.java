@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
 
+import controlers.CtrlABMCPersona;
 import controlers.CtrlABMCTipoElemento;
+import entity.Persona;
 import entity.TipoElemento;    
 
 /**
@@ -32,7 +34,8 @@ public class abmcTipoElServlet extends HttpServlet  {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("get");
+		//response.getWriter().append("get");
+		request.getRequestDispatcher("/WEB-INF/tipoElemento.jsp").forward(request, response);
 	}
 
 	/**
@@ -45,11 +48,11 @@ public class abmcTipoElServlet extends HttpServlet  {
 			this.alta(request,response);
 			break;
 			
-		case "/baja":
+		case "/tipoElemento/baja":
 			this.baja(request,response);
 			break;
 			
-		case "/modificacion":
+		case "/tipoElemento/modificacion":
 			this.modificacion(request,response);
 			break;
 			
@@ -69,26 +72,64 @@ public class abmcTipoElServlet extends HttpServlet  {
 	}
 
 	private void consulta(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		 /* try {
-			
+		  try{
+			  CtrlABMCTipoElemento ctrl = new CtrlABMCTipoElemento();
+			   String nombre_te =request.getParameter("nombre_te");
+			   TipoElemento te = new TipoElemento();
+			   te.setNombre_TE(nombre_te);
+			   te= ctrl.getByNombre(nombre_te);
+			   request.setAttribute("encontrado", te);
 	
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
-		response.getWriter().append("Consulta, requested action: ").append(request.getPathInfo()).append(" through post");
-	 */ 
-	}
+			request.getRequestDispatcher("/WEB-INF/tipoElemento.jsp").forward(request, response);
+
+		
+	     }
+	     catch (Exception e) {
+			e.printStackTrace();
+		   }
+		
+		}
+		
+
+		
 
 	private void modificacion(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		try {
+			TipoElemento te = new TipoElemento();
+			 CtrlABMCTipoElemento ctrl = new CtrlABMCTipoElemento();
+			 te.setId_TE(Integer.parseInt (request.getParameter("id_TE")));
+			 te.setNombre_TE(request.getParameter("nombre_TE"));
+			 te.setCant_reserva_max(Integer.parseInt(request.getParameter("cant_reserva_max")));
+			 te.setTiempo_limite(Integer.parseInt(request.getParameter("tiempo_limite")));
+			 te.setDias_anticipacion(Integer.parseInt(request.getParameter("dias_anticipacion")));
+			ctrl.update(te);
+		
+			
 		response.getWriter().append("Modificación, requested action: ").append(request.getPathInfo()).append(" through post");
-		//crear el controlador y ejecutar el modificar/update
+		  }
+	      catch (Exception e) {
+			e.printStackTrace();
+		   }
+
 	}
 
 	private void baja(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		response.getWriter().append("baja, requested action: ").append(request.getPathInfo()).append(" through post");
-		//crear el controlador y ejecutar el delete/remove
+		try{
+			TipoElemento te = new TipoElemento();
+			te.setId_TE(Integer.parseInt(request.getParameter("id_TE")));
+			 CtrlABMCTipoElemento ctrl = new CtrlABMCTipoElemento();
+			 ctrl.delete(te);
+		
+			response.getWriter().append("baja, requested action: ").append(request.getPathInfo()).append(" through post");
+			//crear el controlador y ejecutar el delete/remove
+		}
+	    catch (Exception e) {
+			e.printStackTrace();
+		   }
 	}
+
+	
 
 	private void alta(HttpServletRequest request, HttpServletResponse response) throws IOException {
 	
@@ -105,8 +146,7 @@ public class abmcTipoElServlet extends HttpServlet  {
 	      catch (Exception e) {
 			e.printStackTrace();
 		   }
-		
-		//crear el controlador y ejecutar el new/add
+		 
 	}
 
 }

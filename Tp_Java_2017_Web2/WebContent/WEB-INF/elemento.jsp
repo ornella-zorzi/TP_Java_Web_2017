@@ -42,13 +42,32 @@
     
   </head>
 <body>
+<%
+Elemento encontrado = null;
+String id_el ="";
+String nombre_el="";
+TipoElemento tipoel = new TipoElemento();
+String tipoElemento; 
+String id_te="";
+String nombre_te=""; 
+
+
+if(request.getAttribute("encontrado")!=null){
+	   encontrado =(Elemento)request.getAttribute("encontrado");
+	   id_el=String.valueOf(encontrado.getid_el());
+	   nombre_el=encontrado.getNombre_El();
+	   tipoel=encontrado.getTipoElemento();
+
+
+
+%>
 <div class="container">
 
       <form class="form-signin" id="myForm" name="myForm" action="" method="post">
       
         <h2 class="form-signin-heading">  Elemento</h2>
 			 ID <label for="inputnombre_el" class="sr-only"><input><br><br> Elemento</label>
-        <input name="nombre_el" id="inputnombre_el" class="form-control" placeholder="" required=""  type="">
+        <input name="nombre_el" id="inputnombre_el" class="" placeholder=""  type="" value=<%=nombre_el %>>
 
         <br><br><label for="inputTipoElemento" class="sr-only">Tipo de elemento</label> 
         <%CtrlABMCElemento ctrl=new CtrlABMCElemento();
@@ -56,12 +75,10 @@
 			te=ctrl.getTipoElemento();
 		%><select name="tipoElemento" id="inputtipoelemento">
 		<%	for(TipoElemento t : te){%>
-			<option value="<%=t.getId_TE() %>"><%=t.getNombre_TE() %></option>
-		<%
-			}
-		%> 
+			<option value="<%=t.getId_TE() %>"><%=t.getNombre_TE() %></option> <% }	%> 
 		</select><br><br>
-         
+     
+
 			
    
       

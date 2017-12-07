@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
+
 import controlers.*;
 import entity.*;
 
@@ -45,11 +46,11 @@ public class abmcElemServlet extends HttpServlet {
 			this.alta(request,response);
 			break;
 			
-		case "/baja":
+		case "/elemento/baja":
 			this.baja(request,response);
 			break;
 			
-		case "/modificacion":
+		case "/elemento/modificacion":
 			this.modificacion(request,response);
 			break;
 			
@@ -69,23 +70,54 @@ public class abmcElemServlet extends HttpServlet {
 	}
 
 	private void consulta(HttpServletRequest request, HttpServletResponse response) throws IOException {
-	/*	try {
+		try {
 		
+			CtrlABMCElemento ctrl= new CtrlABMCElemento();
+			String nombre_el = request.getParameter("nombre_el");
+			Elemento el = new Elemento();
+			el.setNombre_El(nombre_el);
+			el=ctrl.getByNombre(el);
+			request.setAttribute("encontrado", el);
+			request.getRequestDispatcher("/WEB-INF/elemento.jsp").forward(request, response);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-      */
 	}
 
 	private void modificacion(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		try {
+			//this.consulta(request, response);
+		Elemento el = new Elemento();
+		CtrlABMCElemento ctrl = new CtrlABMCElemento();
+		el.setId_El(Integer.parseInt(request.getParameter("id_El")));
+		el.setNombre_El(request.getParameter("nombre_el"));
+		int id_TE =Integer.parseInt(request.getParameter("tipoElemento"));
+		el.setTipoElemento(ctrl.getById(id_TE));
+		ctrl.update(el);
 		response.getWriter().append("Modificación, requested action: ").append(request.getPathInfo()).append(" through post");
-		//crear el controlador y ejecutar el modificar/update
+
+		  }
+	      catch (Exception e) {
+			e.printStackTrace();
+		   }
+	
 	}
 
 	private void baja(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		try{
+			Elemento el = new Elemento();
+			el.setId_El(Integer.parseInt(request.getParameter("id_El")));
+			CtrlABMCElemento ctrl = new CtrlABMCElemento();
+			ctrl.delete(el);
 		response.getWriter().append("baja, requested action: ").append(request.getPathInfo()).append(" through post");
-		//crear el controlador y ejecutar el delete/remove
-	}
+		
+		}
+	    catch (Exception e) {
+			e.printStackTrace();
+		   }
+		}
+
 
 	private void alta(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		  try {
@@ -103,6 +135,6 @@ public class abmcElemServlet extends HttpServlet {
 			e.printStackTrace();
 		   }
 		
-		//crear el controlador y ejecutar el new/add
+
 	}
 }
