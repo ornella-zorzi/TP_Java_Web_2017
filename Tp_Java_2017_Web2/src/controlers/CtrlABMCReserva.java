@@ -77,15 +77,12 @@ public class CtrlABMCReserva implements Serializable   {
 		
 	}
 	
-	public Elemento getById(int id_el) throws Exception{	
-		return dataEL.getById(id_el);
-	}
-	public TipoElemento getByIdTE(int id_te) throws Exception{	
-		return dataTe.getByIdTE(id_te);
-	}
 	public int validaDisponibilidad(Reserva r) throws Exception{
 		int i=dataRes.validaDisponibilidad(r);
 		return i;
+	}
+	public Reserva getById(Reserva r) throws Exception{	
+		return dataRes.getById(r);
 	}
 
 }

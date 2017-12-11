@@ -26,8 +26,8 @@
 		<%
 			ArrayList<Reserva>listaRes= (ArrayList<Reserva>)request.getAttribute("listaReservas");
 			for(Reserva r : listaRes){
+				
 		%>
-		
 		<tr>
 		    <td><%=r.getPersona().getApellido() %>, <%=r.getPersona().getNombre() %></td>
 			<td><%=r.getTipoelemento().getNombre_TE() %></td>
@@ -36,7 +36,7 @@
 			<td><%=r.getHora() %></td>
 			<td><%=r.getDetalle() %></td>
 			<td><%=r.getEstado()%></td>
-			
+			<td><a href="editar" >Editar</a></td>
 			
 		</tr>
 		<%

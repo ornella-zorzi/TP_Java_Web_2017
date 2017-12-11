@@ -13,13 +13,13 @@ public class DataReserva implements Serializable  {
 		ArrayList<Reserva> res = new ArrayList<Reserva>();
 		try{ 
 			stmt = FactoryConexion.getInstancia().getConn().createStatement();
-			rs = stmt.executeQuery("Select te.id_te, te.nombre_te, e.id_el,e.nombre_el, p.id_per,p.nombre, p.apellido, fecha, hora, detalle, estado from reserva r " +
+			rs = stmt.executeQuery("Select r.id_res, te.id_te, te.nombre_te, e.id_el,e.nombre_el, p.id_per,p.nombre, p.apellido, fecha, hora, detalle, estado from reserva r " +
 			"inner join persona p on r.id_per=p.id_per inner join elemento e on e.id_el=r.id_el inner join tipo_elemento te on te.id_te=r.id_te");
 			
 			if (rs!= null ){
 				while(rs.next()){
 					Reserva r=new Reserva();
-					System.out.println("hola");
+					r.setId_res(rs.getInt("r.id_res"));
 					r.setTipoelemento(new TipoElemento());
 					r.getTipoelemento().setId_TE(rs.getInt("te.id_te"));
 					r.getTipoelemento().setNombre_TE(rs.getString("te.nombre_te"));
@@ -34,7 +34,6 @@ public class DataReserva implements Serializable  {
 					r.setFecha(rs.getDate("fecha"));
 					r.setDetalle(rs.getString("detalle"));
 					r.setEstado(rs.getString("estado"));
-					System.out.println(r.getDetalle());
 					res.add(r);
 						
 				}
@@ -259,7 +258,49 @@ public int  validaDisponibilidad(Reserva re) throws ApplicationException{
 		return (i);
 		
 	
-} }
+}
+public Reserva getById(Reserva r) throws Exception{
+	Reserva re = null ;
+	PreparedStatement stmt= null;
+	ResultSet rs=null;
+	try {
+		 stmt= FactoryConexion.getInstancia().getConn().prepareStatement( "Select r.id_res, te.id_te, te.nombre_te, e.id_el,e.nombre_el, p.id_per,p.nombre, p.apellido, fecha, hora, detalle, estado from reserva r " +
+			"inner join persona p on r.id_per=p.id_per inner join elemento e on e.id_el=r.id_el inner join tipo_elemento te on te.id_te=r.id_te where id_res=?");
+		 stmt.setInt(1, r.getId_res());
+		 rs=stmt.executeQuery();
+		 if(rs!=null && rs.next()){
+			    re=new Reserva();
+				re.setId_res(rs.getInt("r.id_res"));
+				re.setTipoelemento(new TipoElemento());
+				re.getTipoelemento().setId_TE(rs.getInt("te.id_te"));
+				re.getTipoelemento().setNombre_TE(rs.getString("te.nombre_te"));
+				re.setElemento(new Elemento());
+				re.getElemento().setId_El(rs.getInt("e.id_el"));
+				re.getElemento().setNombre_El(rs.getString("e.nombre_el"));
+				re.setPersona(new Persona());
+				re.getPersona().setId_per(rs.getInt("p.id_per"));
+				re.getPersona().setNombre(rs.getString("p.nombre"));
+				re.getPersona().setApellido(rs.getString("p.apellido"));
+				re.setHora(rs.getTime("hora"));
+				re.setFecha(rs.getDate("fecha"));
+				re.setDetalle(rs.getString("detalle"));
+				re.setEstado(rs.getString("estado"));
+		 }
+		 
+	} catch (Exception e ){
+		throw e;
+	} finally {
+		try{
+			if(rs!=null)rs.close();
+			if (stmt!=null)stmt.close();
+			FactoryConexion.getInstancia().releaseConn();
+		}catch (SQLException e ){
+			throw e;
+		}
+	} return re;
+	
+}
+}
 
 
 

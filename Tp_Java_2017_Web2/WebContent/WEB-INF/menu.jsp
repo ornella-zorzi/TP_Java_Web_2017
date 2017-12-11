@@ -91,7 +91,7 @@
 				<li><a href="">Reservas</a>
 				     <ul>
 						<li><a href="reserva">ABMC Reserva</a></li>
-						<li><a href="listadoRe">Listado de Reservas</a></li>
+						<li><a href="listadoRe/listado">Listado de Reservas</a></li>
 					</ul>
 				</li>
 			</ul>
