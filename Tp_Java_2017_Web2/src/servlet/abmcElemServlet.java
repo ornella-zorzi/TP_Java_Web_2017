@@ -90,7 +90,7 @@ public class abmcElemServlet extends HttpServlet {
 			//this.consulta(request, response);
 		Elemento el = new Elemento();
 		CtrlABMCElemento ctrl = new CtrlABMCElemento();
-		el.setId_El(Integer.parseInt(request.getParameter("id_El")));
+		el.setId_El(Integer.parseInt(request.getParameter("id_el")));
 		el.setNombre_El(request.getParameter("nombre_el"));
 		int id_TE =Integer.parseInt(request.getParameter("tipoElemento"));
 		el.setTipoElemento(ctrl.getById(id_TE));
@@ -107,7 +107,7 @@ public class abmcElemServlet extends HttpServlet {
 	private void baja(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		try{
 			Elemento el = new Elemento();
-			el.setId_El(Integer.parseInt(request.getParameter("id_El")));
+			el.setId_El(Integer.parseInt(request.getParameter("id_el")));
 			CtrlABMCElemento ctrl = new CtrlABMCElemento();
 			ctrl.delete(el);
 		response.getWriter().append("baja, requested action: ").append(request.getPathInfo()).append(" through post");

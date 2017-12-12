@@ -58,9 +58,6 @@ if(request.getAttribute("encontrado")!=null){
 	   nombre_el=encontrado.getNombre_El();
 	   id_te=encontrado.getTipoElemento().getId_TE();
 	   nombre_te=encontrado.getTipoElemento().getNombre_TE();
-	   TipoElemento tel=new TipoElemento();
-	   tel.setId_TE(id_te);
-	   tel.setNombre_TE(nombre_te);
 }
 
 
@@ -80,9 +77,8 @@ if(request.getAttribute("encontrado")!=null){
 			te=ctrl.getTipoElemento();
 		%>
 		<select name="tipoElemento" id="inputtipoelemento">
-		<%	if(request.getAttribute("encontrado")==null) {for(TipoElemento t : te){ %>
-			<option value="<%=t.getId_TE() %>"><%=t.getNombre_TE() %></option> <% } } else {%> 
-			<option value="<%=id_te %>"><%=nombre_te %></option> <%} %>
+		<%	for(TipoElemento t : te){ %>
+			<option value="<%=t.getId_TE() %>"><%=t.getNombre_TE() %></option> <% } %>
 		</select><br><br>
      
 
