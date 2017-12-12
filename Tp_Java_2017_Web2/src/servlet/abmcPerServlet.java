@@ -124,6 +124,7 @@ public class abmcPerServlet extends HttpServlet {
 	try{
 		Persona per= new Persona();
 		per.setId_per(Integer.parseInt(request.getParameter("id")));
+		System.out.println(per.getId_per());
 		CtrlABMCPersona ctrl= new CtrlABMCPersona();
 		ctrl.delete(per);
 		

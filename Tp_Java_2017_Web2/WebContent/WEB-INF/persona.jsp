@@ -95,7 +95,7 @@
 			cats=ctrl.getCategoria();
 		%>
 			<select name="categoria" required ="id" id="categoria" > 
-		<%	for(Categoria c : cats){%>
+		<%	for(Categoria c : cats){ %>
 			<option value="<%=c.getId_cat() %>"><%=c.getNombre_cat() %></option> <%  } %> 
 
 		</select>

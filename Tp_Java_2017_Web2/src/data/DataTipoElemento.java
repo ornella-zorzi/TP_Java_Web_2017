@@ -58,6 +58,11 @@ public class DataTipoElemento implements Serializable  {
 	    			 te.setCant_reserva_max(rs.getInt("cant_reserva_max"));
 	    			 te.setTiempo_limite(rs.getInt("tiempo_limite"));
 	    			 te.setDias_anticipacion(rs.getInt("dias_anticipacion"));
+	    			 System.out.println(te.getCant_reserva_max());
+	    			 System.out.println(te.getId_TE());
+	    			 System.out.println(te.getNombre_TE());
+	    			 System.out.println(te.getTiempo_limite());
+	    			 System.out.println(te.getDias_anticipacion());
 
 	    		 }
 	    		 

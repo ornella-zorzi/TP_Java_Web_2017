@@ -16,12 +16,12 @@ public class FactoryConexion implements Serializable{
 	private String host="localhost";
 	private String port="3306";
 	private String user="root";
-///	private String password="37815875";
-	///private  String db="java2017";
+	private String password="37815875";
+	private  String db="java2017";
 	//private String dbType="mysql";
 	//static String url="jdbc:mysql://localhost:3307/"+db;
-    private String password="root";
-    private String db="tp_java_2017";
+   // private String password="root";
+   // private String db="tp_java_2017";
 	private static FactoryConexion instancia;
 	
 	private FactoryConexion(){

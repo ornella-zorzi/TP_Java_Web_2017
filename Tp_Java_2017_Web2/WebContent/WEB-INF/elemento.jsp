@@ -48,16 +48,20 @@ String id_el ="";
 String nombre_el="";
 TipoElemento tipoel = new TipoElemento();
 String tipoElemento; 
-String id_te="";
+int id_te=0;
 String nombre_te=""; 
 
 
 if(request.getAttribute("encontrado")!=null){
 	   encontrado =(Elemento)request.getAttribute("encontrado");
-	   id_el=String.valueOf(encontrado.getid_el());
+	   id_el=String.valueOf(encontrado.getId_El());
 	   nombre_el=encontrado.getNombre_El();
-	   tipoel=encontrado.getTipoElemento();
-
+	   id_te=encontrado.getTipoElemento().getId_TE();
+	   nombre_te=encontrado.getTipoElemento().getNombre_TE();
+	   TipoElemento tel=new TipoElemento();
+	   tel.setId_TE(id_te);
+	   tel.setNombre_TE(nombre_te);
+}
 
 
 %>
@@ -66,22 +70,22 @@ if(request.getAttribute("encontrado")!=null){
       <form class="form-signin" id="myForm" name="myForm" action="" method="post">
       
         <h2 class="form-signin-heading">  Elemento</h2>
-			 ID <label for="inputnombre_el" class="sr-only"><input><br><br> Elemento</label>
+			 ID <label for="inputnombre_el" class="sr-only"><input name="id_el" value=<%=id_el %>>           
+			 <br><br> Elemento</label>
         <input name="nombre_el" id="inputnombre_el" class="" placeholder=""  type="" value=<%=nombre_el %>>
 
-        <br><br><label for="inputTipoElemento" class="sr-only">Tipo de elemento</label> 
+        <button class="btn btn-lg " onclick="javascript: submitForm('elemento/consulta')">Buscar</button><br><br><label for="inputTipoElemento" class="sr-only">Tipo de elemento</label> 
         <%CtrlABMCElemento ctrl=new CtrlABMCElemento();
 			ArrayList<TipoElemento> te= new ArrayList<TipoElemento>();
 			te=ctrl.getTipoElemento();
-		%><select name="tipoElemento" id="inputtipoelemento">
-		<%	for(TipoElemento t : te){%>
-			<option value="<%=t.getId_TE() %>"><%=t.getNombre_TE() %></option> <% }	%> 
+		%>
+		<select name="tipoElemento" id="inputtipoelemento">
+		<%	if(request.getAttribute("encontrado")==null) {for(TipoElemento t : te){ %>
+			<option value="<%=t.getId_TE() %>"><%=t.getNombre_TE() %></option> <% } } else {%> 
+			<option value="<%=id_te %>"><%=nombre_te %></option> <%} %>
 		</select><br><br>
      
 
-			
-   
-      
         <button class="btn btn-lg " onclick="javascript: submitForm('elemento/alta')">Agregar</button>
         <button class="btn btn-lg " onclick="javascript: submitForm('elemento/modificacion')">Modificar</button>
         <button class="btn btn-lg " onclick="javascript: submitForm('elemento/baja')">Borrar</button>	

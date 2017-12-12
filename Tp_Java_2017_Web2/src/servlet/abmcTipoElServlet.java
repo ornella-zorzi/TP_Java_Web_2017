@@ -77,7 +77,7 @@ public class abmcTipoElServlet extends HttpServlet  {
 			   String nombre_te =request.getParameter("nombre_te");
 			   TipoElemento te = new TipoElemento();
 			   te.setNombre_TE(nombre_te);
-			   te= ctrl.getByNombre(nombre_te);
+			   te= ctrl.getByNombre(te);
 			   request.setAttribute("encontrado", te);
 	
 
@@ -98,8 +98,8 @@ public class abmcTipoElServlet extends HttpServlet  {
 		try {
 			TipoElemento te = new TipoElemento();
 			 CtrlABMCTipoElemento ctrl = new CtrlABMCTipoElemento();
-			 te.setId_TE(Integer.parseInt (request.getParameter("id_TE")));
-			 te.setNombre_TE(request.getParameter("nombre_TE"));
+			 te.setId_TE(Integer.parseInt (request.getParameter("id")));
+			 te.setNombre_TE(request.getParameter("nombre_te"));
 			 te.setCant_reserva_max(Integer.parseInt(request.getParameter("cant_reserva_max")));
 			 te.setTiempo_limite(Integer.parseInt(request.getParameter("tiempo_limite")));
 			 te.setDias_anticipacion(Integer.parseInt(request.getParameter("dias_anticipacion")));
@@ -117,7 +117,7 @@ public class abmcTipoElServlet extends HttpServlet  {
 	private void baja(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		try{
 			TipoElemento te = new TipoElemento();
-			te.setId_TE(Integer.parseInt(request.getParameter("id_TE")));
+			te.setId_TE(Integer.parseInt(request.getParameter("id")));
 			 CtrlABMCTipoElemento ctrl = new CtrlABMCTipoElemento();
 			 ctrl.delete(te);
 		

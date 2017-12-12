@@ -48,7 +48,7 @@ String cant_reserva_max="";
 String tiempo_limite="";
 String dias_anticipacion ="" ;
 
-if(request.getAttribute("encontrada")!=null){
+if(request.getAttribute("encontrado")!=null){
 	   encontrado =(TipoElemento)request.getAttribute("encontrado");
 	   id_te=String.valueOf(encontrado.getId_TE()); 
        nombre_te=encontrado.getNombre_TE();
