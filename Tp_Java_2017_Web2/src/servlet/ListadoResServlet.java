@@ -32,10 +32,10 @@ public class ListadoResServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		switch (request.getPathInfo()) {
-		case "/editar":
+		case "/cancelar":
 			CtrlABMCReserva ctrl= new CtrlABMCReserva();
 			Reserva r=new Reserva();
-			r.setId_res(Integer.parseInt(request.getParameter("id_res")));
+			r.setId_res(Integer.parseInt(request.getParameter("cancelar")));
 			System.out.println(r.getId_res());
 			Reserva re=null;
 			try {

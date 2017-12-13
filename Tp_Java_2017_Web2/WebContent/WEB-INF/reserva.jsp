@@ -47,7 +47,7 @@
     </script>
 </head>
 <body>
- 
+ <%ArrayList<Elemento> eles=new ArrayList(); %>
  <div class="container">
       	 <form class="form-signin" id="myForm" name="myForm" action="" method="post">
      
@@ -59,22 +59,20 @@
 			<select name="tipo_elemento">
 		<%	for(TipoElemento t : tels){%>
 			<option value="<%=t.getId_TE() %>"><%=t.getNombre_TE() %></option>
-		<%
-			}
+		
+		<% 	}
 		%> 
 		</select>
 		<button class="btn btn-lg " onclick="javascript: submitForm('reserva/consulta')">Buscar</button>
-		<%
-		CtrlABMCElemento ctrl2=new CtrlABMCElemento();
-		ArrayList<Elemento> els= new ArrayList<Elemento>(); 
-		els=ctrl2.getAll();
-				%>
+		
         	<select name="elemento">
-		<%	for(Elemento e : els){%>
+		<%	 
+		CtrlABMCElemento ctrl2=new CtrlABMCElemento();
+		eles=ctrl2.getAll();
+		
+		for(Elemento e : eles){%>
 			<option value="<%=e.getId_El() %>"><%=e.getNombre_El() %></option>
-		<%
-			}
-		%> 
+		<%} %> 
 		</select><br>
 		<br><label for="inputFecha" class="sr-only">fecha</label>
         <input name="fecha" id="inputFecha" class="form-control" placeholder="aaaa/mm/dd" required="" type="">

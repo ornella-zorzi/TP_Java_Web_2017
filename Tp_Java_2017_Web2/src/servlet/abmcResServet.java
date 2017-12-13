@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -68,7 +69,12 @@ public class abmcResServet  extends HttpServlet  {
 
 	private void consulta(HttpServletRequest request, HttpServletResponse response) throws IOException {
      try{
-    	 
+    	 CtrlABMCReserva ctrl= new CtrlABMCReserva();
+			int id_te = (Integer.parseInt(request.getParameter("tipo_elemento")));
+			ArrayList<Elemento> els=new ArrayList();
+			els=ctrl.getElementosDeTipo(id_te);
+			request.setAttribute("elementos_tipo", els);
+			request.getRequestDispatcher("/WEB-INF/reserva.jsp").forward(request, response);
 	  }
      catch (Exception e) {
 		e.printStackTrace();
