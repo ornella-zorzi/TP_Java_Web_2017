@@ -92,6 +92,7 @@ public class abmcElemServlet extends HttpServlet {
 		CtrlABMCElemento ctrl = new CtrlABMCElemento();
 		el.setId_El(Integer.parseInt(request.getParameter("id_el")));
 		el.setNombre_El(request.getParameter("nombre_el"));
+		System.out.println(el.getNombre_El());
 		int id_TE =Integer.parseInt(request.getParameter("tipoElemento"));
 		el.setTipoElemento(ctrl.getById(id_TE));
 		ctrl.update(el);

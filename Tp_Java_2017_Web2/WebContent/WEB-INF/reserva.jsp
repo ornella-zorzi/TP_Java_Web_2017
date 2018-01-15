@@ -47,6 +47,7 @@
     </script>
 </head>
 <body>
+
  <%ArrayList<Elemento> eles=new ArrayList(); %>
  <div class="container">
       	 <form class="form-signin" id="myForm" name="myForm" action="" method="post">
@@ -56,38 +57,43 @@
 			ArrayList<TipoElemento> tels= new ArrayList<TipoElemento>();
 			tels=ctrl.getAll();
 		%>
-			<select name="tipo_elemento">
-		<%	for(TipoElemento t : tels){%>
+			<select name="tipo_elemento" style="width: 107px; ">
+		<%	if(request.getAttribute("elementos_tipo")!=null){
+		int id_el=Integer.parseInt(request.getParameter("tipo_elemento"));
+		TipoElemento te=new TipoElemento();
+		te=ctrl.getById(id_el);
+		%>
+		<option value="<%=te.getId_TE() %>"><%=te.getNombre_TE() %></option>
+	<%	}
+		else{ for(TipoElemento t : tels){%>
 			<option value="<%=t.getId_TE() %>"><%=t.getNombre_TE() %></option>
-		
 		<% 	}
+		}
 		%> 
 		</select>
-		<button class="btn btn-lg " onclick="javascript: submitForm('reserva/consulta')">Buscar</button>
+		<button class="btn btn-lg " onclick="javascript: submitForm('reserva/consulta')">Buscar</button><br><br>Elemento  
 		
-        	<select name="elemento">
+        	<select name="elemento" style="width: 113px; ">
 		<%	 
-		CtrlABMCElemento ctrl2=new CtrlABMCElemento();
-		eles=ctrl2.getAll();
+		if(request.getAttribute("elementos_tipo")!=null){
+		eles=(ArrayList<Elemento>)request.getAttribute("elementos_tipo");
 		
 		for(Elemento e : eles){%>
 			<option value="<%=e.getId_El() %>"><%=e.getNombre_El() %></option>
-		<%} %> 
+		<%}} %> 
 		</select><br>
 		<br><label for="inputFecha" class="sr-only">fecha</label>
-        <input name="fecha" id="inputFecha" class="form-control" placeholder="aaaa/mm/dd" required="" type="">
+        <input name="fecha" id="inputFecha" class="form-control" placeholder="aaaa-mm-dd" type="" >
        
         <br><br><label for="inputHora" class="sr-only">Hora</label>
-        <input name="hora" id="inputHora" class="form-control" placeholder="hh:mm:ss" required="" type="">
+        <input name="hora" id="inputHora" class="form-control" placeholder="hh:mm:ss" type="" >
        
         <br><br><label for="inputDetalle" class="sr-only">Detalle</label>
-        <input name="detalle" id="inputDetalle" class="form-control" placeholder="" required="" type=""><br><br>
-        <label for="inputEstado" class="sr-only">Estado</label>
-        <input name="estado" id="inputEstado" class="form-control" placeholder="" required="" type=""><br><br>
+        <input name="detalle" id="inputDetalle" class="form-control" placeholder="" type="" ><br><br>
            
-       <button class="btn btn-lg " onclick="javascript: submitForm('reserva/alta')">Agregar</button>
-        <button class="btn btn-lg " onclick="javascript: submitForm('reserva/modificacion')">Modificar</button>
-        <button class="btn btn-lg " onclick="javascript: submitForm('reserva/baja')">Borrar</button>	
+       <button class="btn btn-lg " onclick="javascript: submitForm('reserva/alta')" style="width: 169px; ">Agregar</button>
+        
+        	
       </form>
 
     </div> <!-- /container -->

@@ -46,6 +46,9 @@ public class CtrlABMCTipoElemento implements Serializable   {
 		return getByNombre(te);
 	}
 	
-
+	public TipoElemento getById(int id_te)throws Exception {
+		//return this.pers.get(this.pers.indexOf(p));
+		return dataTipoEl.getById(id_te);
+	}
 	
 }

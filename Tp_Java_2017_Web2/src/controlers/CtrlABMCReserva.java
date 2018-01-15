@@ -63,6 +63,10 @@ public class CtrlABMCReserva implements Serializable   {
 		
 		return dataRes.getAll();
 	}
+   public ArrayList<Reserva> getReservasPendientes(Persona p) throws Exception {
+		
+		return dataRes.getReservasPendientes(p);
+	}
 	public ArrayList<Persona> getPersona() throws Exception{
 		return dataPer.getAll();
 	}

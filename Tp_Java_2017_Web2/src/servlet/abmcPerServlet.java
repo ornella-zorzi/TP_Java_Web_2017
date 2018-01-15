@@ -150,24 +150,15 @@ public class abmcPerServlet extends HttpServlet {
 				per.setHabilitado(request.getParameter("habilitado").equals("on"));
 				per.setUsuario(request.getParameter("usuario"));
 				per.setContraseña(request.getParameter("contraseña"));
-				/*
-				 * 1- guardar la categoria id en una variabe
-				 * 2- buscar la categoria de ese id mediante un controlador getById
-				 * 3- guardar el objeto categoria recuperado en per con setCategoria 
-				 */
-				//select
-				//checkbox
-				//user,pass
-				//categoria
+				
 				ctrl.add(per);
-				//tratar de poner cartel
+			
 				response.getWriter().append("Alta, requested action: ").append(request.getPathInfo()).append(" through post");
 		  }
 	      catch (Exception e) {
 			e.printStackTrace();
 		   }
-		
-		//crear el controlador y ejecutar el new/add
+
 	}
 
 	

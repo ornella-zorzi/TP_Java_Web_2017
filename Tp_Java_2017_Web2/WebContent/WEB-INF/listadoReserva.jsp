@@ -41,44 +41,43 @@
 </head>
 <body>
 <div class="container">
-
+<form class="form-signin" id="myForm" name="myForm" action="" method="get">
       
-<h2>Listado de Reservas </h2> 
+<h2>Listado de Reservas Pendientes</h2> 
 <table>
 
 <tr>
-			<td style="width: 110px; ">APELLIDO Y NOMBRE</td>
+			<td style="width: 110px; ">ID</td>
 			<td style="width: 110px; ">TIPO DE ELEMENTO</td>
 			<td style="width: 110px; ">ELEMENTO</td>
 			<td style="width: 110px; ">FECHA</td>
 			<td style="width: 110px; ">HORA</td>
 			<td style="width: 110px; ">DETALLE</td>
-			<td style="width: 110px; ">ESTADO</td>
 			
 			
 		</tr>
+		
 		<%
 			ArrayList<Reserva>listaRes= (ArrayList<Reserva>)request.getAttribute("listaReservas");
 			for(Reserva r : listaRes){
 				
-		%><form class="form-signin" id="myForm" name="myForm" action="" method="get">
+		%>
 		<tr>
-		    <td><%=r.getPersona().getApellido() %>, <%=r.getPersona().getNombre() %></td>
+		   <td><%=r.getId_res()%></td>
 			<td><%=r.getTipoelemento().getNombre_TE() %></td>
 			<td><%=r.getElemento().getNombre_El() %></td>
 		    <td><%=r.getFecha() %></td>
 			<td><%=r.getHora() %></td>
 			<td><%=r.getDetalle() %></td>
-			<td><%=r.getEstado()%></td>
-			<input name="id" value=<%=r.getId_res() %>>
-			<td><button type="submit" onclick="javascript: submitForm('listado/cancelar')">cancelar reserva</button></td>
+			<td><button type="submit" onclick="javascript: submitForm('listado/eliminar')"value="<%=r.getId_res()%>" id="cancelar" name="cancelar">Cancelar reserva</button></td>
 			 </tr>
 		<%
 			}
 		%>
-		 </form>
+		
     </div> <!-- /container -->  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="style/ie10-viewport-bug-workaround.js"></script>
 	</table>
+	</form>
 </body>
 </html>

@@ -32,25 +32,24 @@ public class ListadoResServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		switch (request.getPathInfo()) {
-		case "/cancelar":
+		case "/listado/eliminar":
 			CtrlABMCReserva ctrl= new CtrlABMCReserva();
 			Reserva r=new Reserva();
 			r.setId_res(Integer.parseInt(request.getParameter("cancelar")));
-			System.out.println(r.getId_res());
 			Reserva re=null;
 			try {
 				re = ctrl.getById(r);
+				ctrl.delete(re);
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			request.setAttribute("reserva", re);
-			request.getRequestDispatcher("/WEB-INF/reserva.jsp").forward(request, response);
 			break;
 		case "/listado":
 			CtrlABMCReserva ctrl2= new CtrlABMCReserva();
+			Persona p=(Persona) request.getSession().getAttribute("user");
 			try {
-				request.setAttribute("listaReservas", ctrl2.getAll());
+				request.setAttribute("listaReservas", ctrl2.getReservasPendientes(p));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -58,7 +57,7 @@ public class ListadoResServlet extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/listadoReserva.jsp").forward(request, response);
 			break;
 			
-	}
+		}
 	}
 
 	/**
@@ -67,5 +66,6 @@ public class ListadoResServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 
+		
 }
 }

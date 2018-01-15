@@ -40,7 +40,7 @@ public class abmcResServet  extends HttpServlet  {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//response.getWriter().append("Served at: ").append(request.getPathInfo()).append(" through post");
 		switch (request.getPathInfo()) {
-		case "/alta":
+		case "/reserva/alta":
 			this.alta(request,response);
 			break;
 			
@@ -48,8 +48,13 @@ public class abmcResServet  extends HttpServlet  {
 			this.baja(request,response);
 			break;
 			
-		case "/modificacion":
-			this.modificacion(request,response);
+		case "/cancelar/modificacion":
+			try {
+				this.modificacion(request,response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 			
 		case "/consulta":
@@ -82,9 +87,8 @@ public class abmcResServet  extends HttpServlet  {
 	
 	}
 
-	private void modificacion(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		response.getWriter().append("Modificación, requested action: ").append(request.getPathInfo()).append(" through post");
-		//crear el controlador y ejecutar el modificar/update
+	private void modificacion(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("hola");
 	}
 
 	private void baja(HttpServletRequest request, HttpServletResponse response) throws IOException {

@@ -53,6 +53,54 @@ public class DataReserva implements Serializable  {
 			return res;
 		
 	} 
+	public ArrayList<Reserva> getReservasPendientes(Persona p) throws ApplicationException{
+		Reserva r = null ;
+    	PreparedStatement stmt= null;
+    	ResultSet rs=null;
+		ArrayList<Reserva> res = new ArrayList<Reserva>();
+		try{ 
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("Select r.id_res, te.id_te, te.nombre_te, e.id_el,e.nombre_el, p.id_per,p.nombre, p.apellido, fecha, hora, detalle, estado from reserva r " +
+					"inner join persona p on r.id_per=p.id_per inner join elemento e on e.id_el=r.id_el inner join tipo_elemento te on te.id_te=r.id_te where r.id_per=? and r.fecha>=curdate()");
+			stmt.setInt(1, p.getId_per());
+			rs = stmt.executeQuery();
+			
+			if (rs!= null ){
+				while(rs.next()){
+					r=new Reserva();
+					r.setId_res(rs.getInt("r.id_res"));
+					r.setTipoelemento(new TipoElemento());
+					r.getTipoelemento().setId_TE(rs.getInt("te.id_te"));
+					r.getTipoelemento().setNombre_TE(rs.getString("te.nombre_te"));
+					r.setElemento(new Elemento());
+					r.getElemento().setId_El(rs.getInt("e.id_el"));
+					r.getElemento().setNombre_El(rs.getString("e.nombre_el"));
+					r.setPersona(new Persona());
+					r.getPersona().setId_per(rs.getInt("p.id_per"));
+					r.getPersona().setNombre(rs.getString("p.nombre"));
+					r.getPersona().setApellido(rs.getString("p.apellido"));
+					r.setHora(rs.getTime("hora"));
+					r.setFecha(rs.getDate("fecha"));
+					r.setDetalle(rs.getString("detalle"));
+					r.setEstado(rs.getString("estado"));
+					res.add(r);
+						
+				}
+			}
+			
+		} catch (SQLException e ){
+			//throw e;
+		} catch (ApplicationException ade){
+			throw ade;
+		} try {
+			if(rs!=null) rs.close();
+			if (stmt!=null) stmt.close();
+			FactoryConexion.getInstancia().releaseConn();
+			} catch (SQLException e){
+				e.printStackTrace();
+			}
+			return res;
+		
+	} 
 
   /* public Persona getByDni(Persona per) throws Exception{
     	Persona p = null ;
