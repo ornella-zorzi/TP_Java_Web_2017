@@ -131,7 +131,6 @@ public ResultSet getResultSet() throws ApplicationException{
 			rs = stmt.executeQuery();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ApplicationException e) {
 			throw e;
@@ -144,7 +143,6 @@ public ResultSet getResultSet() throws ApplicationException{
 
 
 public void update(Persona p){
-	//ResultSet rs=null;
 	PreparedStatement stmt=null;	
 	try {
 		stmt= FactoryConexion.getInstancia().getConn().prepareStatement(

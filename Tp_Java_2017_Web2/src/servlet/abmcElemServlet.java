@@ -87,7 +87,7 @@ public class abmcElemServlet extends HttpServlet {
 
 	private void modificacion(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		try {
-			//this.consulta(request, response);
+		
 		Elemento el = new Elemento();
 		CtrlABMCElemento ctrl = new CtrlABMCElemento();
 		el.setId_El(Integer.parseInt(request.getParameter("id_el")));
@@ -130,7 +130,6 @@ public class abmcElemServlet extends HttpServlet {
 				el.setTipoElemento(ctrl.getById(id_te));
 				ctrl.add(el);
 				response.getWriter().append("Elemento creado con exito");
-				//response.getWriter().append("Alta, requested action: ").append(request.getPathInfo()).append(" through post");
 		  }
 	      catch (Exception e) {
 			e.printStackTrace();

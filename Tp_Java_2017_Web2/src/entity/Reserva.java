@@ -81,10 +81,6 @@ public class Reserva implements Serializable {
 		return this.getTipoelemento().getNombre_TE();
 	}
 	
-/*	@Override
-	public boolean equals(Object o){
-		return (o instanceof Elemento && ((Elemento)o).getId_El()==this.getId_El() );
-	}*/
 	
 	@Override
 	public int hashCode(){

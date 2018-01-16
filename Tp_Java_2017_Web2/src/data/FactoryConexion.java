@@ -7,8 +7,6 @@ import util.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-//import java.sql.ResultSet;
-//import java.sql.Statement;
 
 public class FactoryConexion implements Serializable{
 	
@@ -18,8 +16,6 @@ public class FactoryConexion implements Serializable{
 	private String user="root";
 	private String password="37815875";
 	private  String db="java2017";
-	//private String dbType="mysql";
-	//static String url="jdbc:mysql://localhost:3307/"+db;
    // private String password="root";
    // private String db="tp_java_2017";
 	private static FactoryConexion instancia;

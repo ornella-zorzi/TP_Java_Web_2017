@@ -30,13 +30,11 @@ public class CtrlABMCTipoElemento implements Serializable   {
 		dataTipoEl.update(te);
 	}
 	public ArrayList<TipoElemento> getAll() throws Exception {
-		//return this.pers;
 		return dataTipoEl.getAll();
 		
 	}
 
 	public TipoElemento getByNombre(TipoElemento te)throws Exception {
-		//return this.pers.get(this.pers.indexOf(p));
 		return dataTipoEl.getByNombre(te);
 	}
 	
@@ -47,7 +45,6 @@ public class CtrlABMCTipoElemento implements Serializable   {
 	}
 	
 	public TipoElemento getById(int id_te)throws Exception {
-		//return this.pers.get(this.pers.indexOf(p));
 		return dataTipoEl.getById(id_te);
 	}
 	

@@ -66,12 +66,6 @@ public class TipoElemento implements Serializable   {
 		return this.getNombre_TE();
 	}
 	
-	/*@Override
-	public boolean equals(Object o){
-		return (o instanceof TipoElemento && ((TipoElemento)o).getId_TE()==this.getId_TE());
-	}*/
-	
-	
 	@Override
 	public int hashCode(){
 		return ((Integer)this.getId_TE()).hashCode();

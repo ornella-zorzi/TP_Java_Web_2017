@@ -22,23 +22,18 @@ public class CtrlABMCElemento implements Serializable  {
 	}
 
 	public void add(Elemento e) throws Exception {
-	//this.pers.add(p);
 	dataElem.add(e);
 	}
 
 	public void delete(Elemento e) throws Exception{
-	//this.pers.remove(p);
 	dataElem.delete(e);
 	}
 
 	public void update(Elemento e)throws Exception {
-	//this.delete(p);
-	//this.add(p);
 	dataElem.update(e);
 	}
 
 	public Elemento getByNombre(Elemento el)throws Exception {
-	//return this.pers.get(this.pers.indexOf(p));
 	return dataElem.getByNombre(el);
 	}
 	public Elemento getByNombre(String nombre_el) throws Exception{
@@ -48,12 +43,10 @@ public class CtrlABMCElemento implements Serializable  {
 	}
 
    public ArrayList<Elemento> getAll() throws Exception {
-	//return this.pers;
 	return dataElem.getAll();
 	}
    
 	public ArrayList<TipoElemento> getTipoElemento() throws Exception {
-		//return this.pers;
 		return dataTipoEl.getAll();
 		
 	}

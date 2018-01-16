@@ -111,7 +111,6 @@ public class abmcResServet  extends HttpServlet  {
                 re.setFecha(Date.valueOf(request.getParameter("fecha")));
                 re.setHora(Time.valueOf(request.getParameter("hora"))); 
                 re.setDetalle(request.getParameter("detalle"));
-                re.setEstado(request.getParameter("estado"));
                 int valida=ctrl.validaDisponibilidad(re);
     			System.out.println(valida);
     			if (valida==0){

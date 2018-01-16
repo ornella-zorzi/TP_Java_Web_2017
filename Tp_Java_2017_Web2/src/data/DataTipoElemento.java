@@ -117,7 +117,6 @@ public class DataTipoElemento implements Serializable  {
 				rs = stmt.executeQuery();
 				
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (ApplicationException e) {
 				throw e;
