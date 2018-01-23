@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -100,6 +102,7 @@ public class abmcResServet  extends HttpServlet  {
 	
 		  try {
 			    CtrlABMCReserva ctrl = new CtrlABMCReserva();
+			    CtrlABMCTipoElemento ctrl2 = new CtrlABMCTipoElemento();
 			    Persona p=(Persona) request.getSession().getAttribute("user");
                 Reserva re = new Reserva();
                 re.setElemento(new Elemento());
@@ -112,14 +115,22 @@ public class abmcResServet  extends HttpServlet  {
                 re.setHora(Time.valueOf(request.getParameter("hora"))); 
                 re.setDetalle(request.getParameter("detalle"));
                 int valida=ctrl.validaDisponibilidad(re);
-    			System.out.println(valida);
-    			if (valida==0){
+    			TipoElemento t = new TipoElemento();
+    			t=ctrl2.getById(re.getTipoelemento().getId_TE());
+    			   Date fecha=Date.valueOf(ctrl.getFechaActual());
+                   int dias=(int) ((re.getFecha().getTime()-fecha.getTime())/86400000);
+    			if (dias<t.getDias_anticipacion()){
+    				
+                 if (valida==0){
                 ctrl.add(re);
                 response.getWriter().append("Reserva creada con exito");
+             
+                
     			}
-    			if (valida==1){
+                 else if (valida==1){
     				response.getWriter().append("elemento ocupado para esa fecha/hora");
-    			}
+    			}}
+    			else { response.getWriter().append("Supero los dias maximo de anticipacion a la reserva"); }
 				/*
 				 * 1- guardar la categoria id en una variabe
 				 * 2- buscar la categoria de ese id mediante un controlador getById

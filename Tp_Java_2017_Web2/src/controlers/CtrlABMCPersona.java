@@ -1,5 +1,7 @@
 package controlers;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import data.DataCategoria;
 import entity.Persona;
@@ -67,4 +69,5 @@ private ArrayList<Persona> pers;
 	public Categoria getById(int id_cat) throws Exception{
 		return dataCat.getById(id_cat);
 	}
+	
 }

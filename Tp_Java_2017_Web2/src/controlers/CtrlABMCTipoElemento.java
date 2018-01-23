@@ -47,5 +47,8 @@ public class CtrlABMCTipoElemento implements Serializable   {
 	public TipoElemento getById(int id_te)throws Exception {
 		return dataTipoEl.getById(id_te);
 	}
-	
+	public ArrayList<TipoElemento> getPublico() throws Exception {
+		return dataTipoEl.getPublico();
+		
+	}
 }

@@ -4,6 +4,8 @@ import data.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 
 
@@ -61,5 +63,14 @@ public class CtrlABMCReserva implements Serializable   {
 	public Reserva getById(Reserva r) throws Exception{	
 		return dataRes.getById(r);
 	}
-
+	public int validaAnticipacion(Reserva r) throws Exception{
+		int i = dataRes.validaAnticipacion(r);
+		return i ;
+	}
+	public static String getFechaActual() {
+	    Date ahora = new java.util.Date();
+	    SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+	    return formateador.format(ahora);
+	}
+    
 }

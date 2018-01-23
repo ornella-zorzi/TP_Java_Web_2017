@@ -9,7 +9,14 @@ public class TipoElemento implements Serializable   {
 	private int  cant_reserva_max;
 	private int tiempo_limite;
 	private int dias_anticipacion;
+	private boolean encargado; 
 
+	public boolean isEncargado() {
+		return encargado;
+	}
+	public void setEncargado(boolean encargado) {
+		this.encargado = encargado;
+	}
 	public int getId_TE() {
 		return id_TE;
 	}

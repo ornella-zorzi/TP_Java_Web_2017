@@ -224,6 +224,40 @@ public int  validaDisponibilidad(Reserva re) throws ApplicationException{
 		
 	
 }
+public int  validaAnticipacion(Reserva re) throws ApplicationException{
+	PreparedStatement stmt= null;
+	ResultSet rs=null;
+	ArrayList<Reserva> res = new ArrayList<Reserva>();
+	int i=0;
+	try{ 
+	stmt= FactoryConexion.getInstancia().getConn().prepareStatement( "Select * from reserva r where (r.id_el=? and r.id_te=? and r.fecha=? and r.hora=?)");
+		stmt.setInt(1,re.getElemento().getId_El());
+		stmt.setInt(2,re.getTipoelemento().getId_TE());
+		stmt.setDate(3,re.getFecha());
+		stmt.setTime(4,re.getHora());
+		 
+		 rs=stmt.executeQuery();
+		 if(rs!=null && rs.next()){
+					i=1;
+			}
+		
+	} catch (SQLException e ){
+		//throw e;
+	} catch (ApplicationException ade){
+		throw ade;
+	} try {
+		if(rs!=null) rs.close();
+		if (stmt!=null) stmt.close();
+		FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		return (i);
+		
+	
+}
+
+
 public Reserva getById(Reserva r) throws Exception{
 	Reserva re = null ;
 	PreparedStatement stmt= null;

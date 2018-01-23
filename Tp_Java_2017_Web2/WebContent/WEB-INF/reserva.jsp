@@ -1,8 +1,10 @@
 <%@page import="controlers.CtrlABMCReserva"%>
 <%@page import="controlers.CtrlABMCTipoElemento"%>
 <%@page import="controlers.CtrlABMCElemento"%>
+<%@page import="controlers.CtrlABMCPersona"%>
 <%@page import="java.util.*"%>
 <%@page import="entity.TipoElemento"%>
+<%@page import="entity.Persona"%>
 <%@page import="entity.Reserva"%>
 <%@page import="entity.Elemento"%>
 <%@page import="java.sql.Date"%>
@@ -55,7 +57,11 @@
         <h2 class="form-signin-heading"> Reserva</h2>
 			ID <input><br>Tipo Elemento<%CtrlABMCTipoElemento ctrl=new CtrlABMCTipoElemento();
 			ArrayList<TipoElemento> tels= new ArrayList<TipoElemento>();
-			tels=ctrl.getAll();
+			int id=((Persona)session.getAttribute("user")).getCategoria().getId_cat();
+			if(id==2){
+				tels=ctrl.getAll();
+			}
+			else {tels=ctrl.getPublico();}
 		%>
 			<select name="tipo_elemento" style="width: 107px; ">
 		<%	if(request.getAttribute("elementos_tipo")!=null){

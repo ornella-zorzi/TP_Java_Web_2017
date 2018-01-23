@@ -47,6 +47,7 @@ String nombre_te="";
 String cant_reserva_max="";
 String tiempo_limite="";
 String dias_anticipacion ="" ;
+boolean encargado= true;
 
 if(request.getAttribute("encontrado")!=null){
 	   encontrado =(TipoElemento)request.getAttribute("encontrado");
@@ -55,6 +56,7 @@ if(request.getAttribute("encontrado")!=null){
        cant_reserva_max=String.valueOf(encontrado.getCant_reserva_max());
        tiempo_limite=String.valueOf(encontrado.getTiempo_limite());
        dias_anticipacion=String.valueOf(encontrado.getDias_anticipacion()); 
+        encargado=encontrado.isEncargado();     
 }
 %>
  <div class="container">
@@ -75,8 +77,12 @@ if(request.getAttribute("encontrado")!=null){
         <input name="tiempo_limite" id="inputtiempo_limite" class="" placeholder="" type="" value=<%=tiempo_limite%>>
        
         <br><br><label for="inputdias_anticipacion" class="sr-only">Dias Anticipacion</label>
-        <input name="dias_anticipacion" id="inputdias_anticipacion" class="" placeholder=""  type="" value=<%=dias_anticipacion %>><br><br>
+        <input name="dias_anticipacion" id="inputdias_anticipacion" class="" placeholder=""  type="" value=<%=dias_anticipacion %>><br>
+     
 
+<br><input type="checkbox" name="encargado" id="inputencargado" value="encargado" 
+			<%if(encargado){ %>checked<%} %>>
+			<label for="inputEncargado" class="sr-only">Solo puede reservar el encargado<br><br> </label>
 
         <button class="btn btn-lg " onclick="javascript: submitForm('tipoElemento/alta')">Agregar</button>
         <button class="btn btn-lg " onclick="javascript: submitForm('tipoElemento/modificacion')">Modificar</button>
