@@ -80,7 +80,7 @@ if(request.getAttribute("encontrado")!=null){
         <input name="dias_anticipacion" id="inputdias_anticipacion" class="" placeholder=""  type="" value=<%=dias_anticipacion %>><br>
      
 
-<br><input type="checkbox" name="encargado" id="inputencargado" value="encargado" 
+<br><input type="checkbox" name="encargado" id="inputencargado" value="true" 
 			<%if(encargado){ %>checked<%} %>>
 			<label for="inputEncargado" class="sr-only">Solo puede reservar el encargado<br><br> </label>
 
