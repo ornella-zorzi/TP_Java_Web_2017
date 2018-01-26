@@ -103,7 +103,7 @@ public class abmcTipoElServlet extends HttpServlet  {
 			 te.setCant_reserva_max(Integer.parseInt(request.getParameter("cant_reserva_max")));
 			 te.setTiempo_limite(Integer.parseInt(request.getParameter("tiempo_limite")));
 			 te.setDias_anticipacion(Integer.parseInt(request.getParameter("dias_anticipacion")));
-			 te.setEncargado(request.getParameter("encargado").equals("on"));
+			 //te.setEncargado(request.getParameter("encargado").equals("on"));
 			ctrl.update(te);
 		
 			

@@ -163,14 +163,14 @@ public class DataTipoElemento implements Serializable  {
 			PreparedStatement stmt=null;	
 			try {
 				stmt= FactoryConexion.getInstancia().getConn().prepareStatement(	
-						"UPDATE tipo_elemento SET nombre_te=?, cant_reserva_max=?, tiempo_limite=?,dias_anticipacion=? , encargado=? WHERE id_te=?");		
+						"UPDATE tipo_elemento SET nombre_te=?, cant_reserva_max=?, tiempo_limite=?,dias_anticipacion=? WHERE id_te=?");		
 				
 				stmt.setString(1,tipoel.getNombre_TE());
 				stmt.setInt(2,tipoel.getCant_reserva_max());
 				stmt.setInt(3,tipoel.getTiempo_limite());
 				stmt.setInt(4,tipoel.getDias_anticipacion());
 				stmt.setInt(5,tipoel.getId_TE());
-				stmt.setBoolean(6,tipoel.isEncargado());
+				//stmt.setBoolean(6,tipoel.isEncargado());
 				stmt.execute();
 			} catch (SQLException e) {			
 				e.printStackTrace();
@@ -199,7 +199,7 @@ public class DataTipoElemento implements Serializable  {
 		    PreparedStatement stmt= null;
 		    ResultSet rs=null;
 		    try {
-		    		 stmt= FactoryConexion.getInstancia().getConn().prepareStatement( "select id_te,nombre_te,cant_reserva_max, tiempo_limite,dias_anticipacion , encargado from tipo_elemento where id_te=? ");
+		    		 stmt= FactoryConexion.getInstancia().getConn().prepareStatement( "select id_te,nombre_te,cant_reserva_max, tiempo_limite,dias_anticipacion from tipo_elemento where id_te=? ");
 		    		 stmt.setInt(1,id_te);
 		    		 rs=stmt.executeQuery();
 		    		 if(rs!=null && rs.next()){
@@ -209,7 +209,7 @@ public class DataTipoElemento implements Serializable  {
 		    			 te.setCant_reserva_max(rs.getInt("cant_reserva_max"));
 		    			 te.setTiempo_limite(rs.getInt("tiempo_limite"));
 		    		     te.setDias_anticipacion(rs.getInt("dias_anticipacion"));
-		    		     te.setEncargado(rs.getBoolean("encargado"));
+		    		     //te.setEncargado(rs.getBoolean("encargado"));
 		    			 }
 		    		 
 		    	} catch (Exception e ){

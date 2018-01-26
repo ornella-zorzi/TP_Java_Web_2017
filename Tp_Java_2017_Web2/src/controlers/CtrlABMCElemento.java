@@ -50,8 +50,8 @@ public class CtrlABMCElemento implements Serializable  {
 		return dataTipoEl.getAll();
 		
 	}
-	public TipoElemento getById(int id_te) throws Exception{
-		return dataTipoEl.getById(id_te);
+	public Elemento getById(int id_el) throws Exception{
+		return dataElem.getById(id_el);
 	}
 
 }

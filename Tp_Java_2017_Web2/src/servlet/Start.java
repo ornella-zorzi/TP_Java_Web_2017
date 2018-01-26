@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controlers.*;
 import entity.*;
+import util.Emailer;
 
 /**
  * Servlet implementation class Start
@@ -53,7 +54,6 @@ public class Start extends HttpServlet {
 			Persona pers=ctrl1.getValidacionUsario(per);
 			
 			request.getSession().setAttribute("user", pers);
- 	       
 			
 			
 		//	request.getRequestDispatcher("WEB-INF/persona.jsp").forward(request, response);

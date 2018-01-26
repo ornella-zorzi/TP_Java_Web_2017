@@ -90,11 +90,13 @@ public class abmcElemServlet extends HttpServlet {
 		
 		Elemento el = new Elemento();
 		CtrlABMCElemento ctrl = new CtrlABMCElemento();
+		CtrlABMCTipoElemento ctrlte = new CtrlABMCTipoElemento();
+		TipoElemento te=new TipoElemento();
 		el.setId_El(Integer.parseInt(request.getParameter("id_el")));
 		el.setNombre_El(request.getParameter("nombre_el"));
 		System.out.println(el.getNombre_El());
 		int id_TE =Integer.parseInt(request.getParameter("tipoElemento"));
-		el.setTipoElemento(ctrl.getById(id_TE));
+		el.setTipoElemento(ctrlte.getById(id_TE));
 		ctrl.update(el);
 		response.getWriter().append("Modificación, requested action: ").append(request.getPathInfo()).append(" through post");
 
@@ -124,10 +126,11 @@ public class abmcElemServlet extends HttpServlet {
 		  try {
 			  
 			    CtrlABMCElemento ctrl= new CtrlABMCElemento();
+			    CtrlABMCTipoElemento ctrlte= new CtrlABMCTipoElemento();
 			    Elemento el = new Elemento();
 			    el.setNombre_El(request.getParameter("nombre_el"));
 				int id_te=Integer.parseInt(request.getParameter("tipoElemento"));
-				el.setTipoElemento(ctrl.getById(id_te));
+				el.setTipoElemento(ctrlte.getById(id_te));
 				ctrl.add(el);
 				response.getWriter().append("Elemento creado con exito");
 		  }

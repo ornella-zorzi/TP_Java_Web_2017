@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 
 import controlers.*;
 import entity.*;
+import util.Emailer;
 
 @WebServlet({ "/reserva/*", "/Reserva/*",  "/RESERVA/*" , "/RESERVAS/*"  })
 public class abmcResServet  extends HttpServlet  {
@@ -102,30 +103,33 @@ public class abmcResServet  extends HttpServlet  {
 	
 		  try {
 			    CtrlABMCReserva ctrl = new CtrlABMCReserva();
-			    CtrlABMCTipoElemento ctrl2 = new CtrlABMCTipoElemento();
+			    CtrlABMCTipoElemento ctrlte = new CtrlABMCTipoElemento();
+			    CtrlABMCElemento ctrle = new CtrlABMCElemento();
 			    Persona p=(Persona) request.getSession().getAttribute("user");
                 Reserva re = new Reserva();
+            	TipoElemento t = new TipoElemento();
+            	Elemento e=new Elemento();
+            	
                 re.setElemento(new Elemento());
                 re.setPersona(new Persona());
                 re.setTipoelemento(new TipoElemento());
                 re.getPersona().setId_per(p.getId_per());
-                re.getElemento().setId_El(Integer.parseInt(request.getParameter("elemento")));
-                re.getTipoelemento().setId_TE(Integer.parseInt(request.getParameter("tipo_elemento")));
+                int id_el=(Integer.parseInt(request.getParameter("elemento")));
+    			re.setElemento(ctrle.getById(id_el));
+                int id_te=(Integer.parseInt(request.getParameter("tipo_elemento")));
+    			re.setTipoelemento(ctrlte.getById(id_te));
                 re.setFecha(Date.valueOf(request.getParameter("fecha")));
                 re.setHora(Time.valueOf(request.getParameter("hora"))); 
                 re.setDetalle(request.getParameter("detalle"));
                 int valida=ctrl.validaDisponibilidad(re);
-    			TipoElemento t = new TipoElemento();
-    			t=ctrl2.getById(re.getTipoelemento().getId_TE());
-    			   Date fecha=Date.valueOf(ctrl.getFechaActual());
-                   int dias=(int) ((re.getFecha().getTime()-fecha.getTime())/86400000);
+    			Date fecha=Date.valueOf(ctrl.getFechaActual());
+                int dias=(int) ((re.getFecha().getTime()-fecha.getTime())/86400000);
     			if (dias<t.getDias_anticipacion()){
     				
                  if (valida==0){
                 ctrl.add(re);
                 response.getWriter().append("Reserva creada con exito");
-             
-                
+                Emailer.getInstance().send(p.getEmail(),"reserva",ctrl.getMailReserva(re,p));
     			}
                  else if (valida==1){
     				response.getWriter().append("elemento ocupado para esa fecha/hora");
