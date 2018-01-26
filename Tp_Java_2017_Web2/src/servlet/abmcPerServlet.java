@@ -101,7 +101,9 @@ public class abmcPerServlet extends HttpServlet {
 		per.setEmail(request.getParameter("email"));
 		int id_cat=Integer.parseInt(request.getParameter("categoria"));
 		per.setCategoria(ctrl.getById(id_cat));
-		//per.setHabilitado(request.getParameter("habilitado").equals("on"));
+		if (request.getParameter("habilitado")!=null){
+			per.setHabilitado(true);
+		}
 		per.setUsuario(request.getParameter("usuario"));
 		per.setContraseña(request.getParameter("contraseña"));
 		per.setId_per(Integer.parseInt(request.getParameter("id")));
@@ -147,7 +149,9 @@ public class abmcPerServlet extends HttpServlet {
 				per.setEmail(request.getParameter("email"));
 				int id_cat=Integer.parseInt(request.getParameter("categoria"));
 				per.setCategoria(ctrl.getById(id_cat));
-				per.setHabilitado(request.getParameter("habilitado").equals("on"));
+				if (request.getParameter("habilitado")!=null){
+					per.setHabilitado(true);
+				}
 				per.setUsuario(request.getParameter("usuario"));
 				per.setContraseña(request.getParameter("contraseña"));
 				

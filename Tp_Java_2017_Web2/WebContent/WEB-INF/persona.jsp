@@ -104,7 +104,7 @@
              <label for="inputContraseña" class="sr-only">Contraseña:</label>
         <input name="contraseña" id="inputcontraseña"  class="" placeholder=""  type="" value=<%=contraseña %>>
         
-			<br><br><input type="checkbox" name="habilitado" id="inputhabilitado" value="habilitado" 
+			<br><br><input type="checkbox" name="habilitado" id="inputhabilitado" value="true" 
 			<%if(habilitado){ %>checked<%} %>>
 			<label for="inputHabilitado" class="sr-only">Habilitado</label>
 		  
