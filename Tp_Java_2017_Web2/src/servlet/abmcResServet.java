@@ -107,12 +107,13 @@ public class abmcResServet  extends HttpServlet  {
 			    CtrlABMCElemento ctrle = new CtrlABMCElemento();
 			    Persona p=(Persona) request.getSession().getAttribute("user");
                 Reserva re = new Reserva();
-            	TipoElemento t = new TipoElemento();
-            	Elemento e=new Elemento();
+            	//TipoElemento t = new TipoElemento();
+            	//Elemento e=new Elemento();
             	
                 re.setElemento(new Elemento());
                 re.setPersona(new Persona());
                 re.setTipoelemento(new TipoElemento());
+                
                 re.getPersona().setId_per(p.getId_per());
                 int id_el=(Integer.parseInt(request.getParameter("elemento")));
     			re.setElemento(ctrle.getById(id_el));
@@ -124,7 +125,8 @@ public class abmcResServet  extends HttpServlet  {
                 int valida=ctrl.validaDisponibilidad(re);
     			Date fecha=Date.valueOf(ctrl.getFechaActual());
                 int dias=(int) ((re.getFecha().getTime()-fecha.getTime())/86400000);
-    			if (dias<t.getDias_anticipacion()){
+                System.out.println(dias);
+    			if (dias<=re.getTipoelemento().getDias_anticipacion()){
     				
                  if (valida==0){
                 ctrl.add(re);
