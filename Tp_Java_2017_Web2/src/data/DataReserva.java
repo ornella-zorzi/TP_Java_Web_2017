@@ -13,7 +13,7 @@ public class DataReserva implements Serializable  {
 		ArrayList<Reserva> res = new ArrayList<Reserva>();
 		try{ 
 			stmt = FactoryConexion.getInstancia().getConn().createStatement();
-			rs = stmt.executeQuery("Select r.id_res, te.id_te, te.nombre_te, e.id_el,e.nombre_el, p.id_per,p.nombre, p.apellido, fecha, hora, detalle from reserva r " +
+			rs = stmt.executeQuery("Select r.id_res, te.id_te, te.nombre_te, e.id_el,e.nombre_el, p.id_per,p.nombre, p.apellido, fecha, hora_inicio,hora_fin, detalle from reserva r " +
 			"inner join persona p on r.id_per=p.id_per inner join elemento e on e.id_el=r.id_el inner join tipo_elemento te on te.id_te=r.id_te");
 			
 			if (rs!= null ){
@@ -30,7 +30,8 @@ public class DataReserva implements Serializable  {
 					r.getPersona().setId_per(rs.getInt("p.id_per"));
 					r.getPersona().setNombre(rs.getString("p.nombre"));
 					r.getPersona().setApellido(rs.getString("p.apellido"));
-					r.setHora(rs.getTime("hora"));
+					r.setHora_inicio(rs.getTime("hora_inicio"));
+				    r.setHora_fin(rs.getTime("hora_fin"));
 					r.setFecha(rs.getDate("fecha"));
 					r.setDetalle(rs.getString("detalle"));
 					res.add(r);
@@ -58,8 +59,8 @@ public class DataReserva implements Serializable  {
     	ResultSet rs=null;
 		ArrayList<Reserva> res = new ArrayList<Reserva>();
 		try{ 
-			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("Select r.id_res, te.id_te, te.nombre_te, e.id_el,e.nombre_el, p.id_per,p.nombre, p.apellido, fecha, hora, detalle from reserva r " +
-					"inner join persona p on r.id_per=p.id_per inner join elemento e on e.id_el=r.id_el inner join tipo_elemento te on te.id_te=r.id_te where r.id_per=? and r.fecha>=curdate()");
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("Select r.id_res, te.id_te, te.nombre_te, e.id_el,e.nombre_el, p.id_per,p.nombre, p.apellido, fecha, hora_inicio,hora_fin, detalle from reserva r " +
+					"inner join persona p on r.id_per=p.id_per inner join elemento e on e.id_el=r.id_el inner join tipo_elemento te on te.id_te=r.id_te where r.id_per=? and r.fecha>=curdate() ");
 			stmt.setInt(1, p.getId_per());
 			rs = stmt.executeQuery();
 			
@@ -77,7 +78,8 @@ public class DataReserva implements Serializable  {
 					r.getPersona().setId_per(rs.getInt("p.id_per"));
 					r.getPersona().setNombre(rs.getString("p.nombre"));
 					r.getPersona().setApellido(rs.getString("p.apellido"));
-					r.setHora(rs.getTime("hora"));
+					r.setHora_inicio(rs.getTime("hora_inicio"));
+					r.setHora_fin(rs.getTime("hora_fin"));
 					r.setFecha(rs.getDate("fecha"));
 					r.setDetalle(rs.getString("detalle"));
 					res.add(r);
@@ -104,14 +106,15 @@ public class DataReserva implements Serializable  {
     	PreparedStatement stmt=null;
     	ResultSet keyResultSet=null;
     	try{ stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-				"insert into reserva(id_el, id_te, fecha, hora, detalle, id_per) " +
-				 "values (?,?,?,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
+				"insert into reserva(id_el, id_te, fecha, hora_inicio,hora_fin, detalle, id_per) " +
+				 "values (?,?,?,?,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
     		  stmt.setInt(1,r.getElemento().getId_El());
     		  stmt.setInt(2,r.getTipoelemento().getId_TE());
     		  stmt.setDate(3,r.getFecha()); 
-    		  stmt.setTime(4,r.getHora());
-    		  stmt.setString(5,r.getDetalle());
-    		  stmt.setInt(6,r.getPersona().getId_per());
+    		  stmt.setTime(4,r.getHora_inicio());
+    		  stmt.setTime(5,r.getHora_fin());
+    		  stmt.setString(6,r.getDetalle());
+    		  stmt.setInt(7,r.getPersona().getId_per());
     		  
     		  stmt.executeUpdate();
     		  keyResultSet=stmt.getGeneratedKeys();
@@ -136,7 +139,7 @@ public ResultSet getResultSet() throws ApplicationException{
 		try
 		{
 			stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
-					"SELECT id_res, id_el, id_te, fecha, hora, detalle, id_per " +
+					"SELECT id_res, id_el, id_te, fecha, hora_inicio,hora_fin, detalle, id_per " +
 					"FROM reserva  inner join elemento  on reserva.id_el=elemento.id_el where id_te=?");			
 			rs = stmt.executeQuery();
 			
@@ -156,15 +159,16 @@ public void update(Reserva r){
 	PreparedStatement stmt=null;	
 	try {
 		stmt= FactoryConexion.getInstancia().getConn().prepareStatement(
-				"UPDATE reserva SET id_el=?, id_te=?, fecha=?, hora=?, detalle=? WHERE id_res=?");	
+				"UPDATE reserva SET id_el=?, id_te=?, fecha=?, hora_inicio=?,hora_fin=?, detalle=? WHERE id_res=?");	
 		
 		 stmt.setInt(1,r.getElemento().getId_El());
 		  stmt.setInt(2,r.getElemento().getTipoElemento().getId_TE());
 		 // stmt.setString(3,r.getPersona().getDni());
 		  stmt.setDate(3, (Date) r.getFecha());
-		  stmt.setTime(4,(Time) r.getHora());
-		  stmt.setString(5,r.getDetalle());
-		  stmt.setInt(6, r.getId_res());
+		  stmt.setTime(4,(Time) r.getHora_inicio());
+		  stmt.setTime(5,(Time) r.getHora_fin());
+		  stmt.setString(6,r.getDetalle());
+		  stmt.setInt(7, r.getId_res());
 		  
 		  stmt.execute();
 		
@@ -198,7 +202,7 @@ public int  validaDisponibilidad(Reserva re) throws ApplicationException{
 	ArrayList<Reserva> res = new ArrayList<Reserva>();
 	int i=0;
 	try{ 
-	stmt= FactoryConexion.getInstancia().getConn().prepareStatement( "Select * from reserva r where (r.id_el=? and r.id_te=? and r.fecha=? and r.hora=?)");
+	stmt= FactoryConexion.getInstancia().getConn().prepareStatement( "Select * from reserva r where (r.id_el=? and r.id_te=? and r.fecha=? and ?<=r.hora_fin AND ? >= campofechainiciores)");
 		stmt.setInt(1,re.getElemento().getId_El());
 		stmt.setInt(2,re.getTipoelemento().getId_TE());
 		stmt.setDate(3,re.getFecha());

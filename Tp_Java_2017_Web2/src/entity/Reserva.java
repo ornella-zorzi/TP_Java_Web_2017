@@ -5,12 +5,16 @@ import java.sql.Time;
 
 
 public class Reserva implements Serializable {
-	private Time hora;
-	private Date fecha; 
+	
+	private Time hora_fin;
+	private Time hora_inicio;
 	private String estado;
 	private String detalle;
 	private Persona persona;
 	private Elemento elemento;
+	private Date fecha;
+
+	
 	private TipoElemento tipoelemento;
 	private int id_res;
 	
@@ -38,23 +42,21 @@ public class Reserva implements Serializable {
 	public void setPersona(Persona persona) {
 		this.persona = persona;
 	}
-	
-	
-	
+		
 	public String getDetalle() {
 		return detalle;
 	}
 	public void setDetalle(String detalle) {
 		this.detalle = detalle;
 	}
-	public Time getHora() {
-		return hora;
+	public Time getHora_fin() {
+		return hora_fin;
 	}
-	public void setHora(Time hora) {
-		this.hora = hora;
+	public void setHora_fin(Time hora_fin) {
+		this.hora_fin = hora_fin;
 	}
 	public Date getFecha() {
-		return fecha;
+		return    fecha;
 	}
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
@@ -65,10 +67,17 @@ public class Reserva implements Serializable {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+	public Time getHora_inicio() {
+		return hora_inicio;
+	}
+	public void setHora_inicio(Time hora_inicio) {
+		this.hora_inicio = hora_inicio;
+	}
 
-	public Reserva ( Date fecha, Time hora, String detalle, String estado){
-		this.setFecha(fecha);
-		this.setHora(hora);
+	public Reserva ( Date fecha, Time hora_inicio, Time hora_fin, String detalle, String estado){
+		this.setFecha (fecha);
+		this.setHora_inicio(hora_inicio);
+		this.setHora_fin(hora_fin);
 		this.setDetalle(detalle);
 		this.setEstado(estado);
 		

@@ -50,7 +50,8 @@
 			<td style="width: 110px; ">ID</td>
 			<td style="width: 110px; ">TIPO DE ELEMENTO</td>
 			<td style="width: 110px; ">ELEMENTO</td>
-			<td style="width: 110px; ">FECHA</td>
+			<td style="width: 110px; ">FECHA INICIO</td>
+			<td style="width: 110px; ">FECHA FIN</td>
 			<td style="width: 110px; ">HORA</td>
 			<td style="width: 110px; ">DETALLE</td>
 			
