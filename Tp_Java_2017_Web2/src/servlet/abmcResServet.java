@@ -120,7 +120,8 @@ public class abmcResServet  extends HttpServlet  {
                 int id_te=(Integer.parseInt(request.getParameter("tipo_elemento")));
     			re.setTipoelemento(ctrlte.getById(id_te));
                 re.setFecha(Date.valueOf(request.getParameter("fecha")));
-                re.setHora(Time.valueOf(request.getParameter("hora"))); 
+                re.setHora_inicio(Time.valueOf(request.getParameter("hora_inicio")));
+                re.setHora_fin(Time.valueOf(request.getParameter("hora_fin")));
                 re.setDetalle(request.getParameter("detalle"));
                 int valida=ctrl.validaDisponibilidad(re);
     			Date fecha=Date.valueOf(ctrl.getFechaActual());

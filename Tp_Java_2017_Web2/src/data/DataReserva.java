@@ -206,7 +206,8 @@ public int  validaDisponibilidad(Reserva re) throws ApplicationException{
 		stmt.setInt(1,re.getElemento().getId_El());
 		stmt.setInt(2,re.getTipoelemento().getId_TE());
 		stmt.setDate(3,re.getFecha());
-		stmt.setTime(4,re.getHora());
+		stmt.setTime(4,re.getHora_inicio());
+		stmt.setTime(5,re.getHora_fin());
 		 
 		 rs=stmt.executeQuery();
 		 if(rs!=null && rs.next()){
@@ -238,7 +239,9 @@ public int  validaAnticipacion(Reserva re) throws ApplicationException{
 		stmt.setInt(1,re.getElemento().getId_El());
 		stmt.setInt(2,re.getTipoelemento().getId_TE());
 		stmt.setDate(3,re.getFecha());
-		stmt.setTime(4,re.getHora());
+		stmt.setTime(4,re.getHora_inicio());
+		stmt.setTime(5,re.getHora_fin());
+		
 		 
 		 rs=stmt.executeQuery();
 		 if(rs!=null && rs.next()){
@@ -267,7 +270,7 @@ public Reserva getById(Reserva r) throws Exception{
 	PreparedStatement stmt= null;
 	ResultSet rs=null;
 	try {
-		 stmt= FactoryConexion.getInstancia().getConn().prepareStatement( "Select r.id_res, te.id_te, te.nombre_te, e.id_el,e.nombre_el, p.id_per,p.nombre, p.apellido, fecha, hora, detalle from reserva r " +
+		 stmt= FactoryConexion.getInstancia().getConn().prepareStatement( "Select r.id_res, te.id_te, te.nombre_te, e.id_el,e.nombre_el, p.id_per,p.nombre, p.apellido, fecha, hora_inicio,hora_fin, detalle from reserva r " +
 			"inner join persona p on r.id_per=p.id_per inner join elemento e on e.id_el=r.id_el inner join tipo_elemento te on te.id_te=r.id_te where id_res=?");
 		 stmt.setInt(1, r.getId_res());
 		 rs=stmt.executeQuery();
@@ -284,7 +287,8 @@ public Reserva getById(Reserva r) throws Exception{
 				re.getPersona().setId_per(rs.getInt("p.id_per"));
 				re.getPersona().setNombre(rs.getString("p.nombre"));
 				re.getPersona().setApellido(rs.getString("p.apellido"));
-				re.setHora(rs.getTime("hora"));
+				re.setHora_inicio(rs.getTime("hora_inicio"));
+				re.setHora_fin(rs.getTime("hora_fin"));
 				re.setFecha(rs.getDate("fecha"));
 				re.setDetalle(rs.getString("detalle"));
 		 }

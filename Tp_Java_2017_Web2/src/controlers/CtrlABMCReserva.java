@@ -73,10 +73,10 @@ public class CtrlABMCReserva implements Serializable   {
 	    return formateador.format(ahora);
 	}
 	public String getMailReserva(Reserva r, Persona p){
-		String texto="Apellido\tNombre\tIdReserva\tTipoElemento\tElemento\tFecha\tHora\tDetalle\n";
+		String texto="Apellido\tNombre\tIdReserva\tTipoElemento\tElemento\tFecha\tHora_inicio\tHora_fin\tDetalle\n";
 			texto= texto + p.getApellido() +"\t"+ p.getNombre()+"\t"+r.getId_res()+"\t"+
 					r.getTipoelemento().getNombre_TE()+"\t"+ r.getElemento()+"\t"+r.getFecha()+"\t"+
-					r.getHora()+"\t"+r.getDetalle()+"\n";
+					r.getHora_inicio()+"\t"+ r.getHora_fin()+"\t"+r.getDetalle()+"\n";
 		return texto;
 	}
     

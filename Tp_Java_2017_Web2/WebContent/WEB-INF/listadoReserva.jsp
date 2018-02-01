@@ -68,7 +68,8 @@
 			<td><%=r.getTipoelemento().getNombre_TE() %></td>
 			<td><%=r.getElemento().getNombre_El() %></td>
 		    <td><%=r.getFecha() %></td>
-			<td><%=r.getHora() %></td>
+			<td><%=r.getHora_inicio() %></td>
+			<td><%=r.getHora_fin() %></td>
 			<td><%=r.getDetalle() %></td>
 			<td><button type="submit" onclick="javascript: submitForm('listado/eliminar')"value="<%=r.getId_res()%>" id="cancelar" name="cancelar">Cancelar reserva</button></td>
 			 </tr>
