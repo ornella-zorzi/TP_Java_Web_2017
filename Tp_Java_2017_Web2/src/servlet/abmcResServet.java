@@ -126,9 +126,10 @@ public class abmcResServet  extends HttpServlet  {
                 int valida=ctrl.validaDisponibilidad(re);
     			Date fecha=Date.valueOf(ctrl.getFechaActual());
                 int dias=(int) ((re.getFecha().getTime()-fecha.getTime())/86400000);
-                System.out.println(dias);
+                double horas =((re.getHora_fin().getTime() - re.getHora_inicio().getTime())/3600)/1000;
+                System.out.println(horas);
     			if (dias<=re.getTipoelemento().getDias_anticipacion()){
-    				
+    				if(horas<=re.getTipoelemento().getTiempo_limite()){
                  if (valida==0){
                 ctrl.add(re);
                 response.getWriter().append("Reserva creada con exito");
@@ -137,6 +138,7 @@ public class abmcResServet  extends HttpServlet  {
                  else if (valida==1){
     				response.getWriter().append("elemento ocupado para esa fecha/hora");
     			}}
+        		else {response.getWriter().append("Supero el limite de tiempo en horas para reservar un elemento");}}
     			else { response.getWriter().append("Supero los dias maximo de anticipacion a la reserva"); }
 				/*
 				 * 1- guardar la categoria id en una variabe

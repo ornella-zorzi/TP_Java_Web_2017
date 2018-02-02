@@ -88,15 +88,15 @@
 			<option value="<%=e.getId_El() %>"><%=e.getNombre_El() %></option>
 		<%}} %> 
 		</select><br>
-		<br><label for="inputFechaInicio" class="sr-only">Fecha Inicio</label>
-        <input name="fecha_inicio" id="inputFecha_inicio" class="form-control" placeholder="aaaa-mm-dd" type="" >
+		<br><label for="inputFecha" class="sr-only">Fecha</label>
+        <input name="fecha" id="inputFecha" class="form-control" placeholder="aaaa-mm-dd" type="" >
        
        <br>
-		<br><label for="inputFechaFin" class="sr-only">Fecha Fin</label>
-        <input name="fecha_fin" id="inputFecha_fin" class="form-control" placeholder="aaaa-mm-dd" type="" >
+		<br><br><label for="inputHora_inicio" class="sr-only">Hora de Inicio</label>
+        <input name="hora_inicio" id="inputHora_inicio" class="form-control" placeholder="hh:mm:ss" type="" >
         
-        <br><br><label for="inputHora" class="sr-only">Hora</label>
-        <input name="hora" id="inputHora" class="form-control" placeholder="hh:mm:ss" type="" >
+        <br><br><label for="inputHora_fin" class="sr-only">Hora de Finalizacion</label>
+        <input name="hora_fin" id="inputHora_fin" class="form-control" placeholder="hh:mm:ss" type="" >
        
         <br><br><label for="inputDetalle" class="sr-only">Detalle</label>
         <input name="detalle" id="inputDetalle" class="form-control" placeholder="" type="" ><br><br>
