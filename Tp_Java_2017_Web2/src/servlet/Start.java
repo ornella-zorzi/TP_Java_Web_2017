@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controlers.*;
 import entity.*;
+import util.ApplicationException;
 import util.Emailer;
 
 import org.apache.logging.log4j.LogManager;
@@ -56,6 +57,9 @@ public class Start extends HttpServlet {
 			CtrlABMCPersona ctrl1= new CtrlABMCPersona();
 			
 			Persona pers=ctrl1.getValidacionUsario(per);
+			if (pers.isHabilitado()){
+				per=pers;
+			}
 			
 			request.getSession().setAttribute("user", pers);
 			
@@ -66,8 +70,10 @@ public class Start extends HttpServlet {
 			
 		
 			
+		} catch (ApplicationException ade) {
+			request.setAttribute("Error", ade.getMessage());
 		} catch (Exception e) {
-			e.printStackTrace();
+			response.setStatus(502);
 		}
 		//doGet(request, response);
 	}
