@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
 
+import org.apache.logging.log4j.Level;
+
 public class DataReserva implements Serializable  {
 	public ArrayList<Reserva> getAll() throws ApplicationException{
 		Statement stmt=null;
@@ -38,12 +40,14 @@ public class DataReserva implements Serializable  {
 						
 				}
 			}
-			
-		} catch (SQLException e ){
-			//throw e;
-		} catch (ApplicationException ade){
-			throw ade;
-		} try {
+		}
+			catch (SQLException e) {
+				ApplicationException ade=new ApplicationException(e, "Error al recuperar listado de reservas.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+				throw ade;
+			} catch (ApplicationException ade){
+				throw ade;
+			}
+			try {
 			if(rs!=null) rs.close();
 			if (stmt!=null) stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
@@ -87,11 +91,13 @@ public class DataReserva implements Serializable  {
 				}
 			}
 			
-		} catch (SQLException e ){
-			//throw e;
+		} catch (SQLException e) {
+			ApplicationException ade=new ApplicationException(e, "Error al recuperar listado de reservas pendientes.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+			throw ade;
 		} catch (ApplicationException ade){
 			throw ade;
-		} try {
+		}
+		try {
 			if(rs!=null) rs.close();
 			if (stmt!=null) stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
@@ -122,9 +128,12 @@ public class DataReserva implements Serializable  {
     			  r.setId_res(keyResultSet.getInt(1));
     		  }
     		
-    	} catch (SQLException | ApplicationException e){
-    		throw e;
-    	}try { 
+    	} catch (SQLException e) {
+			ApplicationException ade=new ApplicationException(e, "Error al agregar la reserva.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+			throw ade;
+		} catch (ApplicationException ade){
+			throw ade;
+		}try { 
     			if (keyResultSet!=null)keyResultSet.close();
     			if (stmt!=null)stmt.close();
     			FactoryConexion.getInstancia().releaseConn();
@@ -155,7 +164,7 @@ public ResultSet getResultSet() throws ApplicationException{
 	}
 
 
-public void update(Reserva r){
+public void update(Reserva r) throws ApplicationException{
 	PreparedStatement stmt=null;	
 	try {
 		stmt= FactoryConexion.getInstancia().getConn().prepareStatement(
@@ -172,25 +181,27 @@ public void update(Reserva r){
 		  
 		  stmt.execute();
 		
-	} catch (SQLException e) {			
-		e.printStackTrace();
-	} catch (ApplicationException e) {			
-		e.printStackTrace();
+	}catch (SQLException e) {
+		ApplicationException ade=new ApplicationException(e, "Error al modificar reserva.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+		throw ade;
+	} catch (ApplicationException ade){
+		throw ade;
 	}
 
 }
 
-public void delete(Reserva r){
+public void delete(Reserva r) throws ApplicationException{
 	PreparedStatement stmt=null;		
 	try {
 		stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
 				"delete from reserva where id_res=?");
 		stmt.setInt(1,r.getId_res());
 		stmt.execute();
-	} catch (SQLException e) {			
-		e.printStackTrace();
-	} catch (ApplicationException e) {			
-		e.printStackTrace();
+	} catch (SQLException e) {
+		ApplicationException ade=new ApplicationException(e, "Error al eliminar reserva.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+		throw ade;
+	} catch (ApplicationException ade){
+		throw ade;
 	}
 	
 	
@@ -215,8 +226,9 @@ public int  validaDisponibilidad(Reserva re) throws ApplicationException{
 					i=1;
 			}
 		
-	} catch (SQLException e ){
-		//throw e;
+	} catch (SQLException e) {
+		ApplicationException ade=new ApplicationException(e, "Error al validar disponibilidad.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+		throw ade;
 	} catch (ApplicationException ade){
 		throw ade;
 	} try {
@@ -249,11 +261,12 @@ public int  validaAnticipacion(Reserva re) throws ApplicationException{
 					i=1;
 			}
 		
-	} catch (SQLException e ){
-		//throw e;
+	} catch (SQLException e) {
+		ApplicationException ade=new ApplicationException(e, "Error al validar dias de anticipacion de la reseva.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+		throw ade;
 	} catch (ApplicationException ade){
 		throw ade;
-	} try {
+	}try {
 		if(rs!=null) rs.close();
 		if (stmt!=null) stmt.close();
 		FactoryConexion.getInstancia().releaseConn();
@@ -294,9 +307,13 @@ public Reserva getById(Reserva r) throws Exception{
 				re.setDetalle(rs.getString("detalle"));
 		 }
 		 
-	} catch (Exception e ){
-		throw e;
-	} finally {
+	} catch (SQLException e) {
+		ApplicationException ade=new ApplicationException(e, "Error al recuperar reserva.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+		throw ade;
+	} catch (ApplicationException ade){
+		throw ade;
+	}
+	finally {
 		try{
 			if(rs!=null)rs.close();
 			if (stmt!=null)stmt.close();

@@ -5,6 +5,9 @@ import util.ApplicationException;
 import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import org.apache.logging.log4j.Level;
+import java.security.KeyStore.ProtectionParameter;
 
 
 public class DataPersona implements Serializable{
@@ -35,20 +38,26 @@ public class DataPersona implements Serializable{
 				}
 			}
 			
-		} catch (SQLException e ){
-			//throw e;
+		} catch (SQLException e) {
+			ApplicationException ade=new ApplicationException(e, "Error al recuperar listado de Personas.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+			throw ade;
 		} catch (ApplicationException ade){
 			throw ade;
-		} try {
-			if(rs!=null) rs.close();
-			if (stmt!=null) stmt.close();
-			FactoryConexion.getInstancia().releaseConn();
-			} catch (SQLException e){
-				e.printStackTrace();
-			}
-			return pers;
+		}
 		
-	} 
+
+		try {
+			if(rs!=null) rs.close();
+			if(stmt!=null) stmt.close();
+			FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return pers;
+		
+	}
 
     public Persona getByDni(Persona per) throws Exception{
     	Persona p = null ;
@@ -73,9 +82,12 @@ public class DataPersona implements Serializable{
 					p.getCategoria().setNombre_cat(rs.getString("nombre_cat"));
     		 }
     		 
-    	} catch (Exception e ){
-    		throw e;
-    	} finally {
+    	} catch (SQLException e) {
+			ApplicationException ade=new ApplicationException(e, "Error al recuperar Persona.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+			throw ade;
+		} catch (ApplicationException ade){
+			throw ade;
+		}finally {
     		try{
     			if(rs!=null)rs.close();
     			if (stmt!=null)stmt.close();
@@ -107,9 +119,13 @@ public class DataPersona implements Serializable{
     			  p.setId_per(keyResultSet.getInt(1));
     		  }
     		
-    	} catch (SQLException | ApplicationException e){
-    		throw e;
-    	}try { 
+    	} catch (SQLException e) {
+			ApplicationException ade=new ApplicationException(e, "Error al agregar persona.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+			throw ade;
+		} catch (ApplicationException ade){
+			throw ade;
+		}
+    	try { 
     			if (keyResultSet!=null)keyResultSet.close();
     			if (stmt!=null)stmt.close();
     			FactoryConexion.getInstancia().releaseConn();
@@ -142,7 +158,7 @@ public ResultSet getResultSet() throws ApplicationException{
 
 
 
-public void update(Persona p){
+public void update(Persona p) throws ApplicationException{
 	PreparedStatement stmt=null;	
 	try {
 		stmt= FactoryConexion.getInstancia().getConn().prepareStatement(
@@ -160,25 +176,28 @@ public void update(Persona p){
 		  
 		  stmt.execute();
 		
-	} catch (SQLException e) {			
-		e.printStackTrace();
-	} catch (ApplicationException e) {			
-		e.printStackTrace();
+	}  catch (SQLException e) {
+		ApplicationException ade=new ApplicationException(e, "Error al modificar persona.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+		throw ade;
+	} catch (ApplicationException ade){
+		throw ade;
 	}
+	
 
 }
 
-public void delete(Persona p){
+public void delete(Persona p) throws ApplicationException{
 	PreparedStatement stmt=null;		
 	try {
 		stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
 				"delete from persona where id_per=?");
 		stmt.setInt(1,p.getId_per());
 		stmt.execute();
-	} catch (SQLException e) {			
-		e.printStackTrace();
-	} catch (ApplicationException e) {			
-		e.printStackTrace();
+	}  catch (SQLException e) {
+		ApplicationException ade=new ApplicationException(e, "Error al eliminar persona.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+		throw ade;
+	} catch (ApplicationException ade){
+		throw ade;
 	}
 	
 	
@@ -206,9 +225,13 @@ public Persona getValidacionUsario(Persona per) throws Exception{
 				u.getCategoria().setId_cat(rs.getInt("id_cat"));
 				u.getCategoria().setNombre_cat(rs.getString("nombre_cat"));
 		 } 
-	} catch (Exception e ){
-	    		throw e;
-	    	} finally {
+	} catch (SQLException e) {
+		ApplicationException ade=new ApplicationException(e, "Error al validar persona.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+		throw ade;
+	} catch (ApplicationException ade){
+		throw ade;
+	}
+	 finally {
 	    		try{
 	    			if(rs!=null)rs.close();
 	    			if (stmt!=null)stmt.close();

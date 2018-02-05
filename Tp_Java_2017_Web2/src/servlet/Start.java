@@ -15,18 +15,22 @@ import controlers.*;
 import entity.*;
 import util.Emailer;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Level;
+
 /**
  * Servlet implementation class Start
  */
 @WebServlet({ "/Start", "/start" })
 public class Start extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private Logger logger;
     /**
      * Default constructor. 
      */
     public Start() {
-        // TODO Auto-generated constructor stub
+    	logger = LogManager.getLogger(getClass());
     }
 
 	/**
@@ -55,8 +59,8 @@ public class Start extends HttpServlet {
 			
 			request.getSession().setAttribute("user", pers);
 			
-			
-		//	request.getRequestDispatcher("WEB-INF/persona.jsp").forward(request, response);
+			logger.log(Level.INFO,"log in "+pers.getDni());
+		
 		
 			request.getRequestDispatcher("WEB-INF/menu.jsp").forward(request, response);
 			

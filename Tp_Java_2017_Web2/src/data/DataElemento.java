@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
 
+import org.apache.logging.log4j.Level;
+
 
 public class DataElemento implements Serializable  {
 	
@@ -29,16 +31,18 @@ public class DataElemento implements Serializable  {
 				}
 			}
 			
-		} catch (SQLException e ){
-			//throw e;
+		} catch (SQLException e) {
+			ApplicationException ade=new ApplicationException(e, "Error al recuperar listado de elementos.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+			throw ade;
 		} catch (ApplicationException ade){
 			throw ade;
-		} try {
+		}
+		 try {
 			if(rs!=null) rs.close();
 			if (stmt!=null) stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
 			} catch (SQLException e){
-				e.printStackTrace();
+				throw new ApplicationException(e, "Error");
 			}
 			return elems;
 		
@@ -64,16 +68,18 @@ public class DataElemento implements Serializable  {
 				}
 			}
 			
-		} catch (SQLException e ){
-			//throw e;
+		} catch (SQLException e) {
+			ApplicationException ade=new ApplicationException(e, "Error al recuperar listado de elementos.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+			throw ade;
 		} catch (ApplicationException ade){
 			throw ade;
-		} try {
+		}
+		 try {
 			if(rs!=null) rs.close();
 			if (stmt!=null) stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
 			} catch (SQLException e){
-				e.printStackTrace();
+				throw new ApplicationException(e, "Error");
 			}
 			return elems;
 		
@@ -96,15 +102,19 @@ public class DataElemento implements Serializable  {
 				 e.getTipoElemento().setNombre_TE(rs.getString("nombre_te"));	
     		 }
     		 
-    	} catch (Exception ex ){
-    		throw ex;
-    	} finally {
+    	} catch (SQLException ex) {
+    		ApplicationException ade=new ApplicationException(ex, "Error al buscar Elemento.\n"+ex.getSQLState()+":"+ex.getMessage(), Level.WARN);
+    		throw ade;
+    	} catch (ApplicationException ade){
+    		throw ade;
+    	}
+    	 finally {
     		try{
     			if(rs!=null)rs.close();
     			if (stmt!=null)stmt.close();
     			FactoryConexion.getInstancia().releaseConn();
     		}catch (SQLException ex ){
-    			throw ex;
+    			throw new ApplicationException(ex, "Error");
     		}
     	} return e;
     	
@@ -124,9 +134,12 @@ public class DataElemento implements Serializable  {
     			  el.setId_El(keyResultSet.getInt(1));
     		  }
     		
-    	} catch (SQLException | ApplicationException e){
-    		throw e;
-    	}try { 
+    	} catch (SQLException e) {
+			ApplicationException ade=new ApplicationException(e, "Error al agregar un elemento.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+			throw ade;
+		} catch (ApplicationException ade){
+			throw ade;
+		}try { 
     			if (keyResultSet!=null)keyResultSet.close();
     			if (stmt!=null)stmt.close();
     			FactoryConexion.getInstancia().releaseConn();
@@ -158,7 +171,7 @@ public ResultSet getResultSet() throws ApplicationException{
 
 
 
-public void update(Elemento el){
+public void update(Elemento el) throws ApplicationException{
 	ResultSet rs=null;
 	PreparedStatement stmt=null;	
 	try {
@@ -170,26 +183,28 @@ public void update(Elemento el){
 		  
 		  stmt.execute();
 		
-	} catch (SQLException e) {			
-		e.printStackTrace();
-	} catch (ApplicationException e) {			
-		e.printStackTrace();
+	} catch (SQLException e) {
+		ApplicationException ade=new ApplicationException(e, "Error al modificar elemento.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+		throw ade;
+	} catch (ApplicationException ade){
+		throw ade;
 	}
 
 }
 
-public void delete(Elemento el){
+public void delete(Elemento el) throws ApplicationException{
 	PreparedStatement stmt=null;		
 	try {
 		stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
 				"delete from elemento where id_el=?");
 		stmt.setInt(1,el.getId_El());
 		stmt.execute();
-	} catch (SQLException e) {			
-		e.printStackTrace();
-	} catch (ApplicationException e) {			
-		e.printStackTrace();
-	} 
+	} catch (SQLException e) {
+		ApplicationException ade=new ApplicationException(e, "Error al eliminar el elemento.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+		throw ade;
+	} catch (ApplicationException ade){
+		throw ade;
+	}
 	
 }
 public Elemento getById(int id_el) throws Exception{
@@ -205,9 +220,12 @@ public Elemento getById(int id_el) throws Exception{
     			 el.setId_El(rs.getInt("id_El"));
     			 el.setNombre_El(rs.getString("nombre_El"));}
     		 
-    	} catch (Exception e ){
-    		throw e;
-    	} finally {
+    	} catch (SQLException e) {
+			ApplicationException ade=new ApplicationException(e, "Error al recuperar elemento.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+			throw ade;
+		} catch (ApplicationException ade){
+			throw ade;
+		} finally {
     		try{
     			if(rs!=null)rs.close();
     			if (stmt!=null)stmt.close();
