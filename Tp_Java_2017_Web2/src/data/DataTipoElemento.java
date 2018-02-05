@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
 
+import org.apache.logging.log4j.Level;
+
 public class DataTipoElemento implements Serializable  {
 
 	public ArrayList<TipoElemento> getAll() throws ApplicationException{
@@ -31,8 +33,9 @@ public class DataTipoElemento implements Serializable  {
 				
 			}
 			
-		} catch (SQLException e ){
-			//throw e;
+		} catch (SQLException e) {
+			ApplicationException ade=new ApplicationException(e, "Error al recuperar listado de tipo de elementos.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+			throw ade;
 		} catch (ApplicationException ade){
 			throw ade;
 		} try {
@@ -67,11 +70,12 @@ public class DataTipoElemento implements Serializable  {
 				
 			}
 			
-		} catch (SQLException e ){
-			//throw e;
+		}catch (SQLException e) {
+			ApplicationException ade=new ApplicationException(e, "Error al recuperar listado para usuarios.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+			throw ade;
 		} catch (ApplicationException ade){
 			throw ade;
-		} try {
+		}try {
 			if(rs!=null) rs.close();
 			if (stmt!=null) stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
@@ -99,9 +103,13 @@ public class DataTipoElemento implements Serializable  {
 	    
 	    		 }
 	    		 
-	    	} catch (Exception ex ){
-	    		throw ex;
-	    	} finally {
+	    	} catch (SQLException e) {
+	    		ApplicationException ade=new ApplicationException(e, "Error al buscar tipo de elemento.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+	    		throw ade;
+	    	} catch (ApplicationException ade){
+	    		throw ade;
+	    	}
+	    	finally {
 	    		try{
 	    			if(rs!=null)rs.close();
 	    			if (stmt!=null)stmt.close();
@@ -128,9 +136,13 @@ public class DataTipoElemento implements Serializable  {
 	    		  if (keyResultSet!=null && keyResultSet.next()){
 	    			  tipoel.setId_TE(keyResultSet.getInt(1));
 	    		  }	    		
-	    	} catch (SQLException | ApplicationException e){
-	    		throw e;
-	    	}try { 
+	    	} catch (SQLException e) {
+	    		ApplicationException ade=new ApplicationException(e, "Error al agregar agregar tipo de elemento.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+	    		throw ade;
+	    	} catch (ApplicationException ade){
+	    		throw ade;
+	    	}
+	    	try { 
 	    			if (keyResultSet!=null)keyResultSet.close();
 	    			if (stmt!=null)stmt.close();
 	    			FactoryConexion.getInstancia().releaseConn();
@@ -158,7 +170,7 @@ public class DataTipoElemento implements Serializable  {
 			return rs;	
 		}
 
-	 public void update(TipoElemento tipoel){
+	 public void update(TipoElemento tipoel) throws ApplicationException{
 			ResultSet rs=null;
 			PreparedStatement stmt=null;	
 			try {
@@ -172,25 +184,27 @@ public class DataTipoElemento implements Serializable  {
 				stmt.setInt(5,tipoel.getId_TE());
 				stmt.setBoolean(6,tipoel.isEncargado());
 				stmt.execute();
-			} catch (SQLException e) {			
-				e.printStackTrace();
-			} catch (ApplicationException e) {			
-				e.printStackTrace();
+			} catch (SQLException e) {
+				ApplicationException ade=new ApplicationException(e, "Error al modificar tipo de elemento.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+				throw ade;
+			} catch (ApplicationException ade){
+				throw ade;
 			}
 			
 		} 
 
-	 public void delete(TipoElemento tipoel){
+	 public void delete(TipoElemento tipoel) throws ApplicationException{
 			PreparedStatement stmt=null;		
 			try {
 				stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
 						"delete from tipo_elemento where id_te=?");
 				stmt.setInt(1,tipoel.getId_TE());
 				stmt.execute();
-			} catch (SQLException e) {			
-				e.printStackTrace();
-			} catch (ApplicationException e) {			
-				e.printStackTrace();
+			} catch (SQLException e) {
+				ApplicationException ade=new ApplicationException(e, "Error al eliminar tipo de elemento.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+				throw ade;
+			} catch (ApplicationException ade){
+				throw ade;
 			} 	
 			
 }
@@ -212,9 +226,13 @@ public class DataTipoElemento implements Serializable  {
 		    		     te.setEncargado(rs.getBoolean("encargado"));
 		    			 }
 		    		 
-		    	} catch (Exception e ){
-		    		throw e;
-		    	} finally {
+		    	} catch (SQLException e) {
+		    		ApplicationException ade=new ApplicationException(e, "Error al recuperar tipo de elemento.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+		    		throw ade;
+		    	} catch (ApplicationException ade){
+		    		throw ade;
+		    	}
+		    finally {
 		    		try{
 		    			if(rs!=null)rs.close();
 		    			if (stmt!=null)stmt.close();
@@ -240,9 +258,13 @@ public class DataTipoElemento implements Serializable  {
 		    			 te.setNombre_TE(rs.getString("nombre_te"));
 }
 		    		 
-		    	} catch (Exception e ){
-		    		throw e;
-		    	} finally {
+		    	} catch (SQLException e) {
+		    		ApplicationException ade=new ApplicationException(e, "Error al recuperar tipo de elemento.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+		    		throw ade;
+		    	} catch (ApplicationException ade){
+		    		throw ade;
+		    	}
+		    finally {
 		    		try{
 		    			if(rs!=null)rs.close();
 		    			if (stmt!=null)stmt.close();

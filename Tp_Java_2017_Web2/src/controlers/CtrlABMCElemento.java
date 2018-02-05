@@ -21,7 +21,7 @@ public class CtrlABMCElemento implements Serializable  {
 	elems= new ArrayList<Elemento>();
 	}
 
-	public void add(Elemento e) throws Exception {
+	public void add(Elemento e) throws Exception  {
 	dataElem.add(e);
 	}
 

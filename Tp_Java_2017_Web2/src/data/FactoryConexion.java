@@ -20,16 +20,16 @@ public class FactoryConexion implements Serializable{
     //private String db="tp_java_2017";
 	private static FactoryConexion instancia;
 	
-	private FactoryConexion(){
+	private FactoryConexion() throws ApplicationException{
 		try {
 			Class.forName(driver);
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			throw new ApplicationException(e, "Error al conectar a la base de datos");
 		}
 		
 	}
 	
-	public static FactoryConexion getInstancia(){
+	public static FactoryConexion getInstancia() throws ApplicationException{
 		if (FactoryConexion.instancia == null){		
 			FactoryConexion.instancia=new FactoryConexion();
 		}
