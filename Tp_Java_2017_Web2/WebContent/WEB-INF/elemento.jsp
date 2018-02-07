@@ -46,7 +46,7 @@
 Elemento encontrado = null;
 String id_el ="";
 String nombre_el="";
-TipoElemento tipoel = new TipoElemento();
+TipoElemento tipo_el = new TipoElemento();
 String tipoElemento; 
 int id_te=0;
 String nombre_te=""; 
@@ -56,8 +56,7 @@ if(request.getAttribute("encontrado")!=null){
 	   encontrado =(Elemento)request.getAttribute("encontrado");
 	   id_el=String.valueOf(encontrado.getId_El());
 	   nombre_el=encontrado.getNombre_El();
-	   id_te=encontrado.getTipoElemento().getId_TE();
-	   nombre_te=encontrado.getTipoElemento().getNombre_TE();
+	   tipo_el=encontrado.getTipoElemento();
 }
 
 
@@ -76,9 +75,14 @@ if(request.getAttribute("encontrado")!=null){
 			ArrayList<TipoElemento> te= new ArrayList<TipoElemento>();
 			te=ctrl.getTipoElemento();
 		%>
-		<select name="tipoElemento" id="inputtipoelemento">
-		<%	for(TipoElemento t : te){ %>
-			<option value="<%=t.getId_TE() %>"><%=t.getNombre_TE() %></option> <% } %>
+		<select name="tipoElemento" id="inputtipoelemento"> 
+		
+		<%	for(TipoElemento t : te){ 
+		if(tipo_el.getId_TE()==t.getId_TE()){
+				%><option value="<%=t.getId_TE() %>"selected><%=t.getNombre_TE() %></option>
+			<%}
+			else{%><option value="<%=t.getId_TE() %>"><%=t.getNombre_TE() %></option>
+			 <%  } }%>
 		</select><br><br>
      
 

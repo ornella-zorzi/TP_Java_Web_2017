@@ -95,8 +95,12 @@
 			cats=ctrl.getCategoria();
 		%>
 			<select name="categoria" required ="id" id="categoria" > 
-		<%	for(Categoria c : cats){ %>
-			<option value="<%=c.getId_cat() %>"><%=c.getNombre_cat() %></option> <%  } %> 
+		<%	for(Categoria c : cats){
+			if(cate.getId_cat()==c.getId_cat()){
+				%><option value="<%=c.getId_cat() %>"selected><%=c.getNombre_cat() %></option>
+			<%}
+			else{%><option value="<%=c.getId_cat() %>"><%=c.getNombre_cat() %></option>
+			 <%  } }%> 
 
 		</select>
 		  <br><br><label for="inputUsuario" class="sr-only">Usuario:</label>
