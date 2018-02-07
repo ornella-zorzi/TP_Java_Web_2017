@@ -219,8 +219,8 @@ public Persona getValidacionUsario(Persona per) throws Exception{
 				u.setApellido(rs.getString("apellido"));
 				u.setDni(rs.getString("dni"));
 				u.setEmail(rs.getString("email"));
-				//u.setUsuario(rs.getString("usuario"));
-				//u.setContraseña(rs.getString("contraseña"));
+				u.setUsuario(rs.getString("usuario"));
+				u.setContraseña(rs.getString("contraseña"));
 				u.setHabilitado(rs.getBoolean("habilitado"));
 				u.getCategoria().setId_cat(rs.getInt("id_cat"));
 				u.getCategoria().setNombre_cat(rs.getString("nombre_cat"));

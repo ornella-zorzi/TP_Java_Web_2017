@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import controlers.CtrlABMCPersona;
 import entity.Persona;
+import util.ApplicationException;
 
 /**
  * Servlet implementation class abmcPerServlet
@@ -64,7 +65,6 @@ public class abmcPerServlet extends HttpServlet {
 
 	private void error(HttpServletRequest request, HttpServletResponse response) {
 		response.setStatus(404);
-		//redirigir a página de error
 	}
 
 	private void consulta(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -77,15 +77,14 @@ public class abmcPerServlet extends HttpServlet {
 			request.setAttribute("encontrada", per);
 
 		request.getRequestDispatcher("/WEB-INF/persona.jsp").forward(request, response);
-//	response.getWriter().append("Consulta, requested action: ").append(request.getPathInfo()).append(" through post");
-		//en lugar del response.getWriter usar el forward del ejemplo de start / welcome
-		//crear el controlador y ejecutar el getOne o getById
 	
 	
-     }
-     catch (Exception e) {
-		e.printStackTrace();
-	   }
+     }catch (ApplicationException ade) {
+			request.setAttribute("Error", ade.getMessage());
+		} catch (Exception e) {
+			response.setStatus(500);
+		}
+
 	
 	}
 
@@ -116,10 +115,12 @@ public class abmcPerServlet extends HttpServlet {
 		response.getWriter().append("Modificación, requested action: ").append(request.getPathInfo()).append(" through post");
 		//crear el controlador y ejecutar el modificar/update
 
-		  }
-	      catch (Exception e) {
-			e.printStackTrace();
-		   }
+		  }catch (ApplicationException ade) {
+				request.setAttribute("Error", ade.getMessage());
+			} catch (Exception e) {
+				response.setStatus(500);
+			}
+	
 	}
 
 	private void baja(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -132,10 +133,12 @@ public class abmcPerServlet extends HttpServlet {
 		
 		response.getWriter().append("baja, requested action: ").append(request.getPathInfo()).append(" through post");
 		//crear el controlador y ejecutar el delete/remove
+	}catch (ApplicationException ade) {
+		request.setAttribute("Error", ade.getMessage());
+	} catch (Exception e) {
+		response.setStatus(502);
 	}
-    catch (Exception e) {
-		e.printStackTrace();
-	   }
+
 	}
 
 	private void alta(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -158,10 +161,12 @@ public class abmcPerServlet extends HttpServlet {
 				ctrl.add(per);
 			
 				response.getWriter().append("Alta, requested action: ").append(request.getPathInfo()).append(" through post");
-		  }
-	      catch (Exception e) {
-			e.printStackTrace();
-		   }
+		  }catch (ApplicationException ade) {
+				request.setAttribute("Error", ade.getMessage());
+			} catch (Exception e) {
+				response.setStatus(500);
+			}
+	
 
 	}
 

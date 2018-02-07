@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controlers.CtrlABMCElemento;
+import util.ApplicationException;
 
 /**
  * Servlet implementation class ListadoElServlet
@@ -31,9 +32,10 @@ public class ListadoElServlet extends HttpServlet {
 		CtrlABMCElemento ctrl= new CtrlABMCElemento();
 		try {
 			request.setAttribute("listaElementos", ctrl.getAll());
+		} catch (ApplicationException ade) {
+			request.setAttribute("Error", ade.getMessage());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			response.setStatus(502);
 		}
 		request.getRequestDispatcher("/WEB-INF/listadoElemento.jsp").forward(request, response);
 	}

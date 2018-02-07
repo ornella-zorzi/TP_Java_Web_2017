@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import controlers.*;
 import entity.*;
+import util.ApplicationException;
 
 /**
  * Servlet implementation class abmcPerServlet
@@ -66,7 +67,6 @@ public class abmcElemServlet extends HttpServlet {
 
 	private void error(HttpServletRequest request, HttpServletResponse response) {
 		response.setStatus(404);
-		//redirigir a página de error
 	}
 
 	private void consulta(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -80,8 +80,10 @@ public class abmcElemServlet extends HttpServlet {
 			request.setAttribute("encontrado", el);
 			request.getRequestDispatcher("/WEB-INF/elemento.jsp").forward(request, response);
 			
+		} catch (ApplicationException ade) {
+			request.setAttribute("Error", ade.getMessage());
 		} catch (Exception e) {
-			e.printStackTrace();
+			response.setStatus(500);
 		}
 	}
 
@@ -100,10 +102,11 @@ public class abmcElemServlet extends HttpServlet {
 		ctrl.update(el);
 		response.getWriter().append("Modificación, requested action: ").append(request.getPathInfo()).append(" through post");
 
-		  }
-	      catch (Exception e) {
-			e.printStackTrace();
-		   }
+		  }catch (ApplicationException ade) {
+				request.setAttribute("Error", ade.getMessage());
+			} catch (Exception e) {
+				response.setStatus(500);
+			}
 	
 	}
 
@@ -115,10 +118,12 @@ public class abmcElemServlet extends HttpServlet {
 			ctrl.delete(el);
 		response.getWriter().append("baja, requested action: ").append(request.getPathInfo()).append(" through post");
 		
+		}catch (ApplicationException ade) {
+			request.setAttribute("Error", ade.getMessage());
+		} catch (Exception e) {
+			response.setStatus(500);
 		}
-	    catch (Exception e) {
-			e.printStackTrace();
-		   }
+
 		}
 
 
@@ -133,10 +138,12 @@ public class abmcElemServlet extends HttpServlet {
 				el.setTipoElemento(ctrlte.getById(id_te));
 				ctrl.add(el);
 				response.getWriter().append("Elemento creado con exito");
-		  }
-	      catch (Exception e) {
-			e.printStackTrace();
-		   }
+		  }catch (ApplicationException ade) {
+				request.setAttribute("Error", ade.getMessage());
+			} catch (Exception e) {
+				response.setStatus(500);
+			}
+	
 		
 
 	}

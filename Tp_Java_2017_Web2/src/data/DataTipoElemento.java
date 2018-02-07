@@ -175,14 +175,14 @@ public class DataTipoElemento implements Serializable  {
 			PreparedStatement stmt=null;	
 			try {
 				stmt= FactoryConexion.getInstancia().getConn().prepareStatement(	
-						"UPDATE tipo_elemento SET nombre_te=?, cant_reserva_max=?, tiempo_limite=?,dias_anticipacion=?, encargado WHERE id_te=?");		
+						"UPDATE tipo_elemento SET nombre_te=?, cant_reserva_max=?, tiempo_limite=?,dias_anticipacion=?, encargado=? WHERE id_te=?");		
 				
 				stmt.setString(1,tipoel.getNombre_TE());
 				stmt.setInt(2,tipoel.getCant_reserva_max());
 				stmt.setInt(3,tipoel.getTiempo_limite());
 				stmt.setInt(4,tipoel.getDias_anticipacion());
-				stmt.setInt(5,tipoel.getId_TE());
-				stmt.setBoolean(6,tipoel.isEncargado());
+				stmt.setBoolean(5,tipoel.isEncargado());
+				stmt.setInt(6,tipoel.getId_TE());
 				stmt.execute();
 			} catch (SQLException e) {
 				ApplicationException ade=new ApplicationException(e, "Error al modificar tipo de elemento.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);

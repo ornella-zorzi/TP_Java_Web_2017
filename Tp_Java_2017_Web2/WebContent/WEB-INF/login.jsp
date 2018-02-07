@@ -38,8 +38,13 @@
         <input name="user" id="inputUser" class="form-control" placeholder="User" required="" autofocus="" type="">
         <label for="inputPass" class="sr-only">Password</label>
         <input name="pass" id="inputPass" class="form-control" placeholder="Password" required="" type="Password">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button><br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button><br><br>
       
+      <%  
+      System.out.println(request.getSession().getAttribute("user"));
+      if(request.getSession().getAttribute("user")==null){ %>
+      <label>usuario o contraseña incorrecta</label>
+      <%} %> 
       
       </form>
 

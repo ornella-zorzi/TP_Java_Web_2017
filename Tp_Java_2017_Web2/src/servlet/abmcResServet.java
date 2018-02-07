@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 
 import controlers.*;
 import entity.*;
+import util.ApplicationException;
 import util.Emailer;
 
 @WebServlet({ "/reserva/*", "/Reserva/*",  "/RESERVA/*" , "/RESERVAS/*"  })
@@ -47,18 +48,7 @@ public class abmcResServet  extends HttpServlet  {
 			this.alta(request,response);
 			break;
 			
-		case "/baja":
-			this.baja(request,response);
-			break;
-			
-		case "/cancelar/modificacion":
-			try {
-				this.modificacion(request,response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			break;
+		
 			
 		case "/consulta":
 			this.consulta(request,response);
@@ -72,7 +62,6 @@ public class abmcResServet  extends HttpServlet  {
 
 	private void error(HttpServletRequest request, HttpServletResponse response) {
 		response.setStatus(404);
-		//redirigir a página de error
 	}
 
 	private void consulta(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -83,20 +72,12 @@ public class abmcResServet  extends HttpServlet  {
 			els=ctrl.getElementosDeTipo(id_te);
 			request.setAttribute("elementos_tipo", els);
 			request.getRequestDispatcher("/WEB-INF/reserva.jsp").forward(request, response);
-	  }
-     catch (Exception e) {
-		e.printStackTrace();
-	   }
+	  }catch (ApplicationException ade) {
+			request.setAttribute("Error", ade.getMessage());
+		} catch (Exception e) {
+			response.setStatus(500);
+		}
 	
-	}
-
-	private void modificacion(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("hola");
-	}
-
-	private void baja(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		response.getWriter().append("baja, requested action: ").append(request.getPathInfo()).append(" through post");
-		//crear el controlador y ejecutar el delete/remove
 	}
 
 	private void alta(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -140,24 +121,13 @@ public class abmcResServet  extends HttpServlet  {
     			}}
         		else {response.getWriter().append("Supero el limite de tiempo en horas para reservar un elemento");}}
     			else { response.getWriter().append("Supero los dias maximo de anticipacion a la reserva"); }
-				/*
-				 * 1- guardar la categoria id en una variabe
-				 * 2- buscar la categoria de ese id mediante un controlador getById
-				 * 3- guardar el objeto categoria recuperado en per con setCategoria 
-				 */
-				//select
-				//checkbox
-				//user,pass
-				//categoria
 				
-				//tratar de poner cartel
 				
-		  }
-	      catch (Exception e) {
-			e.printStackTrace();
-		   }
-		
-		//crear el controlador y ejecutar el new/add
+		  }catch (ApplicationException ade) {
+				request.setAttribute("Error", ade.getMessage());
+			} catch (Exception e) {
+				response.setStatus(500);
+			}
 	}
 
 

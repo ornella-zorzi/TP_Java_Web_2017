@@ -12,7 +12,8 @@ import javax.swing.JOptionPane;
 import controlers.CtrlABMCPersona;
 import controlers.CtrlABMCTipoElemento;
 import entity.Persona;
-import entity.TipoElemento;    
+import entity.TipoElemento;
+import util.ApplicationException;    
 
 /**
  * Servlet implementation class abmcPerServlet
@@ -84,10 +85,11 @@ public class abmcTipoElServlet extends HttpServlet  {
 			request.getRequestDispatcher("/WEB-INF/tipoElemento.jsp").forward(request, response);
 
 		
-	     }
-	     catch (Exception e) {
-			e.printStackTrace();
-		   }
+	     }catch (ApplicationException ade) {
+				request.setAttribute("Error", ade.getMessage());
+			} catch (Exception e) {
+				response.setStatus(500);
+			}
 		
 		}
 		
@@ -112,9 +114,11 @@ public class abmcTipoElServlet extends HttpServlet  {
 			
 		response.getWriter().append("Modificación, requested action: ").append(request.getPathInfo()).append(" through post");
 		  }
-	      catch (Exception e) {
-			e.printStackTrace();
-		   }
+		catch (ApplicationException ade) {
+			request.setAttribute("Error", ade.getMessage());
+		} catch (Exception e) {
+			response.setStatus(500);
+		}
 
 	}
 
@@ -128,9 +132,11 @@ public class abmcTipoElServlet extends HttpServlet  {
 			response.getWriter().append("baja, requested action: ").append(request.getPathInfo()).append(" through post");
 			//crear el controlador y ejecutar el delete/remove
 		}
-	    catch (Exception e) {
-			e.printStackTrace();
-		   }
+		catch (ApplicationException ade) {
+			request.setAttribute("Error", ade.getMessage());
+		} catch (Exception e) {
+			response.setStatus(500);
+		}
 	}
 
 	
@@ -150,9 +156,11 @@ public class abmcTipoElServlet extends HttpServlet  {
 				ctrl.add(te);
 				response.getWriter().append("Alta, requested action: ").append(request.getPathInfo()).append(" through post");
 		  }
-	      catch (Exception e) {
-			e.printStackTrace();
-		   }
+		  catch (ApplicationException ade) {
+				request.setAttribute("Error", ade.getMessage());
+			} catch (Exception e) {
+				response.setStatus(500);
+			}
 		 
 	}
 
