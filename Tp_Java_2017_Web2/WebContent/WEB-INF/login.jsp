@@ -41,10 +41,7 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button><br><br>
       
       <%  
-      System.out.println(request.getSession().getAttribute("user"));
-      if(request.getSession().getAttribute("user")==null){ %>
-      <label>usuario o contraseña incorrecta</label>
-      <%} %> 
+      System.out.println(request.getAttribute("user"));%>  
       
       </form>
 
