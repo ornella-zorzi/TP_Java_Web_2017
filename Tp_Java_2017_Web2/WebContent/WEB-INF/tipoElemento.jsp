@@ -16,7 +16,7 @@
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
     <title>Play JavaCraft!</title>
-
+<link href="Style/menu.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="style/bootstrap.css" rel="stylesheet">
 

@@ -15,7 +15,8 @@
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
     <title>Play JavaCraft!</title>
-
+<link href="Style/menu.css" rel="stylesheet">
+<link href="Style/Tabla.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="style/bootstrap.css" rel="stylesheet">
 
@@ -74,16 +75,16 @@
 <form class="form-signin" id="myForm" name="myForm" action="" method="get">
       
 <h2>Listado de Reservas Pendientes</h2> 
-<table>
+<table id="customers" style="margin: 0 auto;">
 
 <tr>
-			<td style="width: 110px; ">ID</td>
-			<td style="width: 110px; ">TIPO DE ELEMENTO</td>
-			<td style="width: 110px; ">ELEMENTO</td>
-			<td style="width: 110px; ">FECHA INICIO</td>
-			<td style="width: 110px; ">FECHA FIN</td>
-			<td style="width: 110px; ">HORA</td>
-			<td style="width: 110px; ">DETALLE</td>
+			<th style="width: 110px; ">ID</td>
+			<th style="width: 110px; ">TIPO DE ELEMENTO</td>
+			<th style="width: 110px; ">ELEMENTO</td>
+			<th style="width: 110px; ">FECHA INICIO</td>
+			<th style="width: 110px; ">FECHA FIN</td>
+			<th style="width: 110px; ">HORA</td>
+			<th style="width: 110px; ">DETALLE</td>
 			
 			
 		</tr>

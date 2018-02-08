@@ -16,7 +16,8 @@
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
     <title>Play JavaCraft!</title>
-
+<link href="Style/menu.css" rel="stylesheet">
+<link href="Style/form.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="style/bootstrap.css" rel="stylesheet">
 
@@ -39,9 +40,9 @@
     		//document.getElementById("myFrom").submit();
         }
     </script>
-    
+
   </head>
-<body>
+<body bgcolor=#f2f2f2>
 
 	<div id="header">
 			<ul class="nav">
@@ -68,7 +69,7 @@
 				     <ul>
 						<li><a href="reserva">ABMC Reserva</a></li>
 						<li><a href="listadoRe/listado">Listado de Reservas</a></li>
-					</ul>
+					</ul><br><br>
 				</li>
 			</ul>
 		</div>
@@ -104,21 +105,37 @@
 	   contraseña=encontrada.getContraseña();
 	  habilitado=encontrada.isHabilitado();   
    } %>
- <div class="container">
-      	 <form class="form-signin" id="myForm" name="myForm" action="" method="post">
-     
-        <h2 class="form-signin-heading"> Persona</h2>
-        ID   <input  name="id" value=<%=id %> ><br><br><label for="inputdni" class="sr-only">DNI</label>
-        <input name="dni" id="inputdni"  class="form-control" placeholder="" required="" autofocus="" type="" value=<%=dni %>>
-        <button class="btn btn-lg " onclick="javascript: submitForm('persona/consulta')">Buscar</button>
-        <br><br><label for="inputNombre" class="sr-only">Nombre:</label>
-        <input name="nombre" id="inputnombre"  class="form-control" placeholder=""  type="" value=<%=nombre %>>
-        <br><br><label for="inputApellido" class="sr-only">Apellido:</label>
-        <input name="apellido" id="inputapellido" class="form-control" placeholder=""  type="" value=<%=apellido %>  ><br><br>
-        <label for="inputEmail" class="sr-only">Email:</label>
-        <input name="email" id="inputemail"  class="" placeholder=""  type="" value=<%=email %>>
-      
-        <label for="inputCategoria" class="sr-only"><br><br>Categoria:</label> 
+   <h2 > <br><br>Persona</h2>
+ <div class="container" >
+ 
+      	 <form class="form-signin" id="myForm" name="myForm" action="" method="post" >
+        
+    <div class="row">
+     <div class="col-25"><label for="inputid" class="sr-only">ID</label></div>
+     <div class="col-75"> <input  name="id" class="form-control" type="text" value=<%=id %> ></div>
+    </div>
+    <div class="row">
+      <div class="col-25"><label for="inputdni" class="sr-only">DNI</label></div>
+      <div class="col-75"><input name="dni" id="inputdni"  class="form-control" placeholder="" required="" autofocus="" type="text" value=<%=dni %>></div>
+    </div>
+     <div class="row">
+      <div class="col-25"><label for="inputNombre" class="sr-only">Nombre:</label></div>
+      <div class="col-75"><input name="nombre" id="inputnombre"  class="form-control" placeholder="" required="" autofocus="" type="text" value=<%=nombre %>></div>
+    </div>
+    <div class="row">
+      <div class="col-25"><label for="inputApellido" class="sr-only">Apellido:</label></div>
+      <div class="col-75"><input name="apellido" id="inputapellido"  class="form-control" placeholder="" required="" autofocus="" type="text" value=<%=apellido %>></div>
+    </div>
+     <div class="row">
+      <div class="col-25"><label for="inputEmail" class="sr-only">Email:</label></div>
+      <div class="col-75"><input name="email" id="inputemail"  class="form-control" placeholder="" required="" autofocus="" type="text" value=<%=email %>></div>
+    </div>
+    
+     <div class="row">
+        <input type="submit"  value="Buscar" onclick="javascript: submitForm('persona/consulta')"> 
+    </div>
+        
+      <label for="inputCategoria" class="sr-only"><br><br>Categoria:</label> 
         
         <%CtrlABMCPersona ctrl=new CtrlABMCPersona();
 			ArrayList<Categoria> cats= new ArrayList<Categoria>();
@@ -141,12 +158,15 @@
 			<br><br><input type="checkbox" name="habilitado" id="inputhabilitado" value="true" 
 			<%if(habilitado){ %>checked<%} %>>
 			<label for="inputHabilitado" class="sr-only">Habilitado</label>
+		 
+		 
 		  
-        <button class="btn btn-lg " onclick="javascript: submitForm('persona/alta')">Agregar</button>
+    <div class="row">
+        <input type="submit"  value="Submit" onclick="javascript: submitForm('persona/alta')"> 
+    </div>
         <button class="btn btn-lg " onclick="javascript: submitForm('persona/modificacion')">Modificar</button>
         <button class="btn btn-lg " onclick="javascript: submitForm('persona/baja')">Borrar</button>	
       </form>
-
     </div> <!-- /container -->  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="style/ie10-viewport-bug-workaround.js"></script>
   

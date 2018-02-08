@@ -7,6 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link href="Style/menu.css" rel="stylesheet">
+<link href="Style/Tabla.css" rel="stylesheet">
 </head>
 <body>
 	<div id="header">
@@ -38,10 +40,11 @@
 				</li>
 			</ul>
 		</div>
-<table>
+<h2 style="text-align: center;"><br><br><br><br>Listado de Elementos </h2> 		
+<table id="customers" style="margin: 0 auto;">
 <tr>
-			<td style="width: 110px; ">NOMBRE EL</td>
-			<td style="width: 110px; ">NOMBRE TE</td>
+			<th style="width: 110px; ">NOMBRE EL</td>
+			<th style="width: 110px; ">NOMBRE TE</td>
 			
 			
 		</tr>
