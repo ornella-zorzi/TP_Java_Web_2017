@@ -42,7 +42,7 @@
     </script>
 
   </head>
-<body bgcolor=#f2f2f2>
+<body bgcolor=#D8F6CE>
 
 	<div id="header">
 			<ul class="nav">
@@ -105,7 +105,7 @@
 	   contraseña=encontrada.getContraseña();
 	  habilitado=encontrada.isHabilitado();   
    } %>
-   <h2 > <br><br>Persona</h2>
+   <h2 style="text-align: center;"><br><br><br>ABMC Personas </h2>
  <div class="container" >
  
       	 <form class="form-signin" id="myForm" name="myForm" action="" method="post" >
@@ -117,6 +117,7 @@
     <div class="row">
       <div class="col-25"><label for="inputdni" class="sr-only">DNI</label></div>
       <div class="col-75"><input name="dni" id="inputdni"  class="form-control" placeholder="" required="" autofocus="" type="text" value=<%=dni %>></div>
+       <input type="submit"  value="Buscar" onclick="javascript: submitForm('persona/consulta')"> 
     </div>
      <div class="row">
       <div class="col-25"><label for="inputNombre" class="sr-only">Nombre:</label></div>
@@ -131,17 +132,16 @@
       <div class="col-75"><input name="email" id="inputemail"  class="form-control" placeholder="" required="" autofocus="" type="text" value=<%=email %>></div>
     </div>
     
-     <div class="row">
-        <input type="submit"  value="Buscar" onclick="javascript: submitForm('persona/consulta')"> 
-    </div>
-        
-      <label for="inputCategoria" class="sr-only"><br><br>Categoria:</label> 
-        
-        <%CtrlABMCPersona ctrl=new CtrlABMCPersona();
+     
+    
+    <div class="row">
+      <div class="col-25"><label for="inputCategoria" class="sr-only">Categoria:</label></div>
+       <%CtrlABMCPersona ctrl=new CtrlABMCPersona();
 			ArrayList<Categoria> cats= new ArrayList<Categoria>();
 			cats=ctrl.getCategoria();
 		%>
-			<select name="categoria" required ="id" id="categoria" > 
+      <div class="col-75"><select name="categoria" required ="id" id="categoria" >
+      	
 		<%	for(Categoria c : cats){
 			if(cate.getId_cat()==c.getId_cat()){
 				%><option value="<%=c.getId_cat() %>"selected><%=c.getNombre_cat() %></option>
@@ -150,22 +150,26 @@
 			 <%  } }%> 
 
 		</select>
-		  <br><br><label for="inputUsuario" class="sr-only">Usuario:</label>
-        <input name="usuario" id="inputusuario"  class="" placeholder=""  type="" value=<%=usuario %>>
-             <label for="inputContraseña" class="sr-only">Contraseña:</label>
-        <input name="contraseña" id="inputcontraseña"  class="" placeholder=""  type="password" value=<%=contraseña %>>
-        
-			<br><br><input type="checkbox" name="habilitado" id="inputhabilitado" value="true" 
+		</div>
+    </div>
+     <div class="row">
+      <div class="col-25"><label for="inputUsuario" class="sr-only">Usuario:</label></div>
+      <div class="col-75"><input name="usuario" id="inputusuario"  class="form-control" placeholder="" required="" autofocus="" type="text" value=<%=usuario %>></div>
+    </div>   
+       <div class="row">
+      <div class="col-25"><label for="inputContraseña" class="sr-only">Contraseña:</label></div>
+      <div class="col-75"><input name="contraseña" id="inputcontraseña"  class="form-control" placeholder="" required="" autofocus="" type="text" value=<%=contraseña %>></div>
+    </div>    
+     <input type="checkbox" name="habilitado" id="inputhabilitado" value="true" 
 			<%if(habilitado){ %>checked<%} %>>
 			<label for="inputHabilitado" class="sr-only">Habilitado</label>
-		 
-		 
-		  
-    <div class="row">
-        <input type="submit"  value="Submit" onclick="javascript: submitForm('persona/alta')"> 
-    </div>
-        <button class="btn btn-lg " onclick="javascript: submitForm('persona/modificacion')">Modificar</button>
-        <button class="btn btn-lg " onclick="javascript: submitForm('persona/baja')">Borrar</button>	
+      <div class="row">
+        <input type="submit"  value="Agregar" onclick="javascript: submitForm('persona/alta')"> 
+        <input type="submit"  value="Modificar" onclick="javascript: submitForm('persona/modificacion')"> 
+        <input type="submit"  value="Borrar" onclick="javascript: submitForm('persona/baja')"> 
+    </div> 
+       
+		
       </form>
     </div> <!-- /container -->  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="style/ie10-viewport-bug-workaround.js"></script>
