@@ -42,6 +42,36 @@
     
   </head>
 <body>
+
+	<div id="header">
+			<ul class="nav">
+				<li><a href="Start">Home </a> </li>
+				<li><a href="#">Personas </a>
+				   <ul>
+						<li><a href="persona">ABMC Persona</a></li>
+						<li><a href="listadoPer">Listado de Personas</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Elementos</a>
+					<ul>
+						<li><a href="elemento">ABMC Elemento</a></li>
+						<li><a href="listadoEl">Listado de Elementos</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Tipo de Elementos</a>
+					<ul>
+						<li><a href="tipoElemento">ABMC Tipo de Elemento</a></li>
+						<li><a href="listadoTe">Listado de Tipo de Elementos</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Reservas</a>
+				     <ul>
+						<li><a href="reserva">ABMC Reserva</a></li>
+						<li><a href="listadoRe/listado">Listado de Reservas</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
 <%
    Persona encontrada=null;
    String id="";
@@ -106,7 +136,7 @@
 		  <br><br><label for="inputUsuario" class="sr-only">Usuario:</label>
         <input name="usuario" id="inputusuario"  class="" placeholder=""  type="" value=<%=usuario %>>
              <label for="inputContraseña" class="sr-only">Contraseña:</label>
-        <input name="contraseña" id="inputcontraseña"  class="" placeholder=""  type="" value=<%=contraseña %>>
+        <input name="contraseña" id="inputcontraseña"  class="" placeholder=""  type="password" value=<%=contraseña %>>
         
 			<br><br><input type="checkbox" name="habilitado" id="inputhabilitado" value="true" 
 			<%if(habilitado){ %>checked<%} %>>

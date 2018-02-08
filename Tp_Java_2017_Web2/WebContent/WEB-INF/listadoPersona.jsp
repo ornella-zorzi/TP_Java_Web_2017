@@ -7,17 +7,50 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link href="Style/Tabla.css" rel="stylesheet">
+<link href="Style/menu.css" rel="stylesheet">
 </head>
+
 <body>
-<h2>Listado de Personas </h2> 
-<table>
+	<div id="header">
+			<ul class="nav">
+				<li><a href="Start">Home </a> </li>
+				<li><a href="#">Personas </a>
+				   <ul>
+						<li><a href="persona">ABMC Persona</a></li>
+						<li><a href="listadoPer">Listado de Personas</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Elementos</a>
+					<ul>
+						<li><a href="elemento">ABMC Elemento</a></li>
+						<li><a href="listadoEl">Listado de Elementos</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Tipo de Elementos</a>
+					<ul>
+						<li><a href="tipoElemento">ABMC Tipo de Elemento</a></li>
+						<li><a href="listadoTe">Listado de Tipo de Elementos</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Reservas</a>
+				     <ul>
+						<li><a href="reserva">ABMC Reserva</a></li>
+						<li><a href="listadoRe/listado">Listado de Reservas</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+<h2 style="text-align: center;"><br><br><br><br>Listado de Personas </h2> 
+<table id="customers" style="margin: 0 auto;">
 
 <tr>
-			<td style="width: 110px; ">DNI</td>
-			<td style="width: 110px; ">APELLIDO</td>
-			<td style="width: 110px; ">NOMBRE</td>
-			<td style="width: 110px; ">EMAIL</td>
-			<td style="width: 110px; ">CATEGORIA</td>
+			<th style="width: 110px; ">DNI</th>
+			<th style="width: 110px; ">APELLIDO</th>
+			<th style="width: 110px; ">NOMBRE</th>
+			<th style="width: 110px; ">EMAIL</th>
+			<th style="width: 110px; ">CATEGORIA</th>
 			
 			
 		</tr>

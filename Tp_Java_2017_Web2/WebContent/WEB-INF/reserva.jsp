@@ -49,6 +49,35 @@
     </script>
 </head>
 <body>
+	<div id="header">
+			<ul class="nav">
+				<li><a href="Start">Home </a> </li>
+				<li><a href="#">Personas </a>
+				   <ul>
+						<li><a href="persona">ABMC Persona</a></li>
+						<li><a href="listadoPer">Listado de Personas</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Elementos</a>
+					<ul>
+						<li><a href="elemento">ABMC Elemento</a></li>
+						<li><a href="listadoEl">Listado de Elementos</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Tipo de Elementos</a>
+					<ul>
+						<li><a href="tipoElemento">ABMC Tipo de Elemento</a></li>
+						<li><a href="listadoTe">Listado de Tipo de Elementos</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Reservas</a>
+				     <ul>
+						<li><a href="reserva">ABMC Reserva</a></li>
+						<li><a href="listadoRe/listado">Listado de Reservas</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
 
  <%ArrayList<Elemento> eles=new ArrayList(); %>
  <div class="container">
@@ -89,14 +118,14 @@
 		<%}} %> 
 		</select><br>
 		<br><label for="inputFecha" class="sr-only">Fecha</label>
-        <input name="fecha" id="inputFecha" class="form-control" placeholder="aaaa-mm-dd" type="" >
+        <input name="fecha" id="inputFecha" class="form-control" placeholder="aaaa-mm-dd" type="date" >
        
        <br>
 		<br><br><label for="inputHora_inicio" class="sr-only">Hora de Inicio</label>
-        <input name="hora_inicio" id="inputHora_inicio" class="form-control" placeholder="hh:mm:ss" type="" >
+        <input name="hora_inicio" id="inputHora_inicio" class="form-control" placeholder="hh:mm:ss" type="time" >
         
         <br><br><label for="inputHora_fin" class="sr-only">Hora de Finalizacion</label>
-        <input name="hora_fin" id="inputHora_fin" class="form-control" placeholder="hh:mm:ss" type="" >
+        <input name="hora_fin" id="inputHora_fin" class="form-control" placeholder="hh:mm:ss" type="time" >
        
         <br><br><label for="inputDetalle" class="sr-only">Detalle</label>
         <input name="detalle" id="inputDetalle" class="form-control" placeholder="" type="" ><br><br>
