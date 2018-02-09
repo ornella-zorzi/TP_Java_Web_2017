@@ -26,7 +26,6 @@ public class abmcElemServlet extends HttpServlet {
      */
     public abmcElemServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -100,7 +99,6 @@ public class abmcElemServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//response.getWriter().append("Served at: ").append(request.getPathInfo()).append(" through post");
 		switch (request.getPathInfo()) {
 		case "elemento/alta":
 			this.alta(request,response);

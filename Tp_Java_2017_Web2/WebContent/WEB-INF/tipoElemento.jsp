@@ -1,7 +1,6 @@
 <%@page import="controlers.CtrlABMCTipoElemento"%>
 <%@page import="entity.TipoElemento"%>
 <%@page import="java.util.ArrayList"%>
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -16,12 +15,15 @@
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
     <title>Play JavaCraft!</title>
-<link href="Style/menu.css" rel="stylesheet">
+   <link href="Style/menu.css" rel="stylesheet">
+   <link href="Style/form.css" rel="stylesheet">
+
     <!-- Bootstrap core CSS -->
     <link href="style/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="style/start.css" rel="stylesheet">
+    
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -32,6 +34,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
     <script type="text/javascript">
     	function submitForm(met) {
     		document.myForm.action=met;
@@ -44,30 +47,7 @@
 	<div id="header">
 			<ul class="nav">
 				<li><a href="Start">Home </a> </li>
-				<li><a href="#">Personas </a>
-				   <ul>
-						<li><a href="persona">ABMC Persona</a></li>
-						<li><a href="listadoPer">Listado de Personas</a></li>
-					</ul>
-				</li>
-				<li><a href="#">Elementos</a>
-					<ul>
-						<li><a href="elemento">ABMC Elemento</a></li>
-						<li><a href="listadoEl">Listado de Elementos</a></li>
-					</ul>
-				</li>
-				<li><a href="#">Tipo de Elementos</a>
-					<ul>
-						<li><a href="tipoElemento">ABMC Tipo de Elemento</a></li>
-						<li><a href="listadoTe">Listado de Tipo de Elementos</a></li>
-					</ul>
-				</li>
-				<li><a href="#">Reservas</a>
-				     <ul>
-						<li><a href="reserva">ABMC Reserva</a></li>
-						<li><a href="listadoRe/listado">Listado de Reservas</a></li>
-					</ul>
-				</li>
+				
 			</ul>
 		</div>
 		
@@ -90,36 +70,50 @@ if(request.getAttribute("encontrado")!=null){
 }
 %>
  <div class="container">
-  <form class="form-signin" id="myForm" name="myForm" action="" method="post">
+  	<form class="form-signin" id="myForm" name="myForm" action="" method="post">
+	<h2 class="form-signin-heading"> Tipo de Elemento</h2>
+	
+	 <div class="row">
+     	<div class="col-25"><label for="inputid" class="sr-only">ID</label></div>
+     	<div class="col-75"> <input  name="id" class="form-control" type="text" value=<%=id_te %> ></div>
+     </div>
+	
+     <div class="row">
+     	<div class="col-25"><label for="inputnombre_te" class="sr-only">Tipo de elemento</label></div>
+      	<div class="col-75"><input name="nombre_te" id="inputnombre_te"  class="form-control" placeholder="" required="" autofocus="" type="text" value=<%=nombre_te %>></div>
+      	<input type="submit"  value="Buscar" onclick="javascript: submitForm('tipoElemento/consulta')"> 
+    </div>
+      
+    <div class="row">
+     	<div class="col-25"><label for="inputcant_reserva_max" class="sr-only">Cant. de reserva maxima</label></div>
+     	<div class="col-75"><input name="cant_reserva_max" id="inputcant_reserva_max"  class="form-control" placeholder="" required="" autofocus="" type="" value=<%=cant_reserva_max %>></div>   	
+    </div>
      
-
      
-        <h2 class="form-signin-heading"> Tipo de Elemento</h2>
-        ID <input  name="id" value=<%=id_te%> ><br><br>
+    <div class="row">
+     	<div class="col-25"><label for="inputtiempo_limite" class="sr-only">Tiempo Limite</label></div>
+     	<div class="col-75"><input name="tiempo_limite" id="inputtiempo_limite"  class="form-control" placeholder="" required="" autofocus="" type="" value=<%=tiempo_limite %>></div>   	
+    </div>
+     
+     <div class="row">
+     	<div class="col-25"><label for="inputdias_anticipacion" class="sr-only">Dias Anticipacion</label></div>
+     	<div class="col-75"><input name="dias_anticipacion" id="inputdias_anticipacion"  class="form-control" placeholder="" required="" autofocus="" type="" value=<%=dias_anticipacion %>></div>   	
+    </div>  
         
- <label for="inputnombre_te" class="sr-only">Tipo de elemento</label>
-        <input name="nombre_te" id="inputnombre_te" class="form-control" placeholder=""  type="" value=<%=nombre_te %> >
-        <button class="btn btn-lg " onclick="javascript: submitForm('tipoElemento/consulta')">Buscar</button>
-        <br><br><label for="inputcant_reserva_max" class="sr-only">Cant. de reserva maxima</label>
-        <input name="cant_reserva_max" id="inputcant_reserva_max" class="" placeholder=""  type="" value=<%=cant_reserva_max %>>
-       
-        <br><br><label for="inputtiempo_limite" class="sr-only">Tiempo Limite</label>
-        <input name="tiempo_limite" id="inputtiempo_limite" class="" placeholder="" type="" value=<%=tiempo_limite%>>
-       
-        <br><br><label for="inputdias_anticipacion" class="sr-only">Dias Anticipacion</label>
-        <input name="dias_anticipacion" id="inputdias_anticipacion" class="" placeholder=""  type="" value=<%=dias_anticipacion %>><br>
-     
-
-<br><input type="checkbox" name="encargado" id="inputencargado" value="true" 
+    <input type="checkbox" name="encargado" id="inputencargado" value="true" 
 			<%if(encargado){ %>checked<%} %>>
-			<label for="inputEncargado" class="sr-only">Solo puede reservar el encargado<br><br> </label>
+	<label for="inputEncargado" class="sr-only">Solo puede reservar el encargado</label>
 
-        <button class="btn btn-lg " onclick="javascript: submitForm('tipoElemento/alta')">Agregar</button>
-        <button class="btn btn-lg " onclick="javascript: submitForm('tipoElemento/modificacion')">Modificar</button>
-        <button class="btn btn-lg " onclick="javascript: submitForm('tipoElemento/baja')">Borrar</button>	
-       
+ 	<div class="row">
+        <input type="submit"  value="Agregar" onclick="javascript: submitForm('tipoElemento/alta')"> 
+        <input type="submit"  value="Modificar" onclick="javascript: submitForm('tipoElemento/modificacion')"> 
+        <input type="submit"  value="Borrar" onclick="javascript: submitForm('tipoElemento/baja')"> 
+    </div> 
+     
+ 	
       </form>
+    </div> <!-- /container -->  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="style/ie10-viewport-bug-workaround.js"></script>
+  
 
-    </div> <!-- /container -->
-    </body>
-</html>
+</body></html>

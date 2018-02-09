@@ -24,7 +24,6 @@ public class ListadoResServlet extends HttpServlet {
      */
     public ListadoResServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -41,7 +40,6 @@ public class ListadoResServlet extends HttpServlet {
 				re = ctrl.getById(r);
 				ctrl.delete(re);
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			break;
@@ -51,7 +49,6 @@ public class ListadoResServlet extends HttpServlet {
 			try {
 				request.setAttribute("listaReservas", ctrl2.getReservasPendientes(p));
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			request.getRequestDispatcher("/WEB-INF/listadoReserva.jsp").forward(request, response);

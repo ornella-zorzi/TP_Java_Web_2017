@@ -38,8 +38,7 @@ public class DataCategoria implements Serializable{
 		} catch (ApplicationException ade){
 			throw ade;
 		}
-		
-		
+			
 		try {
 			if(rs!=null) rs.close();
 			if(stmt!=null) stmt.close();

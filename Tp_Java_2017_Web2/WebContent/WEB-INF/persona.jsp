@@ -40,7 +40,7 @@
     <script type="text/javascript">
     	function submitForm(met) {
     		document.myForm.action=met;
-    		//document.getElementById("myFrom").submit();
+    		
         }
     </script>
 
@@ -90,11 +90,7 @@
    String nombre_cat="";
    String usuario="";
    String contraseña="";
-  //String categoria;
    boolean habilitado= true;
-  // Categoria cate = new Categoria();
-  // String idCat="";
-  // String nombre_cat="";
   String categoria;
    
    
@@ -114,6 +110,7 @@
  <div class="container" >
  
       	 <form class="form-signin" id="myForm" name="myForm" action="" method="post" >
+      	         <h2 class="form-signin-heading"> Persona</h2>
         
     <div class="row">
      <div class="col-25"><label for="inputid" class="sr-only">ID</label></div>
@@ -123,6 +120,7 @@
       <div class="col-25"><label for="inputdni" class="sr-only">DNI</label></div>
       <div class="col-75"><input name="dni" id="inputdni"  class="form-control" placeholder="" required="" autofocus="" type="text" value=<%=dni %>></div>
        <input type="submit"  value="Buscar" onclick="javascript: submitForm('persona/consulta')"> 
+       
     </div>
      <div class="row">
       <div class="col-25"><label for="inputNombre" class="sr-only">Nombre:</label></div>
