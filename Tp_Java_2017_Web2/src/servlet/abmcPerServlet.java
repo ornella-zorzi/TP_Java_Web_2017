@@ -32,7 +32,14 @@ public class abmcPerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	 request.getRequestDispatcher("/WEB-INF/persona.jsp").forward(request, response);
+		switch (request.getPathInfo()) {
+		case "/per":
+			request.getRequestDispatcher("/WEB-INF/persona.jsp").forward(request, response);
+			break;
+	case "/elemento/persona":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/persona");
+		break;
+	}
 		
 	}
 

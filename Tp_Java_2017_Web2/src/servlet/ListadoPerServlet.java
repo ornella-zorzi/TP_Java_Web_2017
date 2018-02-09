@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import controlers.CtrlABMCElemento;
 import controlers.CtrlABMCPersona;
 import entity.Persona;
+import util.ApplicationException;
 
 /**
  * Servlet implementation class ListadoPerServlet
@@ -29,14 +31,46 @@ public class ListadoPerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CtrlABMCPersona ctrl1= new CtrlABMCPersona();
-		try {
-			request.setAttribute("listaPersonas", ctrl1.getAll());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		request.getRequestDispatcher("/WEB-INF/listadoPersona.jsp").forward(request, response);
+		switch (request.getPathInfo()) {
+		case "/lp":
+			CtrlABMCPersona ctrl1= new CtrlABMCPersona();
+			try {
+				request.setAttribute("listaPersonas", ctrl1.getAll());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			request.getRequestDispatcher("/WEB-INF/listadoPersona.jsp").forward(request, response);
+			break;
+	case "/persona":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/persona/per");
+		break;		
+	case "/listadoEl":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/listadoEl/le");
+		break;
+	case "/Start":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/Start");
+		break;	
+	case "/listadoPer":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/listadoPer/lp");
+		break;
+	case "/tipoElemento":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/tipoElemento/te");
+		break;
+	case "/listadoTe":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/listadoTe/lte");
+		break;
+	case "/reserva":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/reserva/re");
+		break;
+	case "/listadoRe/listado":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/listadoRe/listado");
+		break;
+	case "/elemento":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/elemento/el");
+		break;
+			}
+		
 	}
 
 	/**

@@ -33,31 +33,88 @@ public class abmcElemServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		switch (request.getPathInfo()) {
+		case "/el":
+			request.getRequestDispatcher("/WEB-INF/elemento.jsp").forward(request, response);
+			break;
+	case "/elemento/persona":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/persona/per");
+		break;
+	case "/persona":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/persona/per");
+		break;	
 		
+	case "/elemento/listadoEl":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/listadoEl/le");
+		break;
+	case "/listadoEl":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/listadoEl/le");
+		break;
 		
-		request.getRequestDispatcher("/WEB-INF/elemento.jsp").forward(request, response);
+	case "/elemento/Start":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/Start");
+		break;
+	case "/Start":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/Start");
+		break;
 		
+	case "/elemento/listadoPer":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/listadoPer/lp");
+		break;
+	case "/listadoPer":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/listadoPer/lp");
+		break;
+	case "/elemento/tipoElemento":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/tipoElemento/te");
+		break;
+	case "/tipoElemento":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/tipoElemento/te");
+		break;
+	case "/elemento/listadoTe":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/listadoTe/lte");
+		break;
+	case "/listadoTe":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/listadoTe/lte");
+		break;
+	case "/reserva":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/reserva/re");
+		break;
+	case "/elemento/reserva":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/reserva/re");
+		break;
+	case "/listadoRe/listado":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/listadoRe/listado");
+		break;
+	case "/elemento/listadoRe/listado":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/listadoRe/listado");
+		break;
+	case "/elemento":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/elemento/el");
+		break;
+	case "/elemento/elemento":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/elemento/el");
+		break;
+			}
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//response.getWriter().append("Served at: ").append(request.getPathInfo()).append(" through post");
 		switch (request.getPathInfo()) {
-		case "/alta":
+		case "elemento/alta":
 			this.alta(request,response);
 			break;
 			
-		case "/elemento/baja":
+		case "/elemento/elemento/baja":
 			this.baja(request,response);
 			break;
 			
-		case "/elemento/modificacion":
+		case "/elemento/elemento/modificacion":
 			this.modificacion(request,response);
 			break;
 			
-		case "/consulta":
+		case "/elemento/consulta":
 			this.consulta(request,response);
 			break;
 
@@ -82,7 +139,7 @@ public class abmcElemServlet extends HttpServlet {
 			request.setAttribute("encontrado", el);
 			request.getRequestDispatcher("/WEB-INF/elemento.jsp").forward(request, response);
 			
-			
+		
 		} catch (ApplicationException ade) {
 			request.setAttribute("Error", ade.getMessage());
 		} catch (Exception e) {
@@ -104,8 +161,7 @@ public class abmcElemServlet extends HttpServlet {
 		int id_TE =Integer.parseInt(request.getParameter("tipoElemento"));
 		el.setTipoElemento(ctrlte.getById(id_TE));
 		ctrl.update(el);
-		response.getWriter().append("Modificación, requested action: ").append(request.getPathInfo()).append(" through post");
-
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/notificacion");
 		  }catch (ApplicationException ade) {
 				request.setAttribute("Error", ade.getMessage());
 			} catch (Exception e) {

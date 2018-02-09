@@ -13,7 +13,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link href="Style/menu.css" rel="stylesheet">
-<h1>Bienvenido <%=((Persona)session.getAttribute("user")).getNombre() %></h1>
 
 </head>
 <body bgcolor=#D8F6CE >
@@ -24,30 +23,31 @@
 				<li><a href="#">Personas </a>
 				   <ul>
 						<li><a href="persona/per">ABMC Persona</a></li>
-						<li><a href="listadoPer/lp">Listado de Personas</a></li>
+						<li><a href="listadoPer">Listado de Personas</a></li>
 					</ul>
 				</li>
 				<li><a href="#">Elementos</a>
 					<ul>
 						<li><a href="elemento/el">ABMC Elemento</a></li>
-						<li><a href="listadoEl/le">Listado de Elementos</a></li>
+						<li><a href="listadoEl">Listado de Elementos</a></li>
 					</ul>
 				</li>
 				<li><a href="#">Tipo de Elementos</a>
 					<ul>
-						<li><a href="tipoElemento/te">ABMC Tipo de Elemento</a></li>
-						<li><a href="listadoTe/lte">Listado de Tipo de Elementos</a></li>
+						<li><a href="tipoElemento">ABMC Tipo de Elemento</a></li>
+						<li><a href="listadoTe">Listado de Tipo de Elementos</a></li>
 					</ul>
 				</li>
 				<li><a href="#">Reservas</a>
 				     <ul>
-						<li><a href="reserva/re">ABMC Reserva</a></li>
+						<li><a href="reserva">ABMC Reserva</a></li>
 						<li><a href="listadoRe/listado">Listado de Reservas</a></li>
 					</ul>
 				</li>
-	      </ul>
-	</form>	
-	
+	</form>		</ul>
 	</div>
 </body>
+
+<div>
+<h1><br><br><br>Se ha realizado correctamente</h1>
 </html>
