@@ -40,7 +40,7 @@
     </script>
     
   </head>
-<body>
+<body bgcolor=#D8F6CE >
 	<div id="header">
 			<ul class="nav">
 				<li><a href="Start">Home </a> </li>

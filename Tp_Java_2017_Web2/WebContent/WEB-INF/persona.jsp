@@ -4,9 +4,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
 <!DOCTYPE html>
 <html lang="en"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" >
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,13 +17,15 @@
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
     <title>Play JavaCraft!</title>
-<link href="Style/menu.css" rel="stylesheet">
-<link href="Style/form.css" rel="stylesheet">
+   <link href="Style/menu.css" rel="stylesheet">
+   <link href="Style/form.css" rel="stylesheet">
+
     <!-- Bootstrap core CSS -->
     <link href="style/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="style/start.css" rel="stylesheet">
+    
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -42,9 +45,11 @@
     </script>
 
   </head>
-<body bgcolor=#D8F6CE>
+  
+<body bgcolor=#D8F6CE >
 
 	<div id="header">
+	
 			<ul class="nav">
 				<li><a href="Start">Home </a> </li>
 				<li><a href="#">Personas </a>
@@ -105,7 +110,7 @@
 	   contraseña=encontrada.getContraseña();
 	  habilitado=encontrada.isHabilitado();   
    } %>
-   <h2 style="text-align: center;"><br><br><br>ABMC Personas </h2>
+   <h1 style="text-align: center"><br><br><br>ABMC Personas </h1>
  <div class="container" >
  
       	 <form class="form-signin" id="myForm" name="myForm" action="" method="post" >
@@ -121,15 +126,15 @@
     </div>
      <div class="row">
       <div class="col-25"><label for="inputNombre" class="sr-only">Nombre:</label></div>
-      <div class="col-75"><input name="nombre" id="inputnombre"  class="form-control" placeholder="" required="" autofocus="" type="text" value=<%=nombre %>></div>
+      <div class="col-75"><input name="nombre" id="inputnombre"  class="form-control" placeholder="" autofocus="" type="text" value=<%=nombre %>></div>
     </div>
     <div class="row">
       <div class="col-25"><label for="inputApellido" class="sr-only">Apellido:</label></div>
-      <div class="col-75"><input name="apellido" id="inputapellido"  class="form-control" placeholder="" required="" autofocus="" type="text" value=<%=apellido %>></div>
+      <div class="col-75"><input name="apellido" id="inputapellido"  class="form-control" placeholder=""  autofocus="" type="text" value=<%=apellido %>></div>
     </div>
      <div class="row">
       <div class="col-25"><label for="inputEmail" class="sr-only">Email:</label></div>
-      <div class="col-75"><input name="email" id="inputemail"  class="form-control" placeholder="" required="" autofocus="" type="text" value=<%=email %>></div>
+      <div class="col-75"><input name="email" id="inputemail"  class="form-control" placeholder=""  autofocus="" type="text" value=<%=email %>></div>
     </div>
     
      
@@ -154,11 +159,11 @@
     </div>
      <div class="row">
       <div class="col-25"><label for="inputUsuario" class="sr-only">Usuario:</label></div>
-      <div class="col-75"><input name="usuario" id="inputusuario"  class="form-control" placeholder="" required="" autofocus="" type="text" value=<%=usuario %>></div>
+      <div class="col-75"><input name="usuario" id="inputusuario"  class="form-control" placeholder="" autofocus="" type="text" value=<%=usuario %>></div>
     </div>   
        <div class="row">
       <div class="col-25"><label for="inputContraseña" class="sr-only">Contraseña:</label></div>
-      <div class="col-75"><input name="contraseña" id="inputcontraseña"  class="form-control" placeholder="" required="" autofocus="" type="text" value=<%=contraseña %>></div>
+      <div class="col-75"><input name="contraseña" id="inputcontraseña"  class="form-control" placeholder="" autofocus="" type="password" value=<%=contraseña %>></div>
     </div>    
      <input type="checkbox" name="habilitado" id="inputhabilitado" value="true" 
 			<%if(habilitado){ %>checked<%} %>>

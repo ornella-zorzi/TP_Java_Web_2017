@@ -57,7 +57,7 @@ public class Start extends HttpServlet {
 			CtrlABMCPersona ctrl1= new CtrlABMCPersona();
 			
 			Persona pers=ctrl1.getValidacionUsario(per);
-		    logger.log(Level.INFO,"log in "+pers.getDni());
+		    //logger.log(Level.INFO,"log in "+pers.getDni());
 		    request.getSession().setAttribute("user", pers);
 		    request.getRequestDispatcher("WEB-INF/menu.jsp").forward(request, response);
 			

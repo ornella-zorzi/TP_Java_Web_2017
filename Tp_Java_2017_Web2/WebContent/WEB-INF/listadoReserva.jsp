@@ -39,8 +39,32 @@
     		//document.getElementById("myFrom").submit();
         }
     </script>
+    <style>
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
 </head>
-<body>
+<body bgcolor=#D8F6CE >
 	<div id="header">
 			<ul class="nav">
 				<li><a href="Start">Home </a> </li>
@@ -85,6 +109,7 @@
 			<th style="width: 110px; ">FECHA FIN</td>
 			<th style="width: 110px; ">HORA</td>
 			<th style="width: 110px; ">DETALLE</td>
+			<th style="width: 110px; "></td>
 			
 			
 		</tr>

@@ -48,7 +48,7 @@
         }
     </script>
 </head>
-<body>
+<body bgcolor=#D8F6CE >
 	<div id="header">
 			<ul class="nav">
 				<li><a href="Start">Home </a> </li>
@@ -122,10 +122,10 @@
        
        <br>
 		<br><br><label for="inputHora_inicio" class="sr-only">Hora de Inicio</label>
-        <input name="hora_inicio" id="inputHora_inicio" class="form-control" placeholder="hh:mm:ss" type="time" >
+        <input name="hora_inicio" id="inputHora_inicio" class="form-control" placeholder="hh:mm:ss" type="" >
         
         <br><br><label for="inputHora_fin" class="sr-only">Hora de Finalizacion</label>
-        <input name="hora_fin" id="inputHora_fin" class="form-control" placeholder="hh:mm:ss" type="time" >
+        <input name="hora_fin" id="inputHora_fin" class="form-control" placeholder="hh:mm:ss" type="" >
        
         <br><br><label for="inputDetalle" class="sr-only">Detalle</label>
         <input name="detalle" id="inputDetalle" class="form-control" placeholder="" type="" ><br><br>

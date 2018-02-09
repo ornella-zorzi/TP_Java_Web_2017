@@ -32,7 +32,8 @@ public class abmcPerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/persona.jsp").forward(request, response);
+	 request.getRequestDispatcher("/WEB-INF/persona.jsp").forward(request, response);
+		
 	}
 
 	/**
@@ -48,7 +49,7 @@ public class abmcPerServlet extends HttpServlet {
 		case "/persona/baja":
 			this.baja(request,response);
 			break;
-			
+		
 		case "/persona/modificacion":
 				this.modificacion(request,response);
 			break;

@@ -16,8 +16,9 @@
 <h1>Bienvenido <%=((Persona)session.getAttribute("user")).getNombre() %></h1>
 
 </head>
-<body>
-	<div id="header">
+<body bgcolor=#D8F6CE >
+	<div id="header" >
+	<form class="form-signin" id="myForm" name="myForm" action="" method="post">
 			<ul class="nav">
 				<li><a class=active href="Start">Home </a> </li>
 				<li><a href="#">Personas </a>
@@ -44,7 +45,7 @@
 						<li><a href="listadoRe/listado">Listado de Reservas</a></li>
 					</ul>
 				</li>
-			</ul>
+	</form>		</ul>
 	</div>
 </body>
 </html>

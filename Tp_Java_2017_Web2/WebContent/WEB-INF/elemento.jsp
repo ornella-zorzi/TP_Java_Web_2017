@@ -19,6 +19,7 @@
     <title>Play JavaCraft!</title>
     
 <link href="Style/menu.css" rel="stylesheet">
+<link href="Style/form.css" rel="stylesheet">
 
     <!-- Bootstrap core CSS -->
     <link href="style/bootstrap.css" rel="stylesheet">
@@ -41,9 +42,9 @@
     		//document.getElementById("myFrom").submit();
         }
     </script>
-    
+
   </head>
-<body>
+<body bgcolor=#D8F6CE >
 	<div id="header">
 			<ul class="nav">
 				<li><a href="Start">Home </a> </li>
@@ -98,30 +99,40 @@ if(request.getAttribute("encontrado")!=null){
       <form class="form-signin" id="myForm" name="myForm" action="" method="post">
       
         <h2 class="form-signin-heading">  Elemento</h2>
-			 ID <label for="inputnombre_el" class="sr-only"><input name="id_el" value=<%=id_el %>>           
-			 <br><br> Elemento</label>
-        <input name="nombre_el" id="inputnombre_el" class="" placeholder=""  type="" value=<%=nombre_el %>>
-
-        <button class="btn btn-lg " onclick="javascript: submitForm('elemento/consulta')">Buscar</button><br><br><label for="inputTipoElemento" class="sr-only">Tipo de elemento</label> 
-        <%CtrlABMCElemento ctrl=new CtrlABMCElemento();
+        
+        <div class="row">
+     <div class="col-25"><label for="inputid" class="sr-only">ID</label></div>
+     <div class="col-75"> <input  name="id_el" class="form-control" type="text" value=<%=id_el %> ></div>
+    </div>
+    <div class="row">
+     <div class="col-25"><label for="inputnombre_el" class="sr-only">Elemento</label></div>
+      <div class="col-75"><input name="nombre_el" id="inputnombre_el"  class="form-control" placeholder="" required="" autofocus="" type="text" value=<%=nombre_el %>></div>
+      <input type="submit"  value="Buscar" onclick="javascript: submitForm('elemento/consulta')"> 
+    </div>
+    
+    <div class="row">
+     <div class="col-25"><label for="inputTipoElemento" class="sr-only">Tipo de elemento</label></div>
+      <%CtrlABMCElemento ctrl=new CtrlABMCElemento();
 			ArrayList<TipoElemento> te= new ArrayList<TipoElemento>();
 			te=ctrl.getTipoElemento();
 		%>
-		<select name="tipoElemento" id="inputtipoelemento"> 
-		
-		<%	for(TipoElemento t : te){ 
+      <div class="col-75"><select name="tipoElemento" id="inputtipoelemento"><%	for(TipoElemento t : te){ 
 		if(tipo_el.getId_TE()==t.getId_TE()){
 				%><option value="<%=t.getId_TE() %>"selected><%=t.getNombre_TE() %></option>
 			<%}
 			else{%><option value="<%=t.getId_TE() %>"><%=t.getNombre_TE() %></option>
 			 <%  } }%>
-		</select><br><br>
+		</select> </div>
      
-
-        <button class="btn btn-lg " onclick="javascript: submitForm('elemento/alta')">Agregar</button>
-        <button class="btn btn-lg " onclick="javascript: submitForm('elemento/modificacion')">Modificar</button>
-        <button class="btn btn-lg " onclick="javascript: submitForm('elemento/baja')">Borrar</button>	
+    </div>
     
+    
+   <div class="row">
+        <input type="submit"  value="Agregar" onclick="javascript: submitForm('elemento/alta')"> 
+        <input type="submit"  value="Modificar" onclick="javascript: submitForm('elemento/modificacion')"> 
+        <input type="submit"  value="Borrar" onclick="javascript: submitForm('elemento/baja')"> 
+    </div> 
+
       </form>
     </div> <!-- /container -->  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="style/ie10-viewport-bug-workaround.js"></script>

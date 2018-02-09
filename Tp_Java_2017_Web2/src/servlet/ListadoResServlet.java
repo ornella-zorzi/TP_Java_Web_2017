@@ -57,6 +57,9 @@ public class ListadoResServlet extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/listadoReserva.jsp").forward(request, response);
 			break;
 			
+		case "/elemento":
+			response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/elemento");
+			
 		}
 	}
 
