@@ -119,6 +119,7 @@
       <div class="col-25"><label for="inputdni" class="sr-only">DNI</label></div>
       <div class="col-75"><input name="dni" id="inputdni"  class="form-control" placeholder="" required="" autofocus="" type="text" value=<%=dni %>></div>
        <input type="submit"  value="Buscar" onclick="javascript: submitForm('persona/consulta')"> 
+       
     </div>
      <div class="row">
       <div class="col-25"><label for="inputNombre" class="sr-only">Nombre:</label></div>

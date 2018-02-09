@@ -93,8 +93,10 @@
      <div class="col-25"><label for="inputid" class="sr-only">ID</label></div>
      <div class="col-75"> <input  name="id" class="form-control" type="text"  ></div>
     </div>
-			
-			<br>Tipo Elemento<%CtrlABMCTipoElemento ctrl=new CtrlABMCTipoElemento();
+    
+        <div class="row">
+     <div class="col-25"><label for="inputTipoElemento" class="sr-only">Tipo de elemento</label></div>
+      <%CtrlABMCTipoElemento ctrl=new CtrlABMCTipoElemento();
 			ArrayList<TipoElemento> tels= new ArrayList<TipoElemento>();
 			int id=((Persona)session.getAttribute("user")).getCategoria().getId_cat();
 			if(id==2){
@@ -116,9 +118,12 @@
 		}
 		%> 
 		</select>
-		<button class="btn btn-lg " onclick="javascript: submitForm('reserva/consulta')">Buscar</button><br><br>Elemento  
-		
-        	<select name="elemento" style="width: 113px; ">
+		 	<input type="submit"  value="Buscar" onclick="javascript: submitForm('reserva/consulta')"> 		
+		 </div>   
+		 
+   <div class="row">
+   <div class="col-25"><label for="inputElemento" class="sr-only">Elemento</label></div>
+     <select name="elemento" style="width: 113px; ">
 		<%	 
 		if(request.getAttribute("elementos_tipo")!=null){
 		eles=(ArrayList<Elemento>)request.getAttribute("elementos_tipo");
@@ -126,17 +131,25 @@
 		for(Elemento e : eles){%>
 			<option value="<%=e.getId_El() %>"><%=e.getNombre_El() %></option>
 		<%}} %> 
-		</select><br>
+		</select>
 		
-	<br><label for="inputFecha" class="sr-only">Fecha</label>
-        <input name="fecha" id="inputFecha" class="form-control" placeholder="aaaa-mm-dd" type="date" >
-       
-		<br><br><label for="inputHora_inicio" class="sr-only">Hora de Inicio</label>
-        <input name="hora_inicio" id="inputHora_inicio" class="form-control" placeholder="hh:mm:ss" type="" >
-        
-        <br><br><label for="inputHora_fin" class="sr-only">Hora de Finalizacion</label>
-        <input name="hora_fin" id="inputHora_fin" class="form-control" placeholder="hh:mm:ss" type="" >
-      
+    </div>   
+		
+	<div class="row">
+      <div class="col-25"><label for="inputFecha" class="sr-only">Fecha:</label></div>
+      <div class="col-75"><input name="fecha" id="inputFecha"  class="form-control" placeholder="aaaa-mm-dd" autofocus="" type="" ></div>
+    </div>
+    
+    <div class="row">
+      <div class="col-25"><label for="inputHora_inicio" class="sr-only">Hora de Inicio:</label></div>
+      <div class="col-75"><input name="hora_inicio" id="inputHora_inicio"  class="form-control" placeholder="hh:mm:ss" autofocus="" type="" ></div>
+    </div>	
+	
+	<div class="row">
+      <div class="col-25"><label for="inputHora_fin" class="sr-only">Hora de Finalizacion:</label></div>
+      <div class="col-75"><input name="hora_fin" id="inputHora_fin"  class="form-control" placeholder="hh:mm:ss" autofocus="" type="" ></div>
+    </div>
+            
     <div class="row">
       <div class="col-25"><label for="inputDetalle" class="sr-only">Detalle:</label></div>
       <div class="col-75"><input name="detalle" id="inputDetalle"  class="form-control" placeholder="" autofocus="" type="text" ></div>

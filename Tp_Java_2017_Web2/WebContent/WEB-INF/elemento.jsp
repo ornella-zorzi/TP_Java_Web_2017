@@ -39,7 +39,6 @@
     <script type="text/javascript">
     	function submitForm(met) {
     		document.myForm.action=met;
-    		//document.getElementById("myFrom").submit();
         }
     </script>
 
