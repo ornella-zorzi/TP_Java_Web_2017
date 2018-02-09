@@ -110,6 +110,7 @@
  <div class="container" >
  
       	 <form class="form-signin" id="myForm" name="myForm" action="" method="post" >
+      	         <h2 class="form-signin-heading"> Persona</h2>
         
     <div class="row">
      <div class="col-25"><label for="inputid" class="sr-only">ID</label></div>

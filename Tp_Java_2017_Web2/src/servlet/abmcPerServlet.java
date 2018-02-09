@@ -25,7 +25,6 @@ public class abmcPerServlet extends HttpServlet {
      */
     public abmcPerServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -40,7 +39,6 @@ public class abmcPerServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//response.getWriter().append("Served at: ").append(request.getPathInfo()).append(" through post");
 		switch (request.getPathInfo()) {
 		case "/alta":
 			this.alta(request,response);
@@ -90,9 +88,7 @@ public class abmcPerServlet extends HttpServlet {
 	}
 
 	private void modificacion(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		try {
-			//this.consulta(request, response);
-		
+		try {	
 		Persona per=new Persona();
 		CtrlABMCPersona ctrl= new CtrlABMCPersona();
 		per.setDni(request.getParameter("dni"));
@@ -108,14 +104,8 @@ public class abmcPerServlet extends HttpServlet {
 		per.setContraseña(request.getParameter("contraseña"));
 		per.setId_per(Integer.parseInt(request.getParameter("id")));
 		ctrl.update(per);
-		///request.setAttribute("encontrada", per);
-		
-		
-		///request.getRequestDispatcher("/WEB-INF/persona.jsp").forward(request, response);
-		///response.getWriter().append("Modificar, requested action: ").append(request.getPathInfo()).append(" through post");
-		response.getWriter().append("Modificación, requested action: ").append(request.getPathInfo()).append(" through post");
-		//crear el controlador y ejecutar el modificar/update
 
+		response.getWriter().append("Modificación, requested action: ").append(request.getPathInfo()).append(" through post");
 		  }catch (ApplicationException ade) {
 				request.setAttribute("Error", ade.getMessage());
 			} catch (Exception e) {
@@ -133,7 +123,7 @@ public class abmcPerServlet extends HttpServlet {
 		ctrl.delete(per);
 		
 		response.getWriter().append("baja, requested action: ").append(request.getPathInfo()).append(" through post");
-		//crear el controlador y ejecutar el delete/remove
+	
 	}catch (ApplicationException ade) {
 		request.setAttribute("Error", ade.getMessage());
 	} catch (Exception e) {

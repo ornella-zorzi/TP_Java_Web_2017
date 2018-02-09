@@ -27,15 +27,12 @@ public class abmcTipoElServlet extends HttpServlet  {
      */
     public abmcTipoElServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("get");
 		request.getRequestDispatcher("/WEB-INF/tipoElemento.jsp").forward(request, response);
 	}
 
@@ -43,7 +40,6 @@ public class abmcTipoElServlet extends HttpServlet  {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//response.getWriter().append("Served at: ").append(request.getPathInfo()).append(" through post");
 		switch (request.getPathInfo()) {
 		case "/alta":
 			this.alta(request,response);
@@ -69,7 +65,6 @@ public class abmcTipoElServlet extends HttpServlet  {
 
 	private void error(HttpServletRequest request, HttpServletResponse response) {
 		response.setStatus(404);
-		//redirigir a página de error
 	}
 
 	private void consulta(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -109,9 +104,7 @@ public class abmcTipoElServlet extends HttpServlet  {
 					te.setEncargado(true);
 				}
 			 
-			ctrl.update(te);
-		
-			
+			ctrl.update(te);			
 		response.getWriter().append("Modificación, requested action: ").append(request.getPathInfo()).append(" through post");
 		  }
 		catch (ApplicationException ade) {
@@ -130,7 +123,6 @@ public class abmcTipoElServlet extends HttpServlet  {
 			 ctrl.delete(te);
 		
 			response.getWriter().append("baja, requested action: ").append(request.getPathInfo()).append(" through post");
-			//crear el controlador y ejecutar el delete/remove
 		}
 		catch (ApplicationException ade) {
 			request.setAttribute("Error", ade.getMessage());

@@ -22,7 +22,6 @@ public class ListadoPerServlet extends HttpServlet {
      */
     public ListadoPerServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -33,7 +32,6 @@ public class ListadoPerServlet extends HttpServlet {
 		try {
 			request.setAttribute("listaPersonas", ctrl1.getAll());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		request.getRequestDispatcher("/WEB-INF/listadoPersona.jsp").forward(request, response);

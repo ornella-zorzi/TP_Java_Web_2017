@@ -28,7 +28,6 @@ public class abmcResServet  extends HttpServlet  {
      */
     public abmcResServet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -42,13 +41,10 @@ public class abmcResServet  extends HttpServlet  {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//response.getWriter().append("Served at: ").append(request.getPathInfo()).append(" through post");
 		switch (request.getPathInfo()) {
 		case "/reserva/alta":
 			this.alta(request,response);
 			break;
-			
-		
 			
 		case "/consulta":
 			this.consulta(request,response);

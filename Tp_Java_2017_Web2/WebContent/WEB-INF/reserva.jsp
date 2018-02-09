@@ -118,7 +118,7 @@
 		}
 		%> 
 		</select>
-		 	<input type="submit"  value="Buscar" onclick="javascript: submitForm('reserva/consulta')"> 		
+		 	<input type="submit"  value="Buscar" onclick="javascript: submitForm('reserva/consulta')"> 	
 		 </div>   
 		 
    <div class="row">
@@ -142,12 +142,12 @@
     
     <div class="row">
       <div class="col-25"><label for="inputHora_inicio" class="sr-only">Hora de Inicio:</label></div>
-      <div class="col-75"><input name="hora_inicio" id="inputHora_inicio"  class="form-control" placeholder="hh:mm:ss" autofocus="" type="" ></div>
+      <div class="col-75"><input name="hora_inicio" id="inputHora_inicio"  class="form-control" placeholder="hh:mm:ss" autofocus="" type="text" ></div>
     </div>	
 	
 	<div class="row">
       <div class="col-25"><label for="inputHora_fin" class="sr-only">Hora de Finalizacion:</label></div>
-      <div class="col-75"><input name="hora_fin" id="inputHora_fin"  class="form-control" placeholder="hh:mm:ss" autofocus="" type="" ></div>
+      <div class="col-75"><input name="hora_fin" id="inputHora_fin"  class="form-control" placeholder="hh:mm:ss" autofocus="" type="text" ></div>
     </div>
             
     <div class="row">
