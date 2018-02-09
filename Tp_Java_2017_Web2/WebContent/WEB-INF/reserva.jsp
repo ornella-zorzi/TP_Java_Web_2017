@@ -23,13 +23,16 @@
     <meta name="author" content="">
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
-    <title>Play JavaCraft!</title>
-<link href="Style/menu.css" rel="stylesheet">
+      <title>Play JavaCraft!</title>
+   <link href="Style/menu.css" rel="stylesheet">
+   <link href="Style/form.css" rel="stylesheet">
+
     <!-- Bootstrap core CSS -->
     <link href="style/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="style/start.css" rel="stylesheet">
+    
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -47,6 +50,7 @@
     		//document.getElementById("myFrom").submit();
         }
     </script>
+    
 </head>
 <body bgcolor=#D8F6CE >
 	<div id="header">
@@ -84,7 +88,13 @@
       	 <form class="form-signin" id="myForm" name="myForm" action="" method="post">
      
         <h2 class="form-signin-heading"> Reserva</h2>
-			ID <input><br>Tipo Elemento<%CtrlABMCTipoElemento ctrl=new CtrlABMCTipoElemento();
+        
+    <div class="row">
+     <div class="col-25"><label for="inputid" class="sr-only">ID</label></div>
+     <div class="col-75"> <input  name="id" class="form-control" type="text"  ></div>
+    </div>
+			
+			<br>Tipo Elemento<%CtrlABMCTipoElemento ctrl=new CtrlABMCTipoElemento();
 			ArrayList<TipoElemento> tels= new ArrayList<TipoElemento>();
 			int id=((Persona)session.getAttribute("user")).getCategoria().getId_cat();
 			if(id==2){
@@ -117,25 +127,29 @@
 			<option value="<%=e.getId_El() %>"><%=e.getNombre_El() %></option>
 		<%}} %> 
 		</select><br>
-		<br><label for="inputFecha" class="sr-only">Fecha</label>
+		
+	<br><label for="inputFecha" class="sr-only">Fecha</label>
         <input name="fecha" id="inputFecha" class="form-control" placeholder="aaaa-mm-dd" type="date" >
        
-       <br>
 		<br><br><label for="inputHora_inicio" class="sr-only">Hora de Inicio</label>
         <input name="hora_inicio" id="inputHora_inicio" class="form-control" placeholder="hh:mm:ss" type="" >
         
         <br><br><label for="inputHora_fin" class="sr-only">Hora de Finalizacion</label>
         <input name="hora_fin" id="inputHora_fin" class="form-control" placeholder="hh:mm:ss" type="" >
-       
-        <br><br><label for="inputDetalle" class="sr-only">Detalle</label>
-        <input name="detalle" id="inputDetalle" class="form-control" placeholder="" type="" ><br><br>
+      
+    <div class="row">
+      <div class="col-25"><label for="inputDetalle" class="sr-only">Detalle:</label></div>
+      <div class="col-75"><input name="detalle" id="inputDetalle"  class="form-control" placeholder="" autofocus="" type="text" ></div>
+    </div>
+ 
+ 	<input type="submit"  value="Agregar" onclick="javascript: submitForm('reserva/alta')"> 
            
-       <button class="btn btn-lg " onclick="javascript: submitForm('reserva/alta')" style="width: 169px; ">Agregar</button>
+      
         
         	
       </form>
 
     </div> <!-- /container -->
-    
+    <script src="style/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>

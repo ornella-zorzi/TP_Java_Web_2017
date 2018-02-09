@@ -40,7 +40,7 @@
     <script type="text/javascript">
     	function submitForm(met) {
     		document.myForm.action=met;
-    		//document.getElementById("myFrom").submit();
+    		
         }
     </script>
 
@@ -90,11 +90,7 @@
    String nombre_cat="";
    String usuario="";
    String contraseña="";
-  //String categoria;
    boolean habilitado= true;
-  // Categoria cate = new Categoria();
-  // String idCat="";
-  // String nombre_cat="";
   String categoria;
    
    
