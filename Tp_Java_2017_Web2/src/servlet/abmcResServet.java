@@ -172,8 +172,8 @@ public class abmcResServet  extends HttpServlet  {
     				if(horas<=re.getTipoelemento().getTiempo_limite()){
                  if (valida==0){
                 ctrl.add(re);
-                response.getWriter().append("Reserva creada con exito");
                 Emailer.getInstance().send(p.getEmail(),"reserva",ctrl.getMailReserva(re,p));
+                response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/notificacionReserva");
     			}
                  else if (valida==1){
     				response.getWriter().append("elemento ocupado para esa fecha/hora");
