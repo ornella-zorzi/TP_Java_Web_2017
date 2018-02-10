@@ -79,9 +79,9 @@ input[type=submit]:hover {
 		top:50%;
 		left:45%;
 		width:500px;
-		margin-left:-200px;
+		margin-left:260px;
 		height:520px;
-		margin-top:-150px;
+		margin-top:50px;
 		padding:40px;
 		border:1px solid #808080;
 		border-radius: 5px;

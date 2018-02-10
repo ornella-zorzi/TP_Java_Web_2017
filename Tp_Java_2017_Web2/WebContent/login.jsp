@@ -41,11 +41,11 @@
      
       <div class="row">
       <div class="col-25"><label for="inputUser" class="sr-only">Usuario:</label></div>
-      <div class="col-75"><input name="user" id="inputUser"  class="form-control" placeholder="User" autofocus="" type="text"></div>
+      <div class="col-75"><input name="user" id="inputUser"  class="form-control" placeholder="User" required="" autofocus="" type="text"></div>
     </div>   
        <div class="row">
       <div class="col-25"><label for="inputPass" class="sr-only">Contraseña:</label></div>
-      <div class="col-75"><input name="pass" id="inputPass"  class="form-control" placeholder="Password" autofocus="" type="password"></div>
+      <div class="col-75"><input name="pass" id="inputPass"  class="form-control" placeholder="Password" required="" autofocus="" type="password"></div>
     </div>  
          <input type="submit"  value="Ingresar"> 
       <%if (request.getAttribute("encontrado")!=null){
