@@ -31,7 +31,7 @@
 
 </head>
 
-  <body>
+  <body bgcolor=#D8F6CE>
 <div>
 <h1 style="text-align: center;"><br><br>Sistema de Reservas</h1></div>
     <div class="container">
