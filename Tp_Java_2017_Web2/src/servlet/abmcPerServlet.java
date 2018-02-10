@@ -166,7 +166,7 @@ public class abmcPerServlet extends HttpServlet {
 		per.setId_per(Integer.parseInt(request.getParameter("id")));
 		ctrl.update(per);
 
-		response.getWriter().append("Modificación, requested action: ").append(request.getPathInfo()).append(" through post");
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/notificacion");
 		  }catch (ApplicationException ade) {
 				request.setAttribute("Error", ade.getMessage());
 			} catch (Exception e) {
@@ -181,8 +181,14 @@ public class abmcPerServlet extends HttpServlet {
 		per.setId_per(Integer.parseInt(request.getParameter("id")));
 		System.out.println(per.getId_per());
 		CtrlABMCPersona ctrl= new CtrlABMCPersona();
-		ctrl.delete(per);
+		int i=ctrl.validabaja(per.getId_per());
+		 if (i==1)
+		 {response.getWriter().append("no se pueden eliminar personas que tengan reservas");}
+		 else {ctrl.delete(per);
+		 response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/notificacion");}
 		
+		ctrl.delete(per);
+		//response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/notificacion");
 		response.getWriter().append("baja, requested action: ").append(request.getPathInfo()).append(" through post");
 	
 	}catch (ApplicationException ade) {
@@ -212,7 +218,7 @@ public class abmcPerServlet extends HttpServlet {
 				
 				ctrl.add(per);
 			
-				response.getWriter().append("Alta, requested action: ").append(request.getPathInfo()).append(" through post");
+				response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/notificacion");
 		  }catch (ApplicationException ade) {
 				request.setAttribute("Error", ade.getMessage());
 			} catch (Exception e) {

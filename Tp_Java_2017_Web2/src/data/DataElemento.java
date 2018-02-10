@@ -236,4 +236,27 @@ public Elemento getById(int id_el) throws Exception{
     	} return el;
     	
     }
+public int validabaja(int id_el) throws ApplicationException
+{PreparedStatement stmt= null;
+ResultSet rs=null;
+int i=0;
+try{ 
+stmt= FactoryConexion.getInstancia().getConn().prepareStatement( "select * from elemento e where (e.`id_el` in(select id_el from reserva where id_el=?))");
+stmt.setInt(1,id_el);	
+	
+ rs=stmt.executeQuery();
+ if(rs!=null && rs.next()){
+			i=1;
+	}
+ 
+} catch (SQLException e) {
+	ApplicationException ade=new ApplicationException(e, "Error al validar.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+	throw ade;
+} catch (ApplicationException ade){
+	throw ade;
+}
+
+ return i;		
+}	
+
 }

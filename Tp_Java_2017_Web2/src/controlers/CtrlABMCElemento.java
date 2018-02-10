@@ -53,5 +53,8 @@ public class CtrlABMCElemento implements Serializable  {
 	public Elemento getById(int id_el) throws Exception{
 		return dataElem.getById(id_el);
 	}
-
+	public int validabaja(int id_el) throws Exception {
+		return dataElem.validabaja(id_el);
+		
+	}
 }

@@ -63,10 +63,10 @@ public class CtrlABMCReserva implements Serializable   {
 	public Reserva getById(Reserva r) throws Exception{	
 		return dataRes.getById(r);
 	}
-	public int validaAnticipacion(Reserva r) throws Exception{
+	/*public int validaAnticipacion(Reserva r) throws Exception{
 		int i = dataRes.validaAnticipacion(r);
 		return i ;
-	}
+	}*/
 	public static String getFechaActual() {
 	    Date ahora = new java.util.Date();
 	    SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
@@ -78,6 +78,10 @@ public class CtrlABMCReserva implements Serializable   {
 					r.getTipoelemento().getNombre_TE()+"\t"+ r.getElemento()+"\t"+r.getFecha()+"\t"+
 					r.getHora_inicio()+"\t"+ r.getHora_fin()+"\t"+r.getDetalle()+"\n";
 		return texto;
+	}
+public int getcantReservasdeTipo(int id_per, int id_te, int id_el) throws Exception {
+	    int cant=dataRes.getcantReservasdeTipo(id_per,id_te, id_el);
+		return  cant;
 	}
     
 }

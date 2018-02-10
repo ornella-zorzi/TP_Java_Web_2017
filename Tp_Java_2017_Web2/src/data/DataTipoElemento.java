@@ -275,4 +275,30 @@ public class DataTipoElemento implements Serializable  {
 		    	} return te;
 		    	
 		    }
+	 
+	 public int validabaja(int id_te) throws ApplicationException{PreparedStatement stmt= null;
+		ResultSet rs=null;
+		int i=0;
+		try{ 
+		stmt= FactoryConexion.getInstancia().getConn().prepareStatement( "select * from tipo_elemento te where (te.`id_te` in(select id_te from reserva where id_te=?) or te.id_te in( select id_te from elemento where id_te=?))");
+		stmt.setInt(1,id_te);	
+		stmt.setInt(2,id_te);	
+			
+		 rs=stmt.executeQuery();
+		 if(rs!=null && rs.next()){
+					i=1;
+			}
+		 
+		} catch (SQLException e) {
+			ApplicationException ade=new ApplicationException(e, "Error al validar.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+			throw ade;
+		} catch (ApplicationException ade){
+			throw ade;
+		}
+		
+		 return i;		
+	}	
+	 
+	 
+	 
 }

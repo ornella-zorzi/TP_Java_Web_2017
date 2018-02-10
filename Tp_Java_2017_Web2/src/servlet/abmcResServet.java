@@ -165,7 +165,9 @@ public class abmcResServet  extends HttpServlet  {
     			Date fecha=Date.valueOf(ctrl.getFechaActual());
                 int dias=(int) ((re.getFecha().getTime()-fecha.getTime())/86400000);
                 double horas =((re.getHora_fin().getTime() - re.getHora_inicio().getTime())/3600)/1000;
-                System.out.println(horas);
+                int cant=ctrl.getcantReservasdeTipo(p.getId_per(),re.getTipoelemento().getId_TE(),re.getElemento().getId_El());
+                System.out.println(cant);
+                if(re.getTipoelemento().getCant_reserva_max()>cant){
     			if (dias<=re.getTipoelemento().getDias_anticipacion()){
     				if(horas<=re.getTipoelemento().getTiempo_limite()){
                  if (valida==0){
@@ -178,7 +180,7 @@ public class abmcResServet  extends HttpServlet  {
     			}}
         		else {response.getWriter().append("Supero el limite de tiempo en horas para reservar un elemento");}}
     			else { response.getWriter().append("Supero los dias maximo de anticipacion a la reserva"); }
-				
+                }else { response.getWriter().append("Supero la cantidad de reservas pendientes de ese tipo"); }
 				
 		  }catch (ApplicationException ade) {
 				request.setAttribute("Error", ade.getMessage());

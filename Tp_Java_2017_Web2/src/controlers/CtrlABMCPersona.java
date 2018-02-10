@@ -69,5 +69,9 @@ private ArrayList<Persona> pers;
 	public Categoria getById(int id_cat) throws Exception{
 		return dataCat.getById(id_cat);
 	}
+	public int validabaja(int id_per) throws Exception {
+		return dataPer.validabaja(id_per);
+		
+	}
 	
 }

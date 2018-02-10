@@ -173,9 +173,12 @@ public class abmcElemServlet extends HttpServlet {
 			Elemento el = new Elemento();
 			el.setId_El(Integer.parseInt(request.getParameter("id_el")));
 			CtrlABMCElemento ctrl2 = new CtrlABMCElemento();
-			ctrl2.delete(el);
-			response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/notificacion");
-		
+			int i=ctrl2.validabaja(el.getId_El());
+			 if (i==1)
+			 {response.getWriter().append("no se pueden eliminar elementos que esten reservados");}
+			 else {ctrl2.delete(el);
+			 response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/notificacion");}
+			 
 		}catch (ApplicationException ade) {
 			request.setAttribute("Error", ade.getMessage());
 		} catch (Exception e) {

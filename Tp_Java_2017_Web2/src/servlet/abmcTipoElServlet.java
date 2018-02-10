@@ -166,7 +166,7 @@ public class abmcTipoElServlet extends HttpServlet  {
 				}
 			 
 			ctrl.update(te);			
-		response.getWriter().append("Modificación, requested action: ").append(request.getPathInfo()).append(" through post");
+			response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/notificacion");
 		  }
 		catch (ApplicationException ade) {
 			request.setAttribute("Error", ade.getMessage());
@@ -181,9 +181,12 @@ public class abmcTipoElServlet extends HttpServlet  {
 			TipoElemento te = new TipoElemento();
 			te.setId_TE(Integer.parseInt(request.getParameter("id")));
 			 CtrlABMCTipoElemento ctrl = new CtrlABMCTipoElemento();
-			 ctrl.delete(te);
-		
-			response.getWriter().append("baja, requested action: ").append(request.getPathInfo()).append(" through post");
+			 int i=ctrl.validabaja(te.getId_TE());
+			 if (i==1)
+			 {response.getWriter().append("no se pueden eliminar tipos de elementos que esten reservados o que pertenezcan a algun elemento");}
+			 else {ctrl.delete(te);
+			 response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/notificacion");}
+			
 		}
 		catch (ApplicationException ade) {
 			request.setAttribute("Error", ade.getMessage());
@@ -207,7 +210,7 @@ public class abmcTipoElServlet extends HttpServlet  {
 					te.setEncargado(true);
 				}
 				ctrl.add(te);
-				response.getWriter().append("Alta, requested action: ").append(request.getPathInfo()).append(" through post");
+				response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/notificacion");
 		  }
 		  catch (ApplicationException ade) {
 				request.setAttribute("Error", ade.getMessage());

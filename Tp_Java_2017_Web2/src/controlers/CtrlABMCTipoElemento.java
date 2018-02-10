@@ -51,4 +51,8 @@ public class CtrlABMCTipoElemento implements Serializable   {
 		return dataTipoEl.getPublico();
 		
 	}
+	public int validabaja(int id_te) throws Exception {
+		return dataTipoEl.validabaja(id_te);
+		
+	}
 }

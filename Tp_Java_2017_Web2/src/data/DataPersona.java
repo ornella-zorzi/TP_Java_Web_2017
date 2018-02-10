@@ -241,5 +241,27 @@ public Persona getValidacionUsario(Persona per) throws Exception{
 	    		}
 	    	} return u;
 	} 
+public int validabaja(int id_per) throws ApplicationException
+{
+PreparedStatement stmt= null;
+ResultSet rs=null;
+int i=0;
+try{ 
+stmt= FactoryConexion.getInstancia().getConn().prepareStatement( "select * from persona p where (p.id_per in(select id_per from reserva where id_per=?))");
+stmt.setInt(1,id_per);	
+	
+ rs=stmt.executeQuery();
+ if(rs!=null && rs.next()){
+			i=1;
+	}
+ 
+} catch (SQLException e) {
+	ApplicationException ade=new ApplicationException(e, "Error al validar.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+	throw ade;
+} catch (ApplicationException ade){
+	throw ade;
+}
 
+ return i;		
+}	
 }

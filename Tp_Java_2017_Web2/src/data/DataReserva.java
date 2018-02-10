@@ -242,7 +242,7 @@ public int  validaDisponibilidad(Reserva re) throws ApplicationException{
 		
 	
 }
-public int  validaAnticipacion(Reserva re) throws ApplicationException{
+/*public int  validaAnticipacion(Reserva re) throws ApplicationException{
 	PreparedStatement stmt= null;
 	ResultSet rs=null;
 	ArrayList<Reserva> res = new ArrayList<Reserva>();
@@ -278,7 +278,7 @@ public int  validaAnticipacion(Reserva re) throws ApplicationException{
 	
 }
 
-
+*/
 public Reserva getById(Reserva r) throws Exception{
 	Reserva re = null ;
 	PreparedStatement stmt= null;
@@ -324,6 +324,31 @@ public Reserva getById(Reserva r) throws Exception{
 	} return re;
 	
 }
+public int  getcantReservasdeTipo(int id_per, int id_te, int id_el) throws ApplicationException{
+	PreparedStatement stmt= null;
+	ResultSet rs=null;
+	int i=0;
+	try{ 
+	stmt= FactoryConexion.getInstancia().getConn().prepareStatement( "select * from reserva r where (r.id_per=? and r.id_te=? and r.id_el=? and r.fecha>=curdate())");
+	stmt.setInt(1,id_per);
+	stmt.setInt(2,id_te);	
+	stmt.setInt(3,id_el);
+		
+		 rs=stmt.executeQuery();
+		 if (rs!= null ){
+				while(rs.next()){
+					i++;
+				}
+		 }
+	} catch (SQLException e) {
+		ApplicationException ade=new ApplicationException(e, "Error al calcular cantidad de reservas pendientes de un tipo.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+		throw ade;
+	} catch (ApplicationException ade){
+		throw ade;
+	}
+	 return (i);
+}	
+			
 }
 
 

@@ -39,6 +39,7 @@ public class ListadoResServlet extends HttpServlet {
 			try {
 				re = ctrl.getById(r);
 				ctrl.delete(re);
+				response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/notificacion");
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
