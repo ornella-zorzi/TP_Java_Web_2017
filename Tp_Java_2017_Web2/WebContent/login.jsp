@@ -10,7 +10,7 @@
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
     <title>Play JavaCraft!</title>
-
+    <link href="Style/form.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="style/bootstrap.css" rel="stylesheet">
 
@@ -26,22 +26,28 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
+
+</head>
 
   <body>
-
+<div>
+<h1 style="text-align: center;"><br><br>Sistema de Reservas</h1></div>
     <div class="container">
 
       <form class="form-signin" name="signin" action="Start" method="post">
         <h2 class="form-signin-heading">Login</h2>
-        <label for="inputUser" class="sr-only">User</label>
-        <input name="user" id="inputUser" class="form-control" placeholder="User" required="" autofocus="" type="">
-        <label for="inputPass" class="sr-only">Password</label>
-        <input name="pass" id="inputPass" class="form-control" placeholder="Password" required="" type="Password">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button><br><br>
+     
+      <div class="row">
+      <div class="col-25"><label for="inputUser" class="sr-only">Usuario:</label></div>
+      <div class="col-75"><input name="user" id="inputUser"  class="form-control" placeholder="User" autofocus="" type="text"></div>
+    </div>   
+       <div class="row">
+      <div class="col-25"><label for="inputPass" class="sr-only">Contraseña:</label></div>
+      <div class="col-75"><input name="pass" id="inputPass"  class="form-control" placeholder="Password" autofocus="" type="password"></div>
+    </div>  
+         <input type="submit"  value="Ingresar"> 
+       
       
-      <%  
-      System.out.println(request.getAttribute("user"));%>  
       
       </form>
 
@@ -49,6 +55,10 @@
 
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="style/ie10-viewport-bug-workaround.js"></script>
+  
+
+</body></html>
     <script src="style/ie10-viewport-bug-workaround.js"></script>
   
 
