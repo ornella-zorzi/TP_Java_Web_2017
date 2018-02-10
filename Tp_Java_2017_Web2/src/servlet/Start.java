@@ -56,11 +56,18 @@ public class Start extends HttpServlet {
 			CtrlABMCPersona ctrl1= new CtrlABMCPersona();
 			
 			Persona pers=ctrl1.getValidacionUsario(per);
-			request.setAttribute("pers", per);
+			if (pers!=null){
+				if(pers.isHabilitado()){
+					request.getSession().setAttribute("user", pers);
+					request.getRequestDispatcher("/WEB-INF/menu.jsp").forward(request, response);
+				}
+				else{request.setAttribute("encontrado", pers);
+				request.getRequestDispatcher("login.jsp").forward(request, response);}
+			}
+			else{request.setAttribute("encontrado", per);
+			request.getRequestDispatcher("login.jsp").forward(request, response);}
 			
-		request.getRequestDispatcher("login.jsp").forward(request, response);
 		    //logger.log(Level.INFO,"log in "+pers.getDni());
-		   
 			
 		} catch (ApplicationException ade) {
 			request.setAttribute("Error", ade.getMessage());

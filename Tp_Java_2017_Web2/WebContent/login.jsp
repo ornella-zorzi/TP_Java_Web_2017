@@ -1,5 +1,7 @@
+<%@page import="entity.Persona"%>
+
 <!DOCTYPE html>
-<html lang="en"><head>
+<html><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -46,7 +48,11 @@
       <div class="col-75"><input name="pass" id="inputPass"  class="form-control" placeholder="Password" autofocus="" type="password"></div>
     </div>  
          <input type="submit"  value="Ingresar"> 
-       
+      <%if (request.getAttribute("encontrado")!=null){
+    	  Persona p=(Persona)request.getAttribute("encontrado");
+    	  if(p.getDni()!=null){%><h5 style="color: #FF0000;" class="form-signin-heading">usuario inhabilitado</h5><% }
+    	  else{%><h5 style="color: #FF0000;" class="form-signin-heading">usuario o contraseña incorrecta</h5><% }
+      }%>
       
       
       </form>
