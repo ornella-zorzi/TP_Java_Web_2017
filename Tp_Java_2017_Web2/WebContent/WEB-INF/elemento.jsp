@@ -39,6 +39,7 @@
     <script type="text/javascript">
     	function submitForm(met) {
     		document.myForm.action=met;
+    		//document.getElementById("myFrom").submit();
         }
     </script>
 <style>
@@ -139,7 +140,7 @@ input[type=submit]:hover {
 				background-color:#000000;
 				color:#fff;
 				text-decoration:none;
-				padding:20px 50px;
+				padding:20px 60px;
 				display:block;
 			}
 			
@@ -219,6 +220,7 @@ if(request.getAttribute("encontrado")!=null){
 
 
 %>
+<h1 style="text-align: center"><br><br><br>ABMC Elemento </h1>
 <div class="container">
 
       <form class="form-signin" id="myForm" name="myForm" action="" method="post">

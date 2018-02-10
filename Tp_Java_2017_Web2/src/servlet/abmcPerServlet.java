@@ -35,10 +35,64 @@ public class abmcPerServlet extends HttpServlet {
 		case "/per":
 			request.getRequestDispatcher("/WEB-INF/persona.jsp").forward(request, response);
 			break;
-	case "/elemento/persona":
-		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/persona");
+	case "/persona/persona":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/persona/per");
 		break;
-	}
+	case "/persona":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/persona/per");
+		break;	
+		
+	case "/persona/listadoEl":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/listadoEl/le");
+		break;
+	case "/listadoEl":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/listadoEl/le");
+		break;
+		
+	case "/persona/Start":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/Start");
+		break;
+	case "/Start":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/Start");
+		break;
+		
+	case "/persona/listadoPer":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/listadoPer/lp");
+		break;
+	case "/listadoPer":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/listadoPer/lp");
+		break;
+	case "/persona/tipoElemento":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/tipoElemento/te");
+		break;
+	case "/tipoElemento":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/tipoElemento/te");
+		break;
+	case "/persona/listadoTe":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/listadoTe/lte");
+		break;
+	case "/listadoTe":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/listadoTe/lte");
+		break;
+	case "/reserva":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/reserva/re");
+		break;
+	case "/persona/reserva":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/reserva/re");
+		break;
+	case "/listadoRe/listado":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/listadoRe/listado");
+		break;
+	case "/persona/listadoRe/listado":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/listadoRe/listado");
+		break;
+	case "/elemento":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/elemento/el");
+		break;
+	case "/persona/elemento":
+		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/elemento/el");
+		break;
+			}
 		
 	}
 
@@ -47,19 +101,19 @@ public class abmcPerServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		switch (request.getPathInfo()) {
-		case "/alta":
+		case "/persona/alta":
 			this.alta(request,response);
 			break;
 			
-		case "/persona/baja":
+		case "/persona/persona/baja":
 			this.baja(request,response);
 			break;
 		
-		case "/persona/modificacion":
+		case "/persona/persona/modificacion":
 				this.modificacion(request,response);
 			break;
 			
-		case "/consulta":
+		case "/persona/consulta":
 			this.consulta(request,response);
 			break;
 			

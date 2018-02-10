@@ -156,14 +156,14 @@
 <table id="customers" style="margin: 0 auto;">
 
 <tr>
-			<th style="width: 110px; ">ID</td>
-			<th style="width: 110px; ">TIPO DE ELEMENTO</td>
-			<th style="width: 110px; ">ELEMENTO</td>
-			<th style="width: 110px; ">FECHA INICIO</td>
-			<th style="width: 110px; ">FECHA FIN</td>
-			<th style="width: 110px; ">HORA</td>
-			<th style="width: 110px; ">DETALLE</td>
-			<th style="width: 110px; "></td>
+			<th style="width: 110px; ">ID</tdh>
+			<th style="width: 110px; ">TIPO DE ELEMENTO</th>
+			<th style="width: 110px; ">ELEMENTO</th>
+			<th style="width: 110px; ">FECHA INICIO</th>
+			<th style="width: 110px; ">FECHA FIN</th>
+			<th style="width: 110px; ">HORA</th>
+			<th style="width: 110px; ">DETALLE</th>
+			<th style="width: 110px; "></th>
 			
 			
 		</tr>

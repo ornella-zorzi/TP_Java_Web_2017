@@ -100,7 +100,7 @@ public class abmcElemServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		switch (request.getPathInfo()) {
-		case "elemento/alta":
+		case "/elemento/alta":
 			this.alta(request,response);
 			break;
 			
@@ -172,9 +172,9 @@ public class abmcElemServlet extends HttpServlet {
 		try{
 			Elemento el = new Elemento();
 			el.setId_El(Integer.parseInt(request.getParameter("id_el")));
-			CtrlABMCElemento ctrl = new CtrlABMCElemento();
-			ctrl.delete(el);
-		response.getWriter().append("baja, requested action: ").append(request.getPathInfo()).append(" through post");
+			CtrlABMCElemento ctrl2 = new CtrlABMCElemento();
+			ctrl2.delete(el);
+			response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/notificacion");
 		
 		}catch (ApplicationException ade) {
 			request.setAttribute("Error", ade.getMessage());
@@ -195,7 +195,7 @@ public class abmcElemServlet extends HttpServlet {
 				int id_te=Integer.parseInt(request.getParameter("tipoElemento"));
 				el.setTipoElemento(ctrlte.getById(id_te));
 				ctrl.add(el);
-				response.getWriter().append("Elemento creado con exito");
+				response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/notificacion");
 		  }catch (ApplicationException ade) {
 				request.setAttribute("Error", ade.getMessage());
 			} catch (Exception e) {
