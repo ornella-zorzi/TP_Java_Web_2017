@@ -36,8 +36,10 @@ public class ListadoPerServlet extends HttpServlet {
 			CtrlABMCPersona ctrl1= new CtrlABMCPersona();
 			try {
 				request.setAttribute("listaPersonas", ctrl1.getAll());
+			} catch (ApplicationException ade) {
+				request.setAttribute("Error", ade.getMessage());
 			} catch (Exception e) {
-				e.printStackTrace();
+				response.setStatus(502);
 			}
 			request.getRequestDispatcher("/WEB-INF/listadoPersona.jsp").forward(request, response);
 			

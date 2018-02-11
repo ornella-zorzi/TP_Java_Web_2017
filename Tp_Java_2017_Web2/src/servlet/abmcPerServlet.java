@@ -186,9 +186,7 @@ public class abmcPerServlet extends HttpServlet {
 		 {response.getWriter().append("no se pueden eliminar personas que tengan reservas");}
 		 else {ctrl.delete(per);
 		 response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/notificacion");}
-		
 		ctrl.delete(per);
-		//response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/notificacion");
 		response.getWriter().append("baja, requested action: ").append(request.getPathInfo()).append(" through post");
 	
 	}catch (ApplicationException ade) {

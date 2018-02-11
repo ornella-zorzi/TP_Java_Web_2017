@@ -42,9 +42,12 @@ public class DataTipoElemento implements Serializable  {
 			if(rs!=null) rs.close();
 			if (stmt!=null) stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
-			} catch (SQLException e){
-				e.printStackTrace();
-			}
+		} catch (SQLException e) {
+			ApplicationException ade=new ApplicationException(e, "Error.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+			throw ade;
+		} catch (ApplicationException ade){
+			throw ade;
+		}
 			return tipoEl;
 	} 
 	public ArrayList<TipoElemento> getPublico() throws ApplicationException{
@@ -79,9 +82,12 @@ public class DataTipoElemento implements Serializable  {
 			if(rs!=null) rs.close();
 			if (stmt!=null) stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
-			} catch (SQLException e){
-				e.printStackTrace();
-			}
+		} catch (SQLException e) {
+			ApplicationException ade=new ApplicationException(e, "Error.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+			throw ade;
+		} catch (ApplicationException ade){
+			throw ade;
+		}
 			return tipoEl;
 	} 
 	 public TipoElemento getByNombre(TipoElemento tel) throws Exception{
@@ -114,8 +120,11 @@ public class DataTipoElemento implements Serializable  {
 	    			if(rs!=null)rs.close();
 	    			if (stmt!=null)stmt.close();
 	    			FactoryConexion.getInstancia().releaseConn();
-	    		}catch (SQLException ex ){
-	    			throw ex;
+	    		} catch (SQLException e) {
+	    			ApplicationException ade=new ApplicationException(e, "Error.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+	    			throw ade;
+	    		} catch (ApplicationException ade){
+	    			throw ade;
 	    		}
 	    	} return te;
 	 }
@@ -146,9 +155,12 @@ public class DataTipoElemento implements Serializable  {
 	    			if (keyResultSet!=null)keyResultSet.close();
 	    			if (stmt!=null)stmt.close();
 	    			FactoryConexion.getInstancia().releaseConn();
-	    	} catch (SQLException e ){
-	    		e.printStackTrace();
-	    	}
+	    	} catch (SQLException e) {
+				ApplicationException ade=new ApplicationException(e, "Error.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+				throw ade;
+			} catch (ApplicationException ade){
+				throw ade;
+			}
 	    } 
 
 	 
@@ -163,9 +175,10 @@ public class DataTipoElemento implements Serializable  {
 				rs = stmt.executeQuery();
 				
 			} catch (SQLException e) {
-				e.printStackTrace();
-			} catch (ApplicationException e) {
-				throw e;
+				ApplicationException ade=new ApplicationException(e, "Error.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+				throw ade;
+			} catch (ApplicationException ade){
+				throw ade;
 			}
 			return rs;	
 		}
@@ -237,8 +250,11 @@ public class DataTipoElemento implements Serializable  {
 		    			if(rs!=null)rs.close();
 		    			if (stmt!=null)stmt.close();
 		    			FactoryConexion.getInstancia().releaseConn();
-		    		}catch (SQLException e ){
-		    			throw e;
+		    		} catch (SQLException e) {
+		    			ApplicationException ade=new ApplicationException(e, "Error.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+		    			throw ade;
+		    		} catch (ApplicationException ade){
+		    			throw ade;
 		    		}
 		    	} return te;
 		    	
@@ -269,8 +285,11 @@ public class DataTipoElemento implements Serializable  {
 		    			if(rs!=null)rs.close();
 		    			if (stmt!=null)stmt.close();
 		    			FactoryConexion.getInstancia().releaseConn();
-		    		}catch (SQLException e ){
-		    			throw e;
+		    		} catch (SQLException e) {
+		    			ApplicationException ade=new ApplicationException(e, "Error al recuperar listado de tipo de elementos.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+		    			throw ade;
+		    		} catch (ApplicationException ade){
+		    			throw ade;
 		    		}
 		    	} return te;
 		    	

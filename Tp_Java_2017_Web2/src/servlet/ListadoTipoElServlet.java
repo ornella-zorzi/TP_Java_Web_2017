@@ -34,8 +34,10 @@ public class ListadoTipoElServlet extends HttpServlet {
 			CtrlABMCTipoElemento ctrl = new CtrlABMCTipoElemento();	
 			try {
 				request.setAttribute("listaTipoElementos", ctrl.getAll());
+			} catch (ApplicationException ade) {
+				request.setAttribute("Error", ade.getMessage());
 			} catch (Exception e) {
-				e.printStackTrace();
+				response.setStatus(502);
 			}
 			request.getRequestDispatcher("/WEB-INF/listadoTipoElemento.jsp").forward(request, response);
 			break;

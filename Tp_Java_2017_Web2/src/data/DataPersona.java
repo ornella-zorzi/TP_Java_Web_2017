@@ -51,8 +51,10 @@ public class DataPersona implements Serializable{
 			if(stmt!=null) stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
-			
-			e.printStackTrace();
+			ApplicationException ade=new ApplicationException(e, "Error .\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+			throw ade;
+		} catch (ApplicationException ade){
+			throw ade;
 		}
 		
 		return pers;
@@ -92,8 +94,11 @@ public class DataPersona implements Serializable{
     			if(rs!=null)rs.close();
     			if (stmt!=null)stmt.close();
     			FactoryConexion.getInstancia().releaseConn();
-    		}catch (SQLException e ){
-    			throw e;
+    		} catch (SQLException e) {
+    			ApplicationException ade=new ApplicationException(e, "Error.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+    			throw ade;
+    		} catch (ApplicationException ade){
+    			throw ade;
     		}
     	} return p;
     	
@@ -129,9 +134,12 @@ public class DataPersona implements Serializable{
     			if (keyResultSet!=null)keyResultSet.close();
     			if (stmt!=null)stmt.close();
     			FactoryConexion.getInstancia().releaseConn();
-    	} catch (SQLException e ){
-    		e.printStackTrace();
-    	}
+         } catch (SQLException e) {
+			ApplicationException ade=new ApplicationException(e, "Error.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+			throw ade;
+		} catch (ApplicationException ade){
+			throw ade;
+		}
     } 
 
 
@@ -147,9 +155,10 @@ public ResultSet getResultSet() throws ApplicationException{
 			rs = stmt.executeQuery();
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ApplicationException e) {
-			throw e;
+			ApplicationException ade=new ApplicationException(e, "Error.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+			throw ade;
+		} catch (ApplicationException ade){
+			throw ade;
 		}
 
 		return rs;

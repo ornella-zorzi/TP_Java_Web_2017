@@ -95,6 +95,7 @@ public class abmcTipoElServlet extends HttpServlet  {
 		response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/elemento/el");
 		break;
 			}
+
 	}
 
 	/**

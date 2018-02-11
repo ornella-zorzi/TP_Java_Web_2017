@@ -67,12 +67,12 @@ public class Start extends HttpServlet {
 			else{request.setAttribute("encontrado", per);
 			request.getRequestDispatcher("login.jsp").forward(request, response);}
 			
-		    //logger.log(Level.INFO,"log in "+pers.getDni());
+		    logger.log(Level.INFO,"log in "+pers.getDni());
 			
 		} catch (ApplicationException ade) {
 			request.setAttribute("Error", ade.getMessage());
 		} catch (Exception e) {
-			response.setStatus(500);
+			response.setStatus(502);
 		}
 	}
 

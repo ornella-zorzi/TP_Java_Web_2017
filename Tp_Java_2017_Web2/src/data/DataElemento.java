@@ -160,9 +160,10 @@ public ResultSet getResultSet() throws ApplicationException{
 			rs = stmt.executeQuery();
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ApplicationException e) {
-			throw e;
+			ApplicationException ade=new ApplicationException(e, "Error .\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+			throw ade;
+		} catch (ApplicationException ade){
+			throw ade;
 		}
 
 		return rs;

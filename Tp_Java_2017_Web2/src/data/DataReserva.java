@@ -51,8 +51,11 @@ public class DataReserva implements Serializable  {
 			if(rs!=null) rs.close();
 			if (stmt!=null) stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
-			} catch (SQLException e){
-				e.printStackTrace();
+			} catch (SQLException e) {
+				ApplicationException ade=new ApplicationException(e, "Error.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+				throw ade;
+			} catch (ApplicationException ade){
+				throw ade;
 			}
 			return res;
 		
@@ -101,9 +104,12 @@ public class DataReserva implements Serializable  {
 			if(rs!=null) rs.close();
 			if (stmt!=null) stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
-			} catch (SQLException e){
-				e.printStackTrace();
-			}
+		} catch (SQLException e) {
+			ApplicationException ade=new ApplicationException(e, "Error.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+			throw ade;
+		} catch (ApplicationException ade){
+			throw ade;
+		}
 			return res;
 		
 	} 
@@ -137,9 +143,12 @@ public class DataReserva implements Serializable  {
     			if (keyResultSet!=null)keyResultSet.close();
     			if (stmt!=null)stmt.close();
     			FactoryConexion.getInstancia().releaseConn();
-    	} catch (SQLException e ){
-    		e.printStackTrace();
-    	}
+		} catch (SQLException e) {
+			ApplicationException ade=new ApplicationException(e, "Error .\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+			throw ade;
+		} catch (ApplicationException ade){
+			throw ade;
+		}
     } 
 
 public ResultSet getResultSet() throws ApplicationException{	
@@ -153,12 +162,11 @@ public ResultSet getResultSet() throws ApplicationException{
 			rs = stmt.executeQuery();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ApplicationException e) {
-			throw e;
+			ApplicationException ade=new ApplicationException(e, "Error.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+			throw ade;
+		} catch (ApplicationException ade){
+			throw ade;
 		}
-
 		return rs;
 		
 	}
@@ -235,50 +243,16 @@ public int  validaDisponibilidad(Reserva re) throws ApplicationException{
 		if(rs!=null) rs.close();
 		if (stmt!=null) stmt.close();
 		FactoryConexion.getInstancia().releaseConn();
-		} catch (SQLException e){
-			e.printStackTrace();
-		}
-		return (i);
-		
-	
-}
-/*public int  validaAnticipacion(Reserva re) throws ApplicationException{
-	PreparedStatement stmt= null;
-	ResultSet rs=null;
-	ArrayList<Reserva> res = new ArrayList<Reserva>();
-	int i=0;
-	try{ 
-	stmt= FactoryConexion.getInstancia().getConn().prepareStatement( "Select * from reserva r where (r.id_el=? and r.id_te=? and r.fecha=? and r.hora=?)");
-		stmt.setInt(1,re.getElemento().getId_El());
-		stmt.setInt(2,re.getTipoelemento().getId_TE());
-		stmt.setDate(3,re.getFecha());
-		stmt.setTime(4,re.getHora_inicio());
-		stmt.setTime(5,re.getHora_fin());
-		
-		 
-		 rs=stmt.executeQuery();
-		 if(rs!=null && rs.next()){
-					i=1;
-			}
-		
 	} catch (SQLException e) {
-		ApplicationException ade=new ApplicationException(e, "Error al validar dias de anticipacion de la reseva.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+		ApplicationException ade=new ApplicationException(e, "Error.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
 		throw ade;
 	} catch (ApplicationException ade){
 		throw ade;
-	}try {
-		if(rs!=null) rs.close();
-		if (stmt!=null) stmt.close();
-		FactoryConexion.getInstancia().releaseConn();
-		} catch (SQLException e){
-			e.printStackTrace();
-		}
+	}
 		return (i);
 		
 	
 }
-
-*/
 public Reserva getById(Reserva r) throws Exception{
 	Reserva re = null ;
 	PreparedStatement stmt= null;
@@ -318,8 +292,11 @@ public Reserva getById(Reserva r) throws Exception{
 			if(rs!=null)rs.close();
 			if (stmt!=null)stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
-		}catch (SQLException e ){
-			throw e;
+		} catch (SQLException e) {
+			ApplicationException ade=new ApplicationException(e, "Error.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+			throw ade;
+		} catch (ApplicationException ade){
+			throw ade;
 		}
 	} return re;
 	

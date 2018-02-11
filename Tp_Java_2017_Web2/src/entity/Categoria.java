@@ -20,12 +20,6 @@ public class Categoria  implements Serializable  {
 		this.nombre_cat = nombre_cat;
 	}
 	
-	 /* public Categoria (int id_cat, String nombre_cat ){
-		super();
-		this.setId_cat(id_cat);
-		this.setNombre_cat(nombre_cat);
-			
-	}*/
 	
 	@Override
 	public String toString(){

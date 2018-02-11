@@ -145,9 +145,7 @@ public class abmcResServet  extends HttpServlet  {
 			    CtrlABMCElemento ctrle = new CtrlABMCElemento();
 			    Persona p=(Persona) request.getSession().getAttribute("user");
                 Reserva re = new Reserva();
-            	//TipoElemento t = new TipoElemento();
-            	//Elemento e=new Elemento();
-            	
+           
                 re.setElemento(new Elemento());
                 re.setPersona(new Persona());
                 re.setTipoelemento(new TipoElemento());

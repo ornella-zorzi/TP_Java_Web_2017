@@ -11,6 +11,7 @@ import controlers.CtrlABMCPersona;
 import controlers.CtrlABMCReserva;
 import entity.Persona;
 import entity.Reserva;
+import util.ApplicationException;
 import util.Emailer;
 
 /**
@@ -43,8 +44,10 @@ public class ListadoResServlet extends HttpServlet {
 				Persona p=(Persona)request.getSession().getAttribute("user");
 				response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/notificacion");
 				Emailer.getInstance().send(p.getEmail(),"reserva",ctrl.getMailCancelar(re,p));
-			} catch (Exception e1) {
-				e1.printStackTrace();
+			} catch (ApplicationException ade) {
+				request.setAttribute("Error", ade.getMessage());
+			} catch (Exception e) {
+				response.setStatus(502);
 			}
 			break;
 		case "/listado":
@@ -52,8 +55,10 @@ public class ListadoResServlet extends HttpServlet {
 			Persona p=(Persona) request.getSession().getAttribute("user");
 			try {
 				request.setAttribute("listaReservas", ctrl2.getReservasPendientes(p));
+			} catch (ApplicationException ade) {
+				request.setAttribute("Error", ade.getMessage());
 			} catch (Exception e) {
-				e.printStackTrace();
+				response.setStatus(502);
 			}
 			request.getRequestDispatcher("/WEB-INF/listadoReserva.jsp").forward(request, response);
 			break;
