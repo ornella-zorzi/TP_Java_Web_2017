@@ -215,9 +215,9 @@ public class abmcPerServlet extends HttpServlet {
 				}
 				per.setUsuario(request.getParameter("usuario"));
 				per.setContraseña(request.getParameter("contraseña"));
-				
+		
 				ctrl.add(per);
-			
+			     
 				response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/notificacion");
 		  }catch (ApplicationException ade) {
 				request.setAttribute("Error", ade.getMessage());

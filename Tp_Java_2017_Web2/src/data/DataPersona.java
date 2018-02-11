@@ -264,4 +264,10 @@ stmt.setInt(1,id_per);
 
  return i;		
 }	
+
+/*public String  validadni(String dni) throws ApplicationException{
+	
+	return ;
+}*/
+
 }
