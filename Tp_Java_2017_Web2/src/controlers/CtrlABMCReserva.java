@@ -79,6 +79,13 @@ public class CtrlABMCReserva implements Serializable   {
 					r.getHora_inicio()+"\t"+ r.getHora_fin()+"\t"+r.getDetalle()+"\n";
 		return texto;
 	}
+	public String getMailCancelar(Reserva r, Persona p){
+		String texto="Su reserva ha sido cancelada\n";
+			texto= texto + p.getApellido() +"\t"+ p.getNombre()+"\t"+r.getId_res()+"\t"+
+					r.getTipoelemento().getNombre_TE()+"\t"+ r.getElemento()+"\t"+r.getFecha()+"\t"+
+					r.getHora_inicio()+"\t"+ r.getHora_fin()+"\t"+r.getDetalle()+"\n";
+		return texto;
+	}
 public int getcantReservasdeTipo(int id_per, int id_te, int id_el) throws Exception {
 	    int cant=dataRes.getcantReservasdeTipo(id_per,id_te, id_el);
 		return  cant;

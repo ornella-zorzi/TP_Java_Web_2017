@@ -215,10 +215,17 @@ public class abmcPerServlet extends HttpServlet {
 				}
 				per.setUsuario(request.getParameter("usuario"));
 				per.setContraseña(request.getParameter("contraseña"));
+				int i=ctrl.validaDni(per.getDni());
+				 int a=ctrl.validaUsuario(per.getUsuario());
+				if (i==1)
+				 {response.getWriter().append("No se puede registrar persona. Dni ya existe en el sistema");}
+				 if (a==1)
+				 {response.getWriter().append("No se puede registrar persona. Usuario ya existe en el sistema");
+				 }
+				if(a!=1 & i!=1) {ctrl.add(per);
+				 response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/notificacion");}
 				
-				ctrl.add(per);
-			
-				response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/notificacion");
+
 		  }catch (ApplicationException ade) {
 				request.setAttribute("Error", ade.getMessage());
 			} catch (Exception e) {

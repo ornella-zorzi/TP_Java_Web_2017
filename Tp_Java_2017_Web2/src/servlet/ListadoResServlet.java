@@ -11,6 +11,7 @@ import controlers.CtrlABMCPersona;
 import controlers.CtrlABMCReserva;
 import entity.Persona;
 import entity.Reserva;
+import util.Emailer;
 
 /**
  * Servlet implementation class ListadoResServlet
@@ -39,7 +40,9 @@ public class ListadoResServlet extends HttpServlet {
 			try {
 				re = ctrl.getById(r);
 				ctrl.delete(re);
+				Persona p=(Persona)request.getSession().getAttribute("user");
 				response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/notificacion");
+				Emailer.getInstance().send(p.getEmail(),"reserva",ctrl.getMailCancelar(re,p));
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}

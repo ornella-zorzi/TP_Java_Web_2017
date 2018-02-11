@@ -75,7 +75,6 @@ input[type=submit]:hover {
 }
 
 .container {
-	    position: absolute;
 		top:50%;
 		left:45%;
 		width:500px;

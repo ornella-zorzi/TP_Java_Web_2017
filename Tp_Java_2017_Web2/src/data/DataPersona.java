@@ -264,4 +264,50 @@ stmt.setInt(1,id_per);
 
  return i;		
 }	
+public int validaDni(String dni) throws ApplicationException
+{
+PreparedStatement stmt= null;
+ResultSet rs=null;
+int i=0;
+try{ 
+stmt= FactoryConexion.getInstancia().getConn().prepareStatement( "select * from persona p where (p.dni in(select dni from persona where dni=?))");
+stmt.setString(1,dni);	
+	
+ rs=stmt.executeQuery();
+ if(rs!=null && rs.next()){
+			i=1;
+	}
+ 
+} catch (SQLException e) {
+	ApplicationException ade=new ApplicationException(e, "Error al validar.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+	throw ade;
+} catch (ApplicationException ade){
+	throw ade;
+}
+
+ return i;		
+}	
+public int validaUsuario(String usuario) throws ApplicationException
+{
+PreparedStatement stmt= null;
+ResultSet rs=null;
+int i=0;
+try{ 
+stmt= FactoryConexion.getInstancia().getConn().prepareStatement( "select * from persona p where (p.usuario in(select usuario from persona where usuario=?))");
+stmt.setString(1,usuario);	
+	
+ rs=stmt.executeQuery();
+ if(rs!=null && rs.next()){
+			i=1;
+	}
+ 
+} catch (SQLException e) {
+	ApplicationException ade=new ApplicationException(e, "Error al validar.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+	throw ade;
+} catch (ApplicationException ade){
+	throw ade;
+}
+
+ return i;		
+}	
 }

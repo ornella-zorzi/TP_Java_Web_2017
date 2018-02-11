@@ -73,5 +73,13 @@ private ArrayList<Persona> pers;
 		return dataPer.validabaja(id_per);
 		
 	}
+	public int validaDni(String dni) throws Exception {
+		return dataPer.validaDni(dni);
+		
+	}
+	public int validaUsuario(String usuario) throws Exception {
+		return dataPer.validaUsuario(usuario);
+		
+	}
 	
 }
