@@ -32,8 +32,7 @@
 </head>
 
   <body bgcolor=#D8F6CE>
-<div>
-<h1 style="text-align: center;"><br><br>Sistema de Reservas</h1></div>
+  <div><h1 style="text-align: center;"><br><br>Sistema de Reservas<br><br><br></h1></div>
     <div class="container">
 
       <form class="form-signin" name="signin" action="Start" method="post">

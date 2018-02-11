@@ -13,7 +13,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link href="Style/menu.css" rel="stylesheet">
-<h1>Bienvenido <%=((Persona)session.getAttribute("user")).getNombre() %></h1>
+<h1>Bienvenido/a <%=((Persona)session.getAttribute("user")).getNombre() %></h1>
 <style type="text/css">
 			
 			* {
