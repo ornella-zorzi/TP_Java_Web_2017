@@ -15,15 +15,16 @@
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
     <title>Play JavaCraft!</title>
-   <link href="Style/menu.css" rel="stylesheet">
-   <link href="Style/form.css" rel="stylesheet">
+    
+<link href="Style/menu.css" rel="stylesheet">
+<link href="Style/form.css" rel="stylesheet">
+
 
     <!-- Bootstrap core CSS -->
     <link href="style/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="style/start.css" rel="stylesheet">
-    
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -34,14 +35,13 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
     <script type="text/javascript">
     	function submitForm(met) {
     		document.myForm.action=met;
     		//document.getElementById("myFrom").submit();
         }
     </script>
-   <style>
+<style>
 * {
     box-sizing: border-box;
 }
@@ -79,7 +79,7 @@ input[type=submit]:hover {
 		left:45%;
 		width:500px;
 		margin-left:260px;
-		height:520px;
+		height:350px;
 		margin-top:50px;
 		padding:40px;
 		border:1px solid #808080;
@@ -166,7 +166,7 @@ input[type=submit]:hover {
 			}
 			
 			
-		</style> 
+		</style>
   </head>
 <body bgcolor=#D8F6CE >
 	<div id="header">
@@ -218,6 +218,7 @@ if(request.getAttribute("encontrado")!=null){
         encargado=encontrado.isEncargado();     
 }
 %>
+
 <h1 style="text-align: center"><br><br><br>ABMC Tipo de Elementos </h1>
  <div class="container">
   	<form class="form-signin" id="myForm" name="myForm" action="" method="post">
