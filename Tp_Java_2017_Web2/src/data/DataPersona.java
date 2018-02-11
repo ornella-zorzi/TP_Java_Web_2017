@@ -264,7 +264,7 @@ stmt.setInt(1,id_per);
 
  return i;		
 }	
-<<<<<<< HEAD
+
 public int validaDni(String dni) throws ApplicationException
 {
 PreparedStatement stmt= null;
@@ -311,12 +311,5 @@ stmt.setString(1,usuario);
 
  return i;		
 }	
-=======
 
-/*public String  validadni(String dni) throws ApplicationException{
-	
-	return ;
-}*/
-
->>>>>>> branch 'master' of https://github.com/ornella-zorzi/TP_Java_Web_2017.git
 }

@@ -215,7 +215,6 @@ public class abmcPerServlet extends HttpServlet {
 				}
 				per.setUsuario(request.getParameter("usuario"));
 				per.setContraseña(request.getParameter("contraseña"));
-<<<<<<< HEAD
 				int i=ctrl.validaDni(per.getDni());
 				 int a=ctrl.validaUsuario(per.getUsuario());
 				if (i==1)
@@ -225,14 +224,7 @@ public class abmcPerServlet extends HttpServlet {
 				 }
 				if(a!=1 & i!=1) {ctrl.add(per);
 				 response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/notificacion");}
-				
-
-=======
-		
-				ctrl.add(per);
-			     
-				response.sendRedirect("http://localhost:8080/Tp_Java_2017_Web2/notificacion");
->>>>>>> branch 'master' of https://github.com/ornella-zorzi/TP_Java_Web_2017.git
+			
 		  }catch (ApplicationException ade) {
 				request.setAttribute("Error", ade.getMessage());
 			} catch (Exception e) {
