@@ -79,7 +79,7 @@ input[type=submit]:hover {
 		left:45%;
 		width:500px;
 		margin-left:260px;
-		height:520px;
+		height:540px;
 		margin-top:50px;
 		padding:40px;
 		border:1px solid #808080;
@@ -226,7 +226,7 @@ if(request.getAttribute("encontrado")!=null){
 	
 	 <div class="row">
      	<div class="col-25"><label for="inputid" class="sr-only">ID</label></div>
-     	<div class="col-75"> <input  name="id" class="form-control" type="text" value=<%=id_te %> ></div>
+     	<div class="col-75"> <input  name="id" class="form-control" type="text"  readonly="readonly" value=<%=id_te %>></div>
      </div>
 	
      <div class="row">
@@ -237,18 +237,18 @@ if(request.getAttribute("encontrado")!=null){
       
     <div class="row">
      	<div class="col-25"><label for="inputcant_reserva_max" class="sr-only">Cant. de reserva maxima</label></div>
-     	<div class="col-75"><input name="cant_reserva_max" id="inputcant_reserva_max"  class="form-control" placeholder="" required="" autofocus="" type="text" value=<%=cant_reserva_max %>></div>   	
+     	<div class="col-75"><input name="cant_reserva_max" id="inputcant_reserva_max"  class="form-control" placeholder=""  autofocus="" type="text" value=<%=cant_reserva_max %>></div>   	
     </div>
      
      
     <div class="row">
-     	<div class="col-25"><label for="inputtiempo_limite" class="sr-only">Tiempo Limite</label></div>
-     	<div class="col-75"><input name="tiempo_limite" id="inputtiempo_limite"  class="form-control" placeholder="" required="" autofocus="" type="text" value=<%=tiempo_limite %>></div>   	
+     	<div class="col-25"><label for="inputtiempo_limite" class="sr-only">Tiempo limite de reserva (horas)</label></div>
+     	<div class="col-75"><input name="tiempo_limite" id="inputtiempo_limite"  class="form-control" placeholder=""  autofocus="" type="text" value=<%=tiempo_limite %>></div>   	
     </div>
      
      <div class="row">
      	<div class="col-25"><label for="inputdias_anticipacion" class="sr-only">Dias Anticipacion</label></div>
-     	<div class="col-75"><input name="dias_anticipacion" id="inputdias_anticipacion"  class="form-control" placeholder="" required="" autofocus="" type="text" value=<%=dias_anticipacion %>></div>   	
+     	<div class="col-75"><input name="dias_anticipacion" id="inputdias_anticipacion"  class="form-control" placeholder=""  autofocus="" type="text" value=<%=dias_anticipacion %>></div>   	
     </div>  
         
     <input type="checkbox" name="encargado" id="inputencargado" value="true" 

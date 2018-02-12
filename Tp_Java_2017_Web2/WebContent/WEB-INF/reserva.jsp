@@ -217,10 +217,10 @@ input[type=submit]:hover {
         
     <div class="row">
      <div class="col-25"><label for="inputid" class="sr-only">ID</label></div>
-     <div class="col-75"> <input  name="id" class="form-control" type="text"  ></div>
+     <div class="col-75"> <input  name="id" class="form-control" type="text" value="--" readonly="readonly" ></div>
     </div>
     
-        <div class="row">
+      <div class="row">
      <div class="col-25"><label for="inputTipoElemento" class="sr-only">Tipo de elemento</label></div>
       <%CtrlABMCTipoElemento ctrl=new CtrlABMCTipoElemento();
 			ArrayList<TipoElemento> tels= new ArrayList<TipoElemento>();
@@ -230,7 +230,7 @@ input[type=submit]:hover {
 			}
 			else {tels=ctrl.getPublico();}
 		%>
-			<select name="tipo_elemento" style="width: 107px; ">
+		<div class="col-75">	<select name="tipo_elemento" >
 		<%	if(request.getAttribute("elementos_tipo")!=null){
 		int id_el=Integer.parseInt(request.getParameter("tipo_elemento"));
 		TipoElemento te=new TipoElemento();
@@ -243,13 +243,13 @@ input[type=submit]:hover {
 		<% 	}
 		}
 		%> 
-		</select>
-		 	<input type="submit"  value="Buscar" onclick="javascript: submitForm('reserva/consulta')"> 	
+		</select> 
+		</div>	
 		 </div>   
 		 
    <div class="row">
    <div class="col-25"><label for="inputElemento" class="sr-only">Elemento</label></div>
-     <select name="elemento" style="width: 113px; ">
+     <select name="elemento" style="width: 170px; ">
 		<%	 
 		if(request.getAttribute("elementos_tipo")!=null){
 		eles=(ArrayList<Elemento>)request.getAttribute("elementos_tipo");
@@ -258,7 +258,7 @@ input[type=submit]:hover {
 			<option value="<%=e.getId_El() %>"><%=e.getNombre_El() %></option>
 		<%}} %> 
 		</select>
-		
+		<input type="submit"  value="Buscar Elemento" onclick="javascript: submitForm('reserva/consulta')">
     </div>   
 		
 	<div class="row">

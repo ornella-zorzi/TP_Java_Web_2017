@@ -239,7 +239,7 @@ input[type=submit]:hover {
         
     <div class="row">
      <div class="col-25"><label for="inputid" class="sr-only">ID</label></div>
-     <div class="col-75"> <input  name="id" class="form-control" type="text" value=<%=id %> ></div>
+     <div class="col-75"> <input  name="id" class="form-control" type="text" readonly="readonly" value=<%=id %>> </div>
     </div>
     <div class="row">
       <div class="col-25"><label for="inputdni" class="sr-only">DNI</label></div>

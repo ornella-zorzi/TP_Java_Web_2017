@@ -229,7 +229,7 @@ if(request.getAttribute("encontrado")!=null){
         
         <div class="row">
      <div class="col-25"><label for="inputid" class="sr-only">ID</label></div>
-     <div class="col-75"> <input  name="id_el" class="form-control" type="text" value=<%=id_el %> ></div>
+     <div class="col-75"> <input  name="id_el" class="form-control" type="text" readonly="readonly" value=<%=id_el %> ></div>
     </div>
     <div class="row">
      <div class="col-25"><label for="inputnombre_el" class="sr-only">Elemento</label></div>
