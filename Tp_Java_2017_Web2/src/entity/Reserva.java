@@ -3,18 +3,14 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
 
-
 public class Reserva implements Serializable {
-	
 	private Time hora_fin;
 	private Time hora_inicio;
 	private String estado;
 	private String detalle;
 	private Persona persona;
 	private Elemento elemento;
-	private Date fecha;
-
-	
+	private Date fecha;	
 	private TipoElemento tipoelemento;
 	private int id_res;
 	
@@ -99,10 +95,5 @@ public class Reserva implements Serializable {
 	public boolean equals(Object r){
 		return (r instanceof Reserva) &&
 			 (((Reserva)r).getTipoelemento().getNombre_TE().equals(this.getTipoelemento().getNombre_TE()));
-					
-
 	}
-	
-	
-
 }

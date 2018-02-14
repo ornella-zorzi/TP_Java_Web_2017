@@ -6,14 +6,12 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
-
 import controlers.*;
 import entity.*;
 import util.ApplicationException;
@@ -186,6 +184,5 @@ public class abmcResServet  extends HttpServlet  {
 				response.setStatus(500);
 			}
 	}
-
 
 }

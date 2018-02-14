@@ -1,13 +1,10 @@
 package controlers;
 import entity.*;
 import data.*;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
-
-
 
 public class CtrlABMCReserva implements Serializable   {
 	private DataPersona dataPer;

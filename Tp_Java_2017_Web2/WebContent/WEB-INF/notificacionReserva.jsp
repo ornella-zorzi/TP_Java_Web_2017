@@ -13,6 +13,61 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link href="Style/menu.css" rel="stylesheet">
+<style type="text/css">
+			
+			* {
+				margin:0px;
+				padding:0px;
+			}
+			
+			#header {
+				margin:auto;
+				width:1000px;
+				font-family:Arial, Helvetica, sans-serif;
+			}
+			
+			ul, ol {
+				list-style:none;
+			}
+			
+			.nav > li {
+				float:left;
+			}
+			
+			.nav li a {
+				background-color:#000000;
+				color:#fff;
+				text-decoration:none;
+				padding:20px 60px;
+				display:block;
+			}
+			
+			.nav li a:hover {
+				background-color:#4CAF50;
+			}
+			
+			.nav li ul {
+				display:none;
+				position:absolute;
+				min-width:140px;
+			}
+			
+			.nav li:hover > ul {
+				display:block;
+			}
+			
+			.nav li ul li {
+				position:relative;
+			}
+			
+			.nav li ul li ul {
+				right:0px;
+				top:0px;
+			}
+			
+			
+		</style>
+
 
 </head>
 <body bgcolor=#D8F6CE >

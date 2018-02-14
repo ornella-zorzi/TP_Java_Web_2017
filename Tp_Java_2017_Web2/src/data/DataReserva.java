@@ -1,11 +1,9 @@
 package data;
 import entity.*;
 import util.ApplicationException;
-
 import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
-
 import org.apache.logging.log4j.Level;
 
 public class DataReserva implements Serializable  {
@@ -16,8 +14,7 @@ public class DataReserva implements Serializable  {
 		try{ 
 			stmt = FactoryConexion.getInstancia().getConn().createStatement();
 			rs = stmt.executeQuery("Select r.id_res, te.id_te, te.nombre_te, e.id_el,e.nombre_el, p.id_per,p.nombre, p.apellido, fecha, hora_inicio,hora_fin, detalle from reserva r " +
-			"inner join persona p on r.id_per=p.id_per inner join elemento e on e.id_el=r.id_el inner join tipo_elemento te on te.id_te=r.id_te");
-			
+			"inner join persona p on r.id_per=p.id_per inner join elemento e on e.id_el=r.id_el inner join tipo_elemento te on te.id_te=r.id_te");			
 			if (rs!= null ){
 				while(rs.next()){
 					Reserva r=new Reserva();
@@ -37,7 +34,6 @@ public class DataReserva implements Serializable  {
 					r.setFecha(rs.getDate("fecha"));
 					r.setDetalle(rs.getString("detalle"));
 					res.add(r);
-						
 				}
 			}
 		}
@@ -57,8 +53,7 @@ public class DataReserva implements Serializable  {
 			} catch (ApplicationException ade){
 				throw ade;
 			}
-			return res;
-		
+			return res;		
 	} 
 	public ArrayList<Reserva> getReservasPendientes(Persona p) throws ApplicationException{
 		Reserva r = null ;
@@ -69,8 +64,7 @@ public class DataReserva implements Serializable  {
 			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("Select r.id_res, te.id_te, te.nombre_te, e.id_el,e.nombre_el, p.id_per,p.nombre, p.apellido, fecha, hora_inicio,hora_fin, detalle from reserva r " +
 					"inner join persona p on r.id_per=p.id_per inner join elemento e on e.id_el=r.id_el inner join tipo_elemento te on te.id_te=r.id_te where r.id_per=? and r.fecha>=curdate() ");
 			stmt.setInt(1, p.getId_per());
-			rs = stmt.executeQuery();
-			
+			rs = stmt.executeQuery();			
 			if (rs!= null ){
 				while(rs.next()){
 					r=new Reserva();
@@ -89,11 +83,9 @@ public class DataReserva implements Serializable  {
 					r.setHora_fin(rs.getTime("hora_fin"));
 					r.setFecha(rs.getDate("fecha"));
 					r.setDetalle(rs.getString("detalle"));
-					res.add(r);
-						
+					res.add(r);						
 				}
-			}
-			
+			}			
 		} catch (SQLException e) {
 			ApplicationException ade=new ApplicationException(e, "Error al recuperar listado de reservas pendientes.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
 			throw ade;
@@ -110,8 +102,7 @@ public class DataReserva implements Serializable  {
 		} catch (ApplicationException ade){
 			throw ade;
 		}
-			return res;
-		
+			return res;		
 	} 
 
    public void add (Reserva r) throws Exception{
@@ -126,14 +117,12 @@ public class DataReserva implements Serializable  {
     		  stmt.setTime(4,r.getHora_inicio());
     		  stmt.setTime(5,r.getHora_fin());
     		  stmt.setString(6,r.getDetalle());
-    		  stmt.setInt(7,r.getPersona().getId_per());
-    		  
+    		  stmt.setInt(7,r.getPersona().getId_per());   		  
     		  stmt.executeUpdate();
     		  keyResultSet=stmt.getGeneratedKeys();
     		  if (keyResultSet!=null && keyResultSet.next()){
     			  r.setId_res(keyResultSet.getInt(1));
-    		  }
-    		
+    		  }  		
     	} catch (SQLException e) {
 			ApplicationException ade=new ApplicationException(e, "Error al agregar la reserva.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
 			throw ade;
@@ -159,36 +148,29 @@ public ResultSet getResultSet() throws ApplicationException{
 			stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
 					"SELECT id_res, id_el, id_te, fecha, hora_inicio,hora_fin, detalle, id_per " +
 					"FROM reserva  inner join elemento  on reserva.id_el=elemento.id_el where id_te=?");			
-			rs = stmt.executeQuery();
-			
+			rs = stmt.executeQuery();			
 		} catch (SQLException e) {
 			ApplicationException ade=new ApplicationException(e, "Error.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
 			throw ade;
 		} catch (ApplicationException ade){
 			throw ade;
 		}
-		return rs;
-		
+		return rs;		
 	}
-
 
 public void update(Reserva r) throws ApplicationException{
 	PreparedStatement stmt=null;	
 	try {
 		stmt= FactoryConexion.getInstancia().getConn().prepareStatement(
-				"UPDATE reserva SET id_el=?, id_te=?, fecha=?, hora_inicio=?,hora_fin=?, detalle=? WHERE id_res=?");	
-		
+				"UPDATE reserva SET id_el=?, id_te=?, fecha=?, hora_inicio=?,hora_fin=?, detalle=? WHERE id_res=?");		
 		 stmt.setInt(1,r.getElemento().getId_El());
 		  stmt.setInt(2,r.getElemento().getTipoElemento().getId_TE());
-		 // stmt.setString(3,r.getPersona().getDni());
 		  stmt.setDate(3, (Date) r.getFecha());
 		  stmt.setTime(4,(Time) r.getHora_inicio());
 		  stmt.setTime(5,(Time) r.getHora_fin());
 		  stmt.setString(6,r.getDetalle());
-		  stmt.setInt(7, r.getId_res());
-		  
-		  stmt.execute();
-		
+		  stmt.setInt(7, r.getId_res());		  
+		  stmt.execute();		
 	}catch (SQLException e) {
 		ApplicationException ade=new ApplicationException(e, "Error al modificar reserva.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
 		throw ade;
@@ -210,9 +192,7 @@ public void delete(Reserva r) throws ApplicationException{
 		throw ade;
 	} catch (ApplicationException ade){
 		throw ade;
-	}
-	
-	
+	}	
 }
 
 public int  validaDisponibilidad(Reserva re) throws ApplicationException{
@@ -226,14 +206,11 @@ public int  validaDisponibilidad(Reserva re) throws ApplicationException{
 	stmt.setTime(2,re.getHora_fin());	
 	stmt.setInt(3,re.getElemento().getId_El());
 	stmt.setInt(4,re.getTipoelemento().getId_TE());
-	stmt.setDate(5,re.getFecha());
-		
-		 
+	stmt.setDate(5,re.getFecha());	 
 		 rs=stmt.executeQuery();
 		 if(rs!=null && rs.next()){
 					i=1;
-			}
-		
+			}		
 	} catch (SQLException e) {
 		ApplicationException ade=new ApplicationException(e, "Error al validar disponibilidad.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
 		throw ade;
@@ -249,10 +226,9 @@ public int  validaDisponibilidad(Reserva re) throws ApplicationException{
 	} catch (ApplicationException ade){
 		throw ade;
 	}
-		return (i);
-		
-	
+		return (i);	
 }
+
 public Reserva getById(Reserva r) throws Exception{
 	Reserva re = null ;
 	PreparedStatement stmt= null;
@@ -298,8 +274,7 @@ public Reserva getById(Reserva r) throws Exception{
 		} catch (ApplicationException ade){
 			throw ade;
 		}
-	} return re;
-	
+	} return re;	
 }
 public int  getcantReservasdeTipo(int id_per, int id_te, int id_el) throws ApplicationException{
 	PreparedStatement stmt= null;
@@ -310,7 +285,6 @@ public int  getcantReservasdeTipo(int id_per, int id_te, int id_el) throws Appli
 	stmt.setInt(1,id_per);
 	stmt.setInt(2,id_te);	
 	stmt.setInt(3,id_el);
-		
 		 rs=stmt.executeQuery();
 		 if (rs!= null ){
 				while(rs.next()){
